@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
   { id: 'sec-concept', label: '标志解析', num: '01' },
@@ -16,6 +16,7 @@ const navItems = [
 export function AnniversaryModal({ onClose }: { onClose: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState('sec-concept');
+  const [videoOpen, setVideoOpen] = useState(false);
 
   const handleScroll = useCallback(() => {
     const container = containerRef.current;
@@ -49,8 +50,46 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
     >
 
+{/* ═══ Hero Video Background ═══ */}
+<div className="relative min-h-screen overflow-hidden">
+  <video src="/videos/大族宣传.mp4" muted loop autoPlay playsInline
+    className="absolute inset-0 w-full h-full object-cover"
+    style={{ filter: 'brightness(0.45)' }} />
+  <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-black/40 to-transparent z-0" />
+  <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-6 pt-20">
+    <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+      <span className="text-[10px] font-mono text-white/30 tracking-[0.3em] uppercase">30th Anniversary</span>
+      <h2 className="text-[clamp(36px,7vw,72px)] font-black tracking-tight text-white mt-3">大族激光30周年</h2>
+      <p className="text-sm text-white/35 mt-4 max-w-[500px] mx-auto leading-relaxed">
+        LOGO Design Guidelines · 30-Page Brand Manual · Visual Applications · Gold/Silver Foil Stamping · Office Stationery System · Gift Box Packaging
+      </p>
+    </motion.div>
+    <motion.div className="mt-10 flex flex-col items-center gap-2"
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
+      <span className="text-[10px] font-mono text-white/25 tracking-wider">向下滑动查看</span>
+      <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="text-white/40">
+          <path d="M12 5v14M5 12l7 7 7-7" /></svg>
+      </motion.div>
+    </motion.div>
+    {/* Play button */}
+    <motion.button
+      className="absolute bottom-10 right-8 flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full border border-white/15 hover:bg-white/20 transition-colors"
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
+      whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+      onClick={(e) => { e.stopPropagation(); setVideoOpen(true); }}>
+      <span className="w-7 h-7 rounded-full bg-white flex items-center justify-center">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="black"><path d="M8 5v14l11-7z" /></svg>
+      </span>
+      <span className="text-xs font-bold text-white">播放完整视频</span>
+    </motion.button>
+  </div>
+  <div className="absolute inset-x-0 bottom-0 h-[25%] z-0"
+    style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0.85) 85%, rgb(255,255,255) 100%)' }} />
+</div>
+
 {/* ═══ 磨砂玻璃顶栏 ═══ */}
-<div className="sticky top-6 z-50 flex justify-center px-4 pointer-events-none">
+<div className="fixed top-0 pt-6 z-50 flex justify-center px-4 pointer-events-none w-full">
 <div className="flex items-center gap-1 px-3 py-2 rounded-full pointer-events-auto"
   style={{
     background: 'rgba(255,255,255,0.65)',
@@ -293,7 +332,7 @@ export function AnniversaryCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
       <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[4/5]">
-        <img src="/images/30周年应用/h1.png" alt="" className="w-full h-full object-cover" />
+        <video src="/videos/大族宣传.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <span className="text-[10px] font-mono text-white/50 tracking-wider uppercase">PROJECT 02</span>
