@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /* ===== Video Fullscreen Player ===== */
@@ -47,11 +47,48 @@ const glassPanel: React.CSSProperties = {
 };
 
 /* ========== 3C E-Commerce Detail Modal ========== */
+const c3NavItems = [
+  { id: 'c3-features', label: '核心卖点', num: '01' },
+  { id: 'c3-lifestyle', label: '场景体验', num: '02' },
+  { id: 'c3-specs', label: '技术规格', num: '03' },
+  { id: 'c3-engineering', label: '声学工程', num: '04' },
+  { id: 'c3-support', label: '售后保障', num: '05' },
+];
+
 export function Ecom3CModal({ onClose }: { onClose: () => void }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [videoOpen, setVideoOpen] = useState(false);
+  const [c3Active, setC3Active] = useState('c3-features');
+
+  const handleC3Scroll = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const viewHeight = container.clientHeight;
+    let current = c3NavItems[0].id;
+    for (const item of c3NavItems) {
+      const el = document.getElementById(item.id);
+      if (!el) continue;
+      if (el.getBoundingClientRect().top < viewHeight * 0.4) current = item.id;
+    }
+    setC3Active(current);
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    container.addEventListener('scroll', handleC3Scroll, { passive: true });
+    handleC3Scroll();
+    return () => container.removeEventListener('scroll', handleC3Scroll);
+  }, [handleC3Scroll]);
+
+  const scrollToC3 = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
-    <motion.div className="fixed inset-0 z-[90] overflow-y-auto" style={{ background: C.background }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <motion.div
+      ref={containerRef}
+      className="fixed inset-0 z-[90] overflow-y-auto" style={{ background: C.background }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
 
       {/* Close button */}
       <button onClick={onClose} className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/10 backdrop-blur-md flex items-center justify-center hover:bg-black/20 transition-colors">
@@ -60,25 +97,36 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
         </svg>
       </button>
 
-      {/* TopNavBar */}
-      <header className="fixed top-0 left-0 right-0 z-40 border-b border-white/20 bg-white/60 backdrop-blur-xl shadow-sm">
-        <div className="flex justify-between items-center px-5 md:px-16 h-14 max-w-7xl mx-auto">
-          <div className="text-lg font-bold tracking-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: C.onSurface }}>AeroSound</div>
-          <nav className="hidden md:flex gap-8">
-            {['Tech', 'Design', 'Reviews', 'Support'].map((item) => (
-              <a key={item} className="text-xs font-semibold tracking-wider uppercase cursor-pointer hover:opacity-70"
-                style={{ fontFamily: "'Inter', sans-serif", color: C.onSurfaceVariant }}>{item}</a>
-            ))}
-          </nav>
-          <div className="flex items-center gap-4">
-            <button className="hidden md:flex items-center justify-center rounded-full p-2 hover:bg-black/5 transition-all">
-              <Icon name="shopping_cart" size="text-xl" />
-            </button>
-            <button className="hidden sm:block px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5"
-              style={{ fontFamily: "'Inter', sans-serif", background: C.primary, color: C.onPrimary }}>Buy Now</button>
-          </div>
+      {/* TopNavBar — scroll-to-section navigation */}
+      <div className="fixed top-0 pt-4 z-50 flex justify-center px-4 pointer-events-none w-full">
+        <div className="flex items-center gap-1 px-3 py-2 rounded-full pointer-events-auto"
+          style={{
+            background: 'rgba(255,255,255,0.65)',
+            backdropFilter: 'blur(24px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+            border: '1px solid rgba(0,80,203,0.08)',
+            boxShadow: '0 8px 32px rgba(0,53,197,0.04), 0 2px 8px rgba(0,0,0,0.02)',
+          }}>
+          {c3NavItems.map((item) => {
+            const isActive = item.id === c3Active;
+            return (
+              <button key={item.id} onClick={() => scrollToC3(item.id)}
+                className="relative flex items-center gap-1.5 px-3 py-2 rounded-full transition-colors duration-300 cursor-pointer">
+                {isActive && (
+                  <motion.div className="absolute inset-0 rounded-full z-0"
+                    layoutId="c3-active-pill"
+                    style={{ background: `linear-gradient(135deg, ${C.primary}, ${C.primaryContainer})` }}
+                    transition={{ type: 'spring', stiffness: 380, damping: 28 }} />
+                )}
+                <span className="relative z-10 text-[11px] font-mono font-bold tracking-tight"
+                  style={{ color: isActive ? '#fff' : `${C.primary}59` }}>{item.num}</span>
+                <span className="relative z-10 text-[11px] font-medium tracking-wide whitespace-nowrap hidden sm:inline"
+                  style={{ color: isActive ? '#fff' : `${C.primary}80` }}>{item.label}</span>
+              </button>
+            );
+          })}
         </div>
-      </header>
+      </div>
 
       {/* ===== Hero Video (unchanged) ===== */}
       <div className="relative min-h-screen overflow-hidden">
@@ -153,7 +201,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
         </section>
 
         {/* Core Selling Points (Bento Grid) */}
-        <section className="py-20" style={{ background: C.surface }}>
+        <section id="c3-features" className="py-20" style={{ background: C.surface }}>
           <div className="max-w-7xl mx-auto px-5 md:px-16">
             <div className="text-center mb-20">
               <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '40px', fontWeight: 600, lineHeight: 1.2, letterSpacing: '-0.01em', color: C.onSurface, marginBottom: '1rem' }}>Engineered Perfection</h2>
@@ -212,7 +260,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
         </section>
 
         {/* Lifestyle Section */}
-        <section className="py-20 relative overflow-hidden" style={{ background: C.background }}>
+        <section id="c3-lifestyle" className="py-20 relative overflow-hidden" style={{ background: C.background }}>
           <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"
             style={{ background: `${C.secondaryFixed}33` }} />
           <div className="max-w-7xl mx-auto px-5 md:px-16">
@@ -260,7 +308,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
         {/* ═══════════ PAGE 2: TECHNICAL SPECS & SUPPORT ═══════════ */}
 
         {/* Hero Product Overview */}
-        <section className="max-w-7xl mx-auto px-5 md:px-16 pt-32 pb-20">
+        <section id="c3-specs" className="max-w-7xl mx-auto px-5 md:px-16 pt-32 pb-20">
           <div className="text-center mb-16">
             <h1 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 'clamp(32px,7vw,72px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: C.onSurface, marginBottom: '1.5rem' }}>Precision Engineering.</h1>
             <p className="max-w-2xl mx-auto" style={{ color: C.onSurfaceVariant }}>Discover the meticulous specifications and comprehensive support that define the AeroSound Pro experience.</p>
@@ -293,7 +341,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
         </section>
 
         {/* Service & Commitment */}
-        <section className="py-20" style={{ background: C.surfaceContainerLow }}>
+        <section id="c3-support" className="py-20" style={{ background: C.surfaceContainerLow }}>
           <div className="max-w-7xl mx-auto px-5 md:px-16">
             <div className="text-center mb-16">
               <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 'clamp(32px,5vw,40px)', fontWeight: 600, letterSpacing: '-0.01em', color: C.onSurface, marginBottom: '1rem' }}>Service &amp; Commitment.</h2>
@@ -323,7 +371,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
         {/* ═══════════ PAGE 3: TECHNOLOGY FEATURES ═══════════ */}
 
         {/* Hero — Pure Acoustic Engineering */}
-        <section className="px-5 md:px-16 max-w-7xl mx-auto text-center pt-20 pb-20">
+        <section id="c3-engineering" className="px-5 md:px-16 max-w-7xl mx-auto text-center pt-20 pb-20">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-8"
             style={{ background: `${C.primary}1a`, boxShadow: `0 0 30px ${C.primary}26` }}>
             <Icon name="memory" size="text-3xl" /></div>
