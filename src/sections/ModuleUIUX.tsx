@@ -31,7 +31,7 @@ function VerticalScrollGallery({
             viewport={{ once: true, margin: '-80px' }}
             transition={{ delay: i * 0.04, duration: 0.5 }}
           >
-            <div className="rounded-2xl overflow-hidden bg-gray-50 border border-black/5 hover:shadow-lg transition-shadow">
+            <div className="cursor-target rounded-2xl overflow-hidden bg-gray-50 border border-black/5 hover:shadow-lg transition-shadow">
               <img src={img.src} alt={img.title} className="w-full h-auto object-cover" loading="lazy" />
             </div>
             <p className="text-[11px] text-black/30 mt-2 mb-1 font-mono tracking-wider text-center">{img.title}</p>

@@ -441,7 +441,7 @@ function GooeyNav({
           {items.map((item, index) => (
             <li
               key={index}
-              className={activeIndex === index ? 'active' : ''}
+              className={`cursor-target ${activeIndex === index ? 'active' : ''}`}
               onClick={(e) => { handleClick(e, index); document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: 'smooth' }); }}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(e as any, index); } }}
             >
@@ -574,7 +574,7 @@ export default function Hero() {
           <motion.div {...f(1.0)} className="flex items-center gap-6 mt-6">
             <a
               href="#projects"
-              className="liquid-glass-strong rounded-full px-6 py-3 text-sm font-medium text-white font-body flex items-center gap-2"
+              className="cursor-target liquid-glass-strong rounded-full px-6 py-3 text-sm font-medium text-white font-body flex items-center gap-2"
             >
               探索作品
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">

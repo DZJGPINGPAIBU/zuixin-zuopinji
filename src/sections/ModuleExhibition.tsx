@@ -71,7 +71,7 @@ export function ExhibitionModal({ onClose }: { onClose: () => void }) {
 /* ========== Small Preview Card ========== */
 export function ExhibitionCard({ onClick }: { onClick: () => void }) {
   return (
-    <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
+    <motion.div className="card-3d cursor-target cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
       <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[4/5]">
         <img src="/images/gen-04.jpg" alt="展会视觉体系" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />

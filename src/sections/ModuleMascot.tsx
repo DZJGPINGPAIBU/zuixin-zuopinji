@@ -100,7 +100,7 @@ export function BrandPortal() {
 </li>
 </ul>
 </div>
-<div className="col-span-12 lg:col-span-8 bg-mascot-surface-container/50 rounded-xl border border-mascot-outline-variant/20 p-8 relative overflow-hidden flex items-center justify-center min-h-[500px]">
+<div className="cursor-target col-span-12 lg:col-span-8 bg-mascot-surface-container/50 rounded-xl border border-mascot-outline-variant/20 p-8 relative overflow-hidden flex items-center justify-center min-h-[500px]">
 <img alt="A detailed technical blueprint and branding guidelines document for the robot mascot, displaying geometric breakdown of the face to form the letter H, color palette specifications in Pantone and RGB, and a diagram showing a literal laser machine." className="w-full h-full object-contain mix-blend-multiply z-10" src="/images/mascot/img_61.jpg"  loading="lazy" />
 <div className="absolute top-4 right-4 font-label-mono text-label-mono text-mascot-primary/50">DOC_REF: SPEC_01</div>
 </div>

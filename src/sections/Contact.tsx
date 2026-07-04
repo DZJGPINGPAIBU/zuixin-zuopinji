@@ -83,7 +83,7 @@ export default function Contact() {
               <motion.div
                 {...fadeUp(0.9 + idx * 0.1)}
                 onClick={() => { if (item.copiable) handleCopy(item.value); }}
-                className={`p-10 rounded-[1.5rem] text-center border transition-colors ${
+                className={`cursor-target p-10 rounded-[1.5rem] text-center border transition-colors ${
                   item.copiable ? 'cursor-pointer hover:bg-[#FDF0EC]' : ''
                 }`}
                 style={{ background: 'rgba(255, 255, 255, 0.6)', borderColor: 'var(--bg-warm)' }}

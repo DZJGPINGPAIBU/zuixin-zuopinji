@@ -5,9 +5,10 @@
 @layer base {
   :root {
     /* === Warm & Bold Color System === */
-    --bg-primary: #FAF8F5;
-    --bg-secondary: #F0EDE8;
-    --bg-warm: #E8E4E0;
+    --bg-primary: rgba(250, 248, 245, 0.88);
+    --bg-primary-solid: #FAF8F5;
+    --bg-secondary: rgba(240, 237, 232, 0.88);
+    --bg-warm: rgba(232, 228, 224, 0.88);
     --text-primary: #1C1C1E;
     --text-secondary: #6B6560;
     --text-muted: #A39E99;

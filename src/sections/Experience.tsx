@@ -33,7 +33,7 @@ export default function Experience() {
                 {...fadeUp(0.6 + idx * 0.15)}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(-1)}
-                className="rounded-[1.25rem] border flex flex-col cursor-pointer transition-all relative overflow-hidden min-h-[360px]"
+                className="cursor-target rounded-[1.25rem] border flex flex-col cursor-pointer transition-all relative overflow-hidden min-h-[360px]"
                 style={{ borderColor: 'var(--bg-warm)' }}
               >
                 {/* Cover image — full opacity by default */}

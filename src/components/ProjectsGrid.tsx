@@ -91,7 +91,7 @@ export default function ProjectsGrid() {
               }`}
             >
               {/* Image side — existing card component */}
-              <div className="md:w-1/2 cursor-pointer" onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}>
+              <div className="md:w-1/2 cursor-pointer cursor-target" onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}>
                 <Card onClick={() => openModal(p.id as Exclude<ActiveModal, null>)} />
               </div>
 
@@ -119,7 +119,7 @@ export default function ProjectsGrid() {
                 </p>
                 <button
                   onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}
-                  className={`mt-5 liquid-glass-strong rounded-full px-5 py-2.5 text-xs font-medium text-black/70 font-body flex items-center gap-2 hover:bg-black/5 transition-colors ${
+                  className={`cursor-target mt-5 liquid-glass-strong rounded-full px-5 py-2.5 text-xs font-medium text-black/70 font-body flex items-center gap-2 hover:bg-black/5 transition-colors ${
                     isOdd ? 'md:self-start' : 'md:self-end'
                   }`}
                 >

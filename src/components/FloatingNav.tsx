@@ -35,7 +35,7 @@ export default function FloatingNav() {
     <>
       {/* Top-right floating menu button */}
       <motion.button
-        className="fixed top-6 right-6 z-50 w-12 h-12 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center transition-colors backdrop-blur-sm"
+        className="cursor-target fixed top-6 right-6 z-50 w-12 h-12 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center transition-colors backdrop-blur-sm"
         onClick={() => {
           setIsMenuOpen(!isMenuOpen);
           setIsWorkMenuOpen(false);

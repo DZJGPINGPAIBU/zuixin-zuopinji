@@ -39,11 +39,11 @@ export const projects: ProjectMeta[] = [
   {
     id: 'aigc',
     num: 'PROJECT 04',
-    title: 'AI创意视觉',
-    subtitle: 'AIGC Creative Visual',
-    shortDesc: '即梦 · Lovart · ChatGPT · 创意视频',
+    title: 'B站独家签约创作者',
+    subtitle: '动漫视觉 · 内容创作',
+    shortDesc: 'Bilibili · 动漫视觉 · 独家签约 · 内容创作',
     cover: '/images/gen-04.jpg',
-    tags: ['AIGC', 'AI创意', '视频生成'],
+    tags: ['Bilibili', '动漫', '视觉创作', 'UP主'],
   },
   {
     id: 'ecom3c',

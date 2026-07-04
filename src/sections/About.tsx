@@ -49,7 +49,7 @@ export default function About() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Left — personal info + bio */}
-          <motion.div {...fadeUp(0.6)} className="col-span-1 lg:col-span-2 rounded-[1.25rem] p-6 md:p-8 border flex flex-col"
+          <motion.div {...fadeUp(0.6)} className="cursor-target col-span-1 lg:col-span-2 rounded-[1.25rem] p-6 md:p-8 border flex flex-col"
             style={{ background: 'rgba(255,255,255,0.6)', borderColor: 'var(--bg-warm)' }}>
             <div className="flex items-start gap-4 mb-6">
               <div className="w-16 h-16 rounded-[0.75rem] flex items-center justify-center shrink-0 overflow-hidden" style={{ background: 'var(--accent-light)' }}>
@@ -85,7 +85,7 @@ export default function About() {
           </motion.div>
 
           {/* Right — education + awards */}
-          <motion.div {...fadeUp(0.7)} className="rounded-[1.25rem] p-6 border flex flex-col"
+          <motion.div {...fadeUp(0.7)} className="cursor-target rounded-[1.25rem] p-6 border flex flex-col"
             style={{ background: 'rgba(255,255,255,0.6)', borderColor: 'var(--bg-warm)' }}>
             <div className="w-11 h-11 rounded-[0.75rem] flex items-center justify-center shrink-0 mb-4" style={{ background: 'var(--accent-light)' }}>
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--accent)' }}>
