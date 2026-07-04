@@ -10,8 +10,17 @@ export interface ProjectMeta {
 
 export const projects: ProjectMeta[] = [
   {
-    id: 'mascot',
+    id: 'canvas',
     num: 'PROJECT 01',
+    title: '无限画布',
+    subtitle: 'AetherWorkbench · Infinite Canvas',
+    shortDesc: '定价订阅 · 个人中心 · 团队协作 · 素材库 · 分镜创作',
+    cover: '/images/canvas-cover.jpg',
+    tags: ['SaaS', '工作台', '全屏观览', '交互设计'],
+  },
+  {
+    id: 'mascot',
+    num: 'PROJECT 02',
     title: '集团吉祥物IP',
     subtitle: 'Group Mascot IP Design',
     shortDesc: '全屏视频 · 概念解析 · 表情包 · 盲盒礼品',
@@ -20,7 +29,7 @@ export const projects: ProjectMeta[] = [
   },
   {
     id: 'anniversary',
-    num: 'PROJECT 02',
+    num: 'PROJECT 03',
     title: '30周年庆典',
     subtitle: '30th Anniversary Visual',
     shortDesc: '30页设计规范 · 手册 · 视觉应用',
@@ -29,16 +38,16 @@ export const projects: ProjectMeta[] = [
   },
   {
     id: 'exhibition',
-    num: 'PROJECT 03',
+    num: 'PROJECT 04',
     title: '展会视觉',
-    subtitle: 'Exhibition Visual Design',
-    shortDesc: '慕尼黑 · 上海工博会 · 光博会 · 电池展',
+    subtitle: 'Exhibition Archive',
+    shortDesc: 'CIIF 工业精密 · CIOE 光电视觉 · CHTF 高科技生态',
     cover: '/images/gen-08.jpg',
-    tags: ['展会设计', '主视觉KV', '导视系统'],
+    tags: ['展会设计', '主视觉KV', '导视系统', 'CIIF', 'CIOE', 'CHTF'],
   },
   {
     id: 'aigc',
-    num: 'PROJECT 04',
+    num: 'PROJECT 05',
     title: 'B站独家签约创作者',
     subtitle: '动漫视觉 · 内容创作',
     shortDesc: 'Bilibili · 动漫视觉 · 独家签约 · 内容创作',

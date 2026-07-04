@@ -48,9 +48,9 @@ function AppContent() {
             shockStrength={4}
             resistance={400}
             returnDuration={1.2}
-            style={{ position: 'absolute', inset: 0, zIndex: 0 }}
+            style={{ position: 'absolute', inset: 0 }}
           />
-          <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ position: 'relative' }}>
             <About />
             <Experience />
             <ProjectsGrid />

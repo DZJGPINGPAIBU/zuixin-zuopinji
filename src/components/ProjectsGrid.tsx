@@ -6,17 +6,18 @@ import { MascotCard, MascotModal } from '@/sections/ModuleMascot';
 import { ExhibitionCard, ExhibitionModal } from '@/sections/ModuleExhibition';
 import { AIGCCard, AIGCModal } from '@/sections/ModuleAIGC';
 import { Ecom3CCard, Ecom3CModal } from '@/sections/Module3C';
+import { CanvasCard, CanvasModal } from '@/sections/ModuleCanvas';
 import ModalNavShell from '@/components/shared/ModalNavShell';
 
 type ActiveModal = (typeof projectOrder)[number] | null;
 
 const cardMap: Record<string, React.FC<{ onClick: () => void }>> = {
   anniversary: AnniversaryCard, mascot: MascotCard, exhibition: ExhibitionCard,
-  aigc: AIGCCard, ecom3c: Ecom3CCard,
+  aigc: AIGCCard, ecom3c: Ecom3CCard, canvas: CanvasCard,
 };
 const modalMap: Record<string, React.FC<{ onClose: () => void }>> = {
   anniversary: AnniversaryModal, mascot: MascotModal, exhibition: ExhibitionModal,
-  aigc: AIGCModal, ecom3c: Ecom3CModal,
+  aigc: AIGCModal, ecom3c: Ecom3CModal, canvas: CanvasModal,
 };
 
 /* ===== fadeUp helper ===== */
@@ -78,10 +79,50 @@ export default function ProjectsGrid() {
       </motion.div>
 
       <div className="max-w-[1200px] mx-auto">
-        {/* Alternating horizontal project cards — all projects unified layout */}
         {projects.map((p, i) => {
           const Card = cardMap[p.id];
+          const isFirst = i === 0;
           const isOdd = i % 2 === 1;
+
+          // First card: full-width banner
+          if (isFirst) {
+            return (
+              <motion.div key={p.id} {...fadeUp(0.3 + i * 0.1)} className="mb-16 md:mb-24">
+                <div className="cursor-pointer cursor-target w-full" onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}>
+                  <Card onClick={() => openModal(p.id as Exclude<ActiveModal, null>)} />
+                </div>
+                <div className="text-center mt-6">
+                  <div className="flex flex-wrap gap-1.5 mb-4 justify-center">
+                    {p.tags.map((t) => (
+                      <span key={t} className="text-[10px] font-body text-black/40 font-light tracking-[0.15em] uppercase">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="font-heading italic text-black text-3xl md:text-4xl lg:text-5xl tracking-[-2px] leading-[0.9]">
+                    {p.title}
+                  </h3>
+                  <p className="mt-3 text-xs lg:text-sm text-black/50 font-body font-light tracking-[0.1em] uppercase">
+                    {p.subtitle}
+                  </p>
+                  <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed">
+                    {p.shortDesc}
+                  </p>
+                  <button
+                    onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}
+                    className="cursor-target mt-5 liquid-glass-strong rounded-full px-5 py-2.5 text-xs font-medium text-black/70 font-body inline-flex items-center gap-2 hover:bg-black/5 transition-colors"
+                  >
+                    全屏观览
+                    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
+                  </button>
+                </div>
+              </motion.div>
+            );
+          }
+
           return (
             <motion.div
               key={p.id}
@@ -90,12 +131,10 @@ export default function ProjectsGrid() {
                 isOdd ? 'md:flex-row-reverse' : ''
               }`}
             >
-              {/* Image side — existing card component */}
               <div className="md:w-1/2 cursor-pointer cursor-target" onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}>
                 <Card onClick={() => openModal(p.id as Exclude<ActiveModal, null>)} />
               </div>
 
-              {/* Text side */}
               <div className={`md:w-1/2 flex flex-col justify-center ${
                 isOdd ? 'md:text-left md:items-start' : 'md:text-right md:items-end'
               }`}>
