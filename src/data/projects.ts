@@ -10,8 +10,17 @@ export interface ProjectMeta {
 
 export const projects: ProjectMeta[] = [
   {
-    id: 'canvas',
+    id: 'jihui',
     num: 'PROJECT 01',
+    title: 'MH极绘',
+    subtitle: '自研设计集成平台 · AI-Driven Design Hub',
+    shortDesc: '一站式设计效率工具平台，覆盖日常80%的重复性设计劳动，用AI与自动化解放设计师的生产力，让创意回归创意本身',
+    cover: '',
+    tags: ['AI设计', '效率工具', '自动化', 'SaaS'],
+  },
+  {
+    id: 'canvas',
+    num: 'PROJECT 02',
     title: '无限画布',
     subtitle: 'AetherWorkbench · Infinite Canvas',
     shortDesc: '定价订阅 · 个人中心 · 团队协作 · 素材库 · 分镜创作',
@@ -20,7 +29,7 @@ export const projects: ProjectMeta[] = [
   },
   {
     id: 'mascot',
-    num: 'PROJECT 02',
+    num: 'PROJECT 03',
     title: '集团吉祥物IP',
     subtitle: 'Group Mascot IP Design',
     shortDesc: '全屏视频 · 概念解析 · 表情包 · 盲盒礼品',
@@ -29,7 +38,7 @@ export const projects: ProjectMeta[] = [
   },
   {
     id: 'anniversary',
-    num: 'PROJECT 03',
+    num: 'PROJECT 04',
     title: '30周年庆典',
     subtitle: '30th Anniversary Visual',
     shortDesc: '30页设计规范 · 手册 · 视觉应用',
@@ -38,7 +47,7 @@ export const projects: ProjectMeta[] = [
   },
   {
     id: 'exhibition',
-    num: 'PROJECT 04',
+    num: 'PROJECT 05',
     title: '展会视觉',
     subtitle: 'Exhibition Archive',
     shortDesc: 'CIIF 工业精密 · CIOE 光电视觉 · CHTF 高科技生态',
@@ -47,7 +56,7 @@ export const projects: ProjectMeta[] = [
   },
   {
     id: 'aigc',
-    num: 'PROJECT 05',
+    num: 'PROJECT 06',
     title: 'B站独家签约创作者',
     subtitle: '动漫视觉 · 内容创作',
     shortDesc: 'Bilibili · 动漫视觉 · 独家签约 · 内容创作',
@@ -56,7 +65,7 @@ export const projects: ProjectMeta[] = [
   },
   {
     id: 'ecom3c',
-    num: 'PROJECT 06',
+    num: 'PROJECT 07',
     title: '3C 电商视觉',
     subtitle: '3C E-Commerce Visual Design',
     shortDesc: 'AeroSound Pro · 全屏视频 · 10屏详情',

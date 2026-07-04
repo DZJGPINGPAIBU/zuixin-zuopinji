@@ -7,13 +7,14 @@ import { ExhibitionCard, ExhibitionModal } from '@/sections/ModuleExhibition';
 import { AIGCCard, AIGCModal } from '@/sections/ModuleAIGC';
 import { Ecom3CCard, Ecom3CModal } from '@/sections/Module3C';
 import { CanvasCard, CanvasModal } from '@/sections/ModuleCanvas';
+import { JihuiCard } from '@/sections/ModuleJihui';
 import ModalNavShell from '@/components/shared/ModalNavShell';
 
 type ActiveModal = (typeof projectOrder)[number] | null;
 
 const cardMap: Record<string, React.FC<{ onClick: () => void }>> = {
-  anniversary: AnniversaryCard, mascot: MascotCard, exhibition: ExhibitionCard,
-  aigc: AIGCCard, ecom3c: Ecom3CCard, canvas: CanvasCard,
+  jihui: JihuiCard, canvas: CanvasCard, anniversary: AnniversaryCard, mascot: MascotCard, exhibition: ExhibitionCard,
+  aigc: AIGCCard, ecom3c: Ecom3CCard,
 };
 const modalMap: Record<string, React.FC<{ onClose: () => void }>> = {
   anniversary: AnniversaryModal, mascot: MascotModal, exhibition: ExhibitionModal,
@@ -81,16 +82,25 @@ export default function ProjectsGrid() {
       <div className="max-w-[1200px] mx-auto">
         {projects.map((p, i) => {
           const Card = cardMap[p.id];
-          const isFirst = i === 0;
           const isOdd = i % 2 === 1;
 
-          // First card: full-width banner
-          if (isFirst) {
+          // First two cards: full-width banner
+          if (i === 0 || i === 1) {
+            const isJihui = p.id === 'jihui';
+            const isCanvas = p.id === 'canvas';
+
             return (
               <motion.div key={p.id} {...fadeUp(0.3 + i * 0.1)} className="mb-16 md:mb-24">
-                <div className="cursor-pointer cursor-target w-full" onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}>
-                  <Card onClick={() => openModal(p.id as Exclude<ActiveModal, null>)} />
-                </div>
+                {/* Jihui: card handles its own external-link click; Canvas: modal */}
+                {isJihui ? (
+                  <div className="cursor-pointer cursor-target w-full">
+                    <Card onClick={() => {}} />
+                  </div>
+                ) : (
+                  <div className="cursor-pointer cursor-target w-full" onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}>
+                    <Card onClick={() => openModal(p.id as Exclude<ActiveModal, null>)} />
+                  </div>
+                )}
                 <div className="text-center mt-6">
                   <div className="flex flex-wrap gap-1.5 mb-4 justify-center">
                     {p.tags.map((t) => (
@@ -105,19 +115,51 @@ export default function ProjectsGrid() {
                   <p className="mt-3 text-xs lg:text-sm text-black/50 font-body font-light tracking-[0.1em] uppercase">
                     {p.subtitle}
                   </p>
-                  <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed">
-                    {p.shortDesc}
-                  </p>
-                  <button
-                    onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}
-                    className="cursor-target mt-5 liquid-glass-strong rounded-full px-5 py-2.5 text-xs font-medium text-black/70 font-body inline-flex items-center gap-2 hover:bg-black/5 transition-colors"
-                  >
-                    全屏观览
-                    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                      <path d="M7 17L17 7" />
-                      <path d="M7 7h10v10" />
-                    </svg>
-                  </button>
+                  {isCanvas ? (
+                    <div className="mt-4 space-y-3">
+                      <p className="text-sm lg:text-base text-black/60 font-body font-light leading-relaxed max-w-2xl mx-auto">
+                        目前该平台还在内测调试中，此IP链接只用于进入平台观看体验，部分功能目前无法使用，敬请期待开放！点击下方链接可以直接跳转平台，目前作品集中只展示前端部分UI设计
+                      </p>
+                      <a
+                        href="http://118.31.14.19/yitai"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block text-lg lg:text-xl font-mono font-bold text-[#005da7] hover:text-[#004883] underline underline-offset-4 decoration-2 transition-colors cursor-pointer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        http://118.31.14.19/yitai
+                      </a>
+                    </div>
+                  ) : (
+                    <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed">
+                      {p.shortDesc}
+                    </p>
+                  )}
+                  {isJihui ? (
+                    <a
+                      href="http://118.31.14.19/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-target mt-5 liquid-glass-strong rounded-full px-5 py-2.5 text-xs font-medium text-black/70 font-body inline-flex items-center gap-2 hover:bg-black/5 transition-colors no-underline"
+                    >
+                      访问平台
+                      <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M7 17L17 7" />
+                        <path d="M7 7h10v10" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}
+                      className="cursor-target mt-5 liquid-glass-strong rounded-full px-5 py-2.5 text-xs font-medium text-black/70 font-body inline-flex items-center gap-2 hover:bg-black/5 transition-colors"
+                    >
+                      全屏观览
+                      <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M7 17L17 7" />
+                        <path d="M7 7h10v10" />
+                      </svg>
+                    </button>
+                  )}
                 </div>
               </motion.div>
             );

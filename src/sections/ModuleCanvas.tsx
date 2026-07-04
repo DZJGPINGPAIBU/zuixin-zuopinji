@@ -67,7 +67,7 @@ export function CanvasModal({ onClose }: { onClose: () => void }) {
     >
       {/* Top bar — project num + centered nav + close */}
       <div className="relative flex items-center justify-center px-6 py-3 bg-white/90 backdrop-blur-md border-b border-black/5 shrink-0">
-        <span className="absolute left-6 text-xs font-mono text-black/30 tracking-wider">PROJECT 01</span>
+        <span className="absolute left-6 text-xs font-mono text-black/30 tracking-wider">PROJECT 02</span>
         <nav className="flex items-center gap-1">
           {pages.map((p) => (
             <button
@@ -125,7 +125,7 @@ export function CanvasModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-/* ========== Small Preview Card ========== */
+/* ========== Dynamic Preview Card — live iframe of first page ========== */
 export function CanvasCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div
@@ -135,18 +135,22 @@ export function CanvasCard({ onClick }: { onClick: () => void }) {
       onClick={onClick}
     >
       <div className="card-3d-inner overflow-hidden bg-white relative aspect-[21/9] md:aspect-[21/9]" style={{ borderRadius: '0.5rem' }}>
-        <img
-          src="/images/canvas-cover.jpg"
-          alt="无限画布"
-          className="w-full h-full object-cover"
+        {/* Live iframe — renders page_6 (分镜创作) hero section, shifted up 3 grid units */}
+        <iframe
+          src="/canvas/page_6.html"
+          className="absolute inset-0 w-full h-full border-0 pointer-events-none"
+          style={{ transform: 'translateY(-40px)', transformOrigin: 'top left' }}
+          scrolling="no"
+          title="分镜创作预览"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          <span className="text-[10px] font-mono text-white/50 tracking-wider uppercase">PROJECT 01</span>
+        {/* Text overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 pointer-events-none">
+          <span className="text-[10px] font-mono text-white/50 tracking-wider uppercase">PROJECT 02</span>
           <h3 className="text-white font-bold text-lg mt-1 leading-tight">无限画布</h3>
           <p className="text-white/50 text-xs mt-1">AetherWorkbench · 全屏观览</p>
         </div>
-        <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        {/* Expand icon */}
+        <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
             <path d="M7 17L17 7M17 7H7M17 7V17" />
           </svg>
