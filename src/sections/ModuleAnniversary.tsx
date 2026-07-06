@@ -1,6 +1,25 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+/* ===== Video Fullscreen Player ===== */
+function VideoPlayer({ onClose }: { onClose: () => void }) {
+  return (
+    <motion.div className="fixed inset-0 z-[110] bg-black/95 flex items-center justify-center p-4 md:p-8 cursor-pointer"
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
+      <motion.div className="w-full max-w-[1200px] aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl"
+        initial={{ scale: 0.85, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.85, opacity: 0 }}
+        transition={{ type: 'spring', damping: 25 }} onClick={(e) => e.stopPropagation()}>
+        <video src="/videos/大族宣传.mp4" controls playsInline className="w-full h-full object-contain" />
+      </motion.div>
+      <button className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+        onClick={(e) => { e.stopPropagation(); onClose(); }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+      </button>
+      <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/30 text-xs font-mono">点击任意区域关闭</p>
+    </motion.div>
+  );
+}
+
 const navItems = [
   { id: 'sec-concept', label: '标志解析', num: '01' },
   { id: 'sec-geometry', label: '几何分析', num: '02' },
@@ -87,6 +106,11 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
   <div className="absolute inset-x-0 bottom-0 h-[25%] z-0"
     style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0.85) 85%, rgb(255,255,255) 100%)' }} />
 </div>
+
+{/* ═══ 关闭按钮 ═══ */}
+      <button onClick={onClose} className="fixed top-4 right-4 z-[100] w-10 h-10 rounded-full bg-black/10 backdrop-blur-md flex items-center justify-center hover:bg-black/20 transition-colors cursor-pointer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+      </button>
 
 {/* ═══ 磨砂玻璃顶栏 ═══ */}
 <div className="fixed top-0 pt-6 z-50 flex justify-center px-4 pointer-events-none w-full">
@@ -324,6 +348,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 </div>
 </section>
 
+      <AnimatePresence>{videoOpen && <VideoPlayer onClose={() => setVideoOpen(false)} />}</AnimatePresence>
     </motion.div>
   );
 }
