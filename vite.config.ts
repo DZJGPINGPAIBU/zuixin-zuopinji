@@ -6,7 +6,13 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 export default defineConfig({
   base: './',
   plugins: [inspectAttr(), react()],
-  server: { port: 3000 },
+  server: {
+    port: 3000,
+    proxy: {
+      '/images': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
+      '/videos': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
+    },
+  },
   resolve: {
     alias: { "@": path.resolve(__dirname, "./src") },
   },

@@ -1,44 +1,35 @@
-# Handoff — 2026-07-06 阶段结束
+# Handoff — 2026-07-06（OSS 素材上云）
 
 > 下一会话启动时读取此文件，快速恢复上下文。
 
 ## 当前状态
 
-- **Git**: `467a114` fix: 展会视觉模块图片本地化，已推送 origin/main
-- **分支**: main（无未提交更改）
-- **开发服务器**: `npm run dev` → `http://localhost:3001/`
+- **Git**: `6c811c6` chore: 清理8个孤儿视频文件 + OSS 素材上云，待推送
+- **分支**: main
+- **开发服务器**: `npm run dev` → `http://localhost:3000/`（vite.config 改为 3000）
 
-## 本次完成
+## ⚠️ 重要：OSS 云端素材方案
 
-### 展会视觉模块图片本地化
-- **问题**: `ModuleExhibition.tsx` 中 13 张图片全部使用 Google Photos 外链 (`lh3.googleusercontent.com`)，国内网络直连超时，导致展会模块图片全部空白
-- **修复**: 通过系统代理 `127.0.0.1:33210` 下载全部 13 张图片到 `public/images/exhibition/`
-- 替换 15 处 Google URL → 本地路径 `/images/exhibition/`
-- 图片分组：CIIF (5张) / CIOE (4张) / CHTF (4张)
+图片/视频已上传阿里云 OSS，Vite dev server 通过 proxy 透明代理。**本地 `public/` 无 images/videos**。
 
-## 关键文件
+| 项 | 值 |
+|----|-----|
+| Bucket | `zuopingjiii` (oss-cn-shenzhen) |
+| CDN | `https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com/` |
+| 上传脚本 | `scripts/oss-upload.mjs` |
+| 本地备份 | `~/zuopinji-backup/images/` + `~/zuopinji-backup/videos/` |
 
-| 文件 | 用途 |
-|------|------|
-| `src/sections/ModuleExhibition.tsx` | 展会视觉 Card + Modal（13张图片已本地化） |
-| `public/images/exhibition/` | 展会模块本地图片（ciif_*/cioe_*/chtf_*） |
-| `src/components/ProjectsGrid.tsx` | 项目网格，cardMap + modalMap 映射 |
-| `src/data/projects.ts` | 项目元数据，编号 01-07 |
+**构建前需恢复本地素材**：`cp -r ~/zuopinji-backup/images public/ && cp -r ~/zuopinji-backup/videos public/`
 
-## 架构要点
+## Git 待推送
 
-- 新增模块流程：Section 组件 → projects.ts → ProjectsGrid cardMap
-- 外部图片下载需过代理：curl `-x http://127.0.0.1:33210`（系统 SOCKS/HTTP 代理）
-- 外链卡片（jihui）：无 modal，card 内部处理 `window.open`
-- iframe 展示：`pointer-events: none` 防止光标冻结
-- 前两张卡片（i=0, i=1）均为全宽横幅布局
+- 清理 8 个孤儿视频文件（斩龙×2 + vid-01~06，省 39MB）
+- vite.config.ts proxy 配置
+- 新增 scripts/oss-upload.mjs
 
 ## 待办
 
-- [ ] Spline viewer 渲染修复（旧任务，未处理）
+- [ ] Spline viewer 渲染修复
 - [ ] 移动端响应式适配测试
-- [ ] Git 配置 user.name / user.email（当前为自动生成的 MOHE@MacBook-Air）
-
-## 记忆库
-
-所有踩坑记录在 `/Users/mohe/.claude/projects/-Users-mohe/memory/`，`MEMORY.md` 为索引。
+- [ ] Git 配置 user.name / user.email
+- [ ] 生产构建时的 OSS URL 替换方案（当前仅 dev proxy 可用）
