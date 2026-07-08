@@ -73,7 +73,7 @@ export default function ProjectsGrid() {
           {...fadeUp(0.3)}>
           Selected works
         </motion.h2>
-        <motion.p className="text-sm mt-4 max-w-[640px] mx-auto leading-relaxed whitespace-nowrap"
+        <motion.p className="text-sm mt-4 max-w-[640px] mx-auto leading-relaxed px-4"
           style={{ color: 'var(--text-secondary)' }} {...fadeUp(0.4)}>
           从品牌视觉系统到移动端界面，从AI生成到3C电商详情页——用设计连接商业与体验
         </motion.p>
@@ -204,7 +204,7 @@ export default function ProjectsGrid() {
                     isOdd ? 'md:self-start' : 'md:self-end'
                   }`}
                 >
-                  查看详情
+                  全屏预览
                   <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                     <path d="M7 17L17 7" />
                     <path d="M7 7h10v10" />

@@ -1,0 +1,291 @@
+<!DOCTYPE html><html class="dark" lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>碧水长卷 · 洛清漪</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600&amp;family=Syne:wght@600;700;800&amp;family=Zhi+Mang+Xing&amp;family=Ma+Shan+Zheng&amp;display=swap" rel="stylesheet">
+<style>
+        /* Custom Ink Wash Font Emulation for Calligraphy (Fallback) */
+        @font-face {
+            font-family: 'BrushCalligraphy';
+            src: local('Zhi Mang Xing'), local('Ma Shan Zheng'), sans-serif;
+            /* In a real scenario, a custom web font would be loaded here */
+        }
+        .font-calligraphy {
+            font-family: 'Zhi Mang Xing', 'BrushCalligraphy', 'Syne', sans-serif;
+            color: #FFFFFF;
+        }
+        
+        /* Atmospheric Fog and Ink Bleed Effects */
+        .ink-vapor {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(19, 19, 19, 0.8) 80%, rgba(19, 19, 19, 1) 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+        .section-transition {
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Brush Stroke Underline Hover */
+        .brush-stroke-underline-on-hover {
+            position: relative;
+        }
+        .brush-stroke-underline-on-hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+            border-radius: 2px;
+            opacity: 0.8;
+            /* Simple imitation of a brush stroke */
+            clip-path: polygon(0 40%, 10% 20%, 90% 20%, 100% 40%, 100% 60%, 90% 80%, 10% 80%, 0 60%);
+        }
+        .brush-stroke-underline-on-hover:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        /* Text Texture for Rugged Calligraphy */
+        .text-ink-texture {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.15"/></svg>');
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#0e0e0e",
+                      "surface-container-low": "#1c1b1b",
+                      "primary-fixed-dim": "#e9c349",
+                      "on-primary-fixed-variant": "#574500",
+                      "on-secondary-fixed-variant": "#92030f",
+                      "surface-variant": "#353534",
+                      "secondary": "#ffb4ac",
+                      "on-secondary-fixed": "#410003",
+                      "on-primary-container": "#554300",
+                      "tertiary-fixed-dim": "#7ed99e",
+                      "on-tertiary-fixed": "#00210f",
+                      "on-surface": "#e5e2e1",
+                      "on-tertiary-fixed-variant": "#00522d",
+                      "surface-tint": "#e9c349",
+                      "on-surface-variant": "#d0c5af",
+                      "error-container": "#93000a",
+                      "primary-container": "#d4af37",
+                      "on-tertiary": "#00391d",
+                      "surface-container-highest": "#353534",
+                      "on-primary": "#3c2f00",
+                      "surface-bright": "#3a3939",
+                      "on-primary-fixed": "#241a00",
+                      "tertiary-container": "#6bc58b",
+                      "tertiary-fixed": "#9af6b8",
+                      "secondary-fixed": "#ffdad6",
+                      "secondary-container": "#960711",
+                      "background": "#131313",
+                      "inverse-surface": "#e5e2e1",
+                      "on-secondary-container": "#ff9f95",
+                      "on-error": "#690005",
+                      "tertiary": "#86e1a5",
+                      "secondary-fixed-dim": "#ffb4ac",
+                      "inverse-on-surface": "#313030",
+                      "surface-dim": "#131313",
+                      "on-background": "#e5e2e1",
+                      "on-tertiary-container": "#00502c",
+                      "on-secondary": "#690007",
+                      "surface-container-high": "#2a2a2a",
+                      "primary-fixed": "#ffe088",
+                      "outline-variant": "#4d4635",
+                      "surface": "#131313",
+                      "outline": "#99907c",
+                      "on-error-container": "#ffdad6",
+                      "inverse-primary": "#735c00",
+                      "primary": "#f2ca50",
+                      "error": "#ffb4ab",
+                      "surface-container": "#201f1f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "safe-margin": "4rem",
+                      "gutter-md": "2rem",
+                      "stack-sm": "0.5rem",
+                      "stack-lg": "3rem",
+                      "ink-splash-overlap": "-2rem"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Manrope"
+                      ],
+                      "headline-xl": [
+                              "Syne"
+                      ],
+                      "headline-md": [
+                              "Syne"
+                      ],
+                      "headline-lg-mobile": [
+                              "Syne"
+                      ],
+                      "headline-lg": [
+                              "Syne"
+                      ],
+                      "label-sm": [
+                              "Space Grotesk"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden antialiased">
+<!-- Top Navigation Bar -->
+<!-- Main Content Container -->
+<main class="w-full relative">
+<!-- Header Section -->
+<section class="w-full h-screen relative flex items-center justify-center bg-surface-container-lowest overflow-hidden">
+<!-- Animated Ink Background Placeholder (Using Three.js for a shader/fluid effect if available, fallback to static gradient) -->
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-surface-variant via-background to-background opacity-50"></div>
+<div class="relative z-20 text-center flex flex-col items-center">
+<h1 class="font-calligraphy text-[5rem] md:text-[8rem] leading-none tracking-widest text-shadow-xl drop-shadow-2xl text-ink-texture" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.8); font-weight: 900; letter-spacing: 0.15em;">洛清漪
+                 </h1>
+<p class="font-body-lg text-body-lg text-primary-fixed mt-6 tracking-[0.3em] opacity-80 uppercase">
+                     洛清漪的碧水长卷
+                 </p>
+</div>
+<div class="ink-vapor"></div>
+</section>
+<!-- Image Sequence Sections (Cinematic Full Screen) -->
+<!-- Section 1: 角色档案 -->
+<section class="w-full h-screen relative flex items-center justify-center bg-surface-container-lowest overflow-hidden section-transition">
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm z-10"></div>
+    <div class="relative z-20 flex flex-col items-center gap-6">
+        <div class="w-24 h-24 rounded-full border border-outline-variant/20 flex items-center justify-center bg-surface-dim/50 hover:bg-primary/20 transition-colors cursor-pointer group">
+            <span class="material-symbols-outlined text-primary text-5xl group-hover:scale-110 transition-transform">play_arrow</span>
+        </div>
+        <div class="text-center">
+            <h2 class="font-calligraphy text-4xl text-on-background mb-2 tracking-widest">视频预览</h2>
+            <p class="font-body-md text-primary-fixed opacity-60 tracking-[0.2em] uppercase">Video Preview</p>
+        </div>
+    </div>
+    <div class="ink-vapor"></div>
+</section><section class="w-full h-screen relative section-transition">
+<img class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA4PQRdVmpCqgXDnJ3tJ8WKnADG7usnaFTHZv6Qtqe37MB6OR34S3b933zDF12KZg3S3A86tLAotcWxGIXTuSHrnKEGmMeW9lbd0FxaMLgB9Eyen-8d1mREZwn3NmW3aMFFlJTw63SRuWdvde2cHLlZyOktnYH8HTrRcZzBWxtGcUWlHPuth20zHnwz-ybg7s1a1AOak-vxrkO_nwoaIJCTCQNZs8Qb3tIPAW_JsyzBjtutXi0pNgsi6d8nBJ9XkKb9Q">
+<div class="ink-vapor"></div>
+</section>
+<!-- Section 2: 水脉传承 -->
+<section class="w-full h-screen relative section-transition">
+<img class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0hGRohHOPkzvY_UuojJhv4RoOtkn0BfAwH0s-dgems15Jq6SWR-YYsnwGhj86yDp3W36NYEO9rsRa0RKak2pEkYsDZu_YjLzi5ZlZFsc7pzbG5m57bzU_MEQboUU6QwiFhMDq8rKvmfQuQEoIN-kP5dHyz29Gd5WXGdBuqDrKvM1fuIOyWu97o5rCGVBjIB7pJ9NHIyMonQWtXsoxnhdsrixcKHtmjevaEBW_Q2jP3gzIgiF2SO90U5ZerkiGOUswaw">
+<div class="ink-vapor"></div>
+</section>
+<!-- Section 3: 清漪诀 -->
+<section class="w-full h-screen relative section-transition">
+<img class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVAOMbH7OkiC9YKWoil1WaVnr0fA9GXD_fTJ95ugJmGOUFZnWfehSRbZUhbcL-556iNwDZjswmkM25drOwIxzxjI9g8jSCURG7-QGk5m2dD6XD87JOdG6n7h_XHOGeG5KykRhxHCedR7Z-nh6wutZi4tj5L-WvNI968K2VTefGs5DTX6k4TcHfGprSuxbAYREj-K9DEQ90cRwAnyg2tncRAA65VyR-qsFo7JzF-rYhGdUNoz_-xtM69eaoyRY6vVvRkQ">
+<div class="ink-vapor"></div>
+</section>
+<!-- Section 4: 身世之卷 -->
+<section class="w-full h-screen relative section-transition">
+<img class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3SHFZajA9JfjdOoYrwyseWbfKK28kgZheqHqEvFAwruTx3fVQzw55pgWG_MmTG9HJpFdrTbFg4xu1BPU-ic-JoqsEuNEYohRFCA51SvlN5GnrMJJF7r4Lo9BfInTtw6yy2HwlpDXQwITu4dkFRcbhdDV5-JdbM99KgxddEASAFW7WUK5g4CF-2BbhykpEpEYc3lgibEVf47TqY29xIX2uiLQOdY3IHojSxdhmSfjBO3ENorB4CZvIoOHObk-HkXdGmA">
+<div class="ink-vapor"></div>
+</section>
+<!-- Section 5: 关系网络 -->
+<section class="w-full h-screen relative section-transition">
+<img class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEOITPDJtNQZJwlWVwXkOcdrPibTqrrtGghG2yMC1MTjKK5JqfzVpqofq_HHhpNvrDGnSYiLeXoAe7EYLDfiS6ufF8QS0gtl0Zf9frz7KKb8aydyOoScCfBEUITa0GabXxHtByxoUIL3W9-paiZpo1k7CFIpQNgFG0ZJfym0FtpafbLj4hUjF4USSjDBqMfb_zm3Z4euGxv4JjbOFJGz5F3W2kBi4fmiJ91NQ_ZV8TPnQ3XNIXktjAyxvhTA-oq28L4w">
+<div class="ink-vapor"></div>
+</section>
+<!-- Section 6: 五行格局 -->
+<section class="w-full h-screen relative section-transition">
+<img class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKg7V7OEew46jNOM-6M66PYOJMu-ZR8GYo32GS8LQ1wDuYjjP7mQfDsp7v6yxykJOhNg_wMkXnJFrJg9rDrLCsP3YstE5SVDksk_t-zLmS-mPS07JfBSjNAKN6OuCAuGlX4W58AqZgeL7YzGJ69Zhvk3U4pRtfY1LtsMt2GupvBAeFWPMtCkvppbiAF40s-ogHdY4PLaCKONQE3VL1oZgl-bDyOYZZdHjYwOAXvXAr8Ynjuqek4s_ubYWVskNvSLsdHA">
+<div class="ink-vapor"></div>
+</section>
+<!-- Section 7: 抉择 -->
+<section class="w-full h-screen relative section-transition">
+<img class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8y4thaN7F1Ssj5lCtcVSl9RzY9mMkWV_tSxmE5PBUyWEgZCYNFKh5xhpOBzyOOferAs9d5naWraqdLa1ULp2YLo2T_zkR4VcJQ13fdGissw7pPimgU_DPXBxdGUczLlaQ_Typ1UewYRWa0flR7y4VNIwbOf_aZyuPzqB8GM750UPNof3dcDuySaGqJP57vFsN303K2FzA1mpIJ6MbNuxTUPbELdoerGbZAIwhBmUqa2zwuXbJ4ifJUR0pIDr8UU1Kgw">
+<div class="ink-vapor"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between items-center px-safe-margin border-t border-outline-variant/20 bg-surface-dim py-stack-lg bg-gradient-to-t from-surface-container-lowest to-transparent relative z-20">
+<div class="flex flex-wrap justify-center gap-6 mb-4 md:mb-0">
+</div>
+</footer>
+
+
+</body></html>

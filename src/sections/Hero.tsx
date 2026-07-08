@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef, useCallback, useMemo, createElement } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 /* ===== ScrollProgress ===== */
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -7,13 +7,23 @@ function ScrollProgress() {
   return <motion.div className="scroll-progress" style={{ scaleX }} />;
 }
 
-/* ===== SplineViewer wrapper ===== */
+/* ===== SplineViewer wrapper — ref-based to prevent React re-creation ===== */
 function SplineViewer({ scene }: { scene: string }) {
-  return createElement('spline-viewer', {
-    url: scene,
-    'events-target': 'global',
-    style: { width: '100%', height: '100%', border: 'none', background: 'transparent', display: 'block' },
-  });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const viewerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current || viewerRef.current) return;
+    const viewer = document.createElement('spline-viewer') as HTMLElement;
+    viewer.setAttribute('url', scene);
+    viewer.setAttribute('events-target', 'global');
+    Object.assign(viewer.style, { width: '100%', height: '100%', border: 'none', background: 'transparent', display: 'block' });
+    containerRef.current.appendChild(viewer);
+    viewerRef.current = viewer;
+    return () => { viewer.remove(); viewerRef.current = null; };
+  }, [scene]);
+
+  return <div ref={containerRef} style={{ width: '100%', height: '100%' }} />;
 }
 
 /* ===== TextType — typewriter component ===== */
@@ -236,6 +246,7 @@ function GooeyNav({
 /* ===== Navbar ===== */
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 80);
     window.addEventListener('scroll', handler, { passive: true });
@@ -267,8 +278,83 @@ function Navbar() {
         <div className="hidden lg:flex items-center">
           <GooeyNav items={navItems} particleCount={12} animationTime={600} timeVariance={300} particleDistances={[80, 10]} particleR={100} initialActiveIndex={0} />
         </div>
-        <span className="text-[10px] font-mono text-white/30 tracking-wider">PORTFOLIO</span>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-mono text-white/30 tracking-wider">PORTFOLIO</span>
+          {/* Mobile hamburger */}
+          <button
+            className="lg:hidden cursor-target w-8 h-8 flex flex-col items-center justify-center gap-1.5 p-1"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            <motion.span
+              animate={mobileOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
+              className="block w-5 h-[1.5px] bg-white/60 rounded-full"
+              transition={{ duration: 0.2 }}
+            />
+            <motion.span
+              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="block w-5 h-[1.5px] bg-white/60 rounded-full"
+              transition={{ duration: 0.15 }}
+            />
+            <motion.span
+              animate={mobileOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
+              className="block w-5 h-[1.5px] bg-white/60 rounded-full"
+              transition={{ duration: 0.2 }}
+            />
+          </button>
+        </div>
       </div>
+
+      {/* Mobile full-screen overlay */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60] bg-black flex flex-col items-center justify-center lg:hidden"
+            initial={{ opacity: 0, clipPath: 'circle(0% at calc(100% - 48px) 48px)' }}
+            animate={{ opacity: 1, clipPath: 'circle(150% at calc(100% - 48px) 48px)' }}
+            exit={{ opacity: 0, clipPath: 'circle(0% at calc(100% - 48px) 48px)' }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {/* Close button */}
+            <button
+              className="absolute top-8 right-8 w-10 h-10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+            <nav className="flex flex-col items-center gap-6">
+              {navItems.map((item, i) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileOpen(false);
+                    document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-4xl font-bold text-white/80 hover:text-white transition-colors tracking-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ delay: 0.05 + i * 0.06, duration: 0.4 }}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+            </nav>
+            <motion.p
+              className="absolute bottom-12 text-[10px] font-mono text-white/20 tracking-wider"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              &copy; 2025 黄选坤
+            </motion.p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
@@ -278,6 +364,7 @@ export default function Hero() {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.2], [0, 80]);
+  const scrollOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
   const f = (d: number) => ({
     initial: { filter: 'blur(10px)', opacity: 0, y: 20 },
@@ -366,6 +453,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        style={{ opacity: scrollOpacity }}
         transition={{ delay: 1.5 }}
       >
         <span className="text-[10px] font-mono text-white/20 tracking-wider">SCROLL</span>
