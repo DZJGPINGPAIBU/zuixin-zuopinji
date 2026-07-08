@@ -84,8 +84,8 @@ export default function ProjectsGrid() {
           const Card = cardMap[p.id];
           const isOdd = i % 2 === 1;
 
-          // First two cards: full-width banner
-          if (i === 0 || i === 1) {
+          // Full-width banner: first two + B站
+          if (i === 0 || i === 1 || p.id === 'aigc') {
             const isJihui = p.id === 'jihui';
             const isCanvas = p.id === 'canvas';
 

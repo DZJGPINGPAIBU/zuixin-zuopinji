@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { ChenmoSections } from '@/sections/ModuleChenmo';
+import { LuoqingyiSections } from '@/sections/ModuleLuoqingyi';
 
 const c = {
   bg: '#131313', bgDeep: '#0e0e0e', surface: '#1c1b1b',
@@ -14,11 +16,17 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   const [videoPlaying, setVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
 
-  const handlePlay = () => {
-    if (videoRef.current) {
-      videoRef.current.play();
-      setVideoPlaying(true);
+  const handleFullscreen = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = false;
+    video.play().catch(() => {});
+    if (videoContainerRef.current?.requestFullscreen) {
+      videoContainerRef.current.requestFullscreen().catch(() => {});
+    } else if ((video as any).webkitEnterFullscreen) {
+      (video as any).webkitEnterFullscreen();
     }
   };
 
@@ -49,14 +57,14 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
         <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 md:px-16 py-6" style={{ background: 'rgba(14,14,14,0.85)', backdropFilter: 'blur(12px)' }}>
           <span className="ink-brush text-2xl md:text-3xl uppercase tracking-widest font-bold" style={{ color: '#fff', fontFamily: B, textShadow: 'rgba(0,0,0,0.8) 2px 2px 4px, rgba(255,255,255,0.2) 0px 0px 10px', filter: 'url(#ink-bleed) contrast(1.5)' }}>墨刃纪</span>
           <div className="hidden md:flex flex-row items-center gap-8">
-            <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => e.preventDefault()}>首页</a>
+            <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => { e.preventDefault(); onClose(); }}>首页</a>
             <div className="group relative">
               <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1 flex items-center" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => e.preventDefault()}>角色档案<svg className="ml-1 w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg></a>
               <div className="absolute top-full left-0 mt-2 w-48 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border rounded-sm" style={{ background: 'rgba(19,19,19,0.9)', backdropFilter: 'blur(20px)', borderColor: 'rgba(242,202,80,0.3)' }}>
-                {['辰墨','暴走 辰墨','洛清漪'].map(n => <a key={n} href="#" className="ink-brush block px-4 py-2 text-base font-bold hover:bg-primary/10 transition-colors text-white" style={{ fontFamily: B, filter: 'url(#ink-bleed)' }} onClick={e => e.preventDefault()}>{n}</a>)}
+                {['辰墨','暴走 辰墨','洛清漪'].map(n => <a key={n} href="#" className="ink-brush block px-4 py-2 text-base font-bold hover:bg-primary/10 transition-colors text-white" style={{ fontFamily: B, filter: 'url(#ink-bleed)' }} onClick={e => { e.preventDefault(); if (n === '暴走 辰墨') { document.getElementById('bz-hero')?.scrollIntoView({ behavior: 'smooth' }); } if (n === '洛清漪') { document.getElementById('lq-hero')?.scrollIntoView({ behavior: 'smooth' }); } }}>{n}</a>)}
               </div>
             </div>
-            <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => e.preventDefault()}>势力谱系</a>
+            <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => e.preventDefault()}>其他作品</a>
           </div>
           <div className="flex items-center gap-4">
             <button className="hover:scale-105 transition-transform" style={{ color: c.onSurface }} onClick={onClose}><svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></button>
@@ -77,43 +85,33 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
         <button className="p-2 rounded-full hover:bg-white/10"><svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
       </header>
 
-      {/* ════════════ S1: video-preview ════════════ */}
-      <section id="cm-video" className="relative h-screen flex items-center justify-center overflow-hidden" style={{ background: c.bgDeep }}>
-        <div className="absolute inset-0 z-0">
-          <img src="/bilibili/m1_角色档案.png" alt="" className="w-full h-full object-cover opacity-30 blur-sm"/>
-          <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at center, transparent 0%, rgba(14,14,14,0.8) 70%, #0e0e0e 100%)' }}/>
+      {/* ════════════ S1: video-preview 全屏静音自动播放 ════════════ */}
+      <section id="cm-video" className="relative h-screen overflow-hidden" style={{ background: '#000' }}>
+        <div ref={videoContainerRef} className="absolute inset-0">
+          <video
+            ref={videoRef}
+            src="/videos/bilibili-preview.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover"
+          />
         </div>
-        {/* Video player */}
-        <div className="relative z-10 w-full max-w-4xl mx-auto px-4">
-          <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50" style={{ background: '#000' }}>
-            <video
-              ref={videoRef}
-              src="/videos/bilibili-preview.mp4"
-              controls={videoPlaying}
-              playsInline
-              preload="metadata"
-              className="w-full h-auto max-h-[70vh] object-contain"
-              style={{ display: 'block' }}
-            />
-            {/* Play overlay */}
-            {!videoPlaying && (
-              <div
-                className="absolute inset-0 flex flex-col items-center justify-center gap-6 cursor-pointer group"
-                onClick={handlePlay}
-                style={{ background: 'rgba(0,0,0,0.35)' }}
-              >
-                <div className="w-24 h-24 rounded-full border-2 border-white/30 flex items-center justify-center backdrop-blur-md group-hover:scale-110 group-hover:border-white transition-all duration-500">
-                  <svg className="w-12 h-12 text-white ml-1" viewBox="0 0 24 24" fill="currentColor" style={{ filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.5))' }}><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div className="text-center">
-                  <span className="text-2xl font-bold tracking-widest" style={{ fontFamily: B, color: '#fff' }}>视频预览</span>
-                  <p className="text-sm text-gray-400 uppercase tracking-[0.3em] mt-2" style={{ fontFamily: L }}>Video Preview</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-50" onClick={() => go('cm-hero')}>
+        {/* Fullscreen button — bottom right */}
+        <button
+          onClick={handleFullscreen}
+          className="absolute bottom-8 right-8 z-10 flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md border border-white/20 hover:border-white/50 transition-all duration-300 group"
+          style={{ background: 'rgba(0,0,0,0.5)' }}
+        >
+          <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+          <span className="text-xs text-white/70 group-hover:text-white tracking-wider" style={{ fontFamily: L }}>全屏播放</span>
+        </button>
+        {/* Scroll down */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-50" onClick={() => go('cm-hero')}>
           <svg className="w-8 h-8 text-white cursor-pointer" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
         </div>
       </section>
@@ -240,13 +238,19 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
         </div>
       </section>
 
-      {/* ════════════ Footer ════════════ */}
+      {/* ════════════ 辰墨暴走卷 ════════════ */}
+      <ChenmoSections />
+
+      {/* ════════════ 洛清漪 · 碧水长卷 ════════════ */}
+      <LuoqingyiSections />
+
+      {/* ════════════ AIGC Footer ════════════ */}
       <footer className="py-16 flex flex-col items-center gap-4 text-center" style={{ background: 'linear-gradient(to top, #000, #0e0e0e)' }}>
-        <h3 className="text-2xl font-bold mb-4 tracking-widest text-white" style={{ fontFamily: B, filter: 'url(#ink-bleed)' }}>辰墨卷宗</h3>
+        <h3 className="text-2xl font-bold mb-4 tracking-widest text-white" style={{ fontFamily: B, filter: 'url(#ink-bleed)' }}>墨刃纪卷宗</h3>
         <div className="flex gap-6 mb-8">
           {['天机秘卷','命运法则','联络尊者'].map(l => <a key={l} href="#" className="text-sm text-gray-400 hover:text-white transition-colors tracking-widest" style={{ fontFamily: B, filter: 'url(#ink-bleed)' }} onClick={e => e.preventDefault()}>{l}</a>)}
         </div>
-        <p className="text-xs text-gray-500 opacity-60" style={{ fontFamily: L }}>© 辰墨卷宗 — 虚空纪元</p>
+        <p className="text-xs text-gray-500 opacity-60" style={{ fontFamily: L }}>© 墨刃纪卷宗 — 虚空纪元</p>
       </footer>
     </motion.div>
   );
@@ -255,8 +259,8 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
 export function AIGCCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
-      <div className="card-3d-inner rounded-2xl overflow-hidden relative aspect-[4/5]" style={{ background: c.bg }}>
-        <img src="/bilibili/screen-home.png" alt="" className="w-full h-full object-cover object-top opacity-70 group-hover:opacity-90 transition-opacity duration-500"/>
+      <div className="card-3d-inner rounded-2xl overflow-hidden relative aspect-[21/9]" style={{ background: c.bg }}>
+        <video src="/bilibili/hero-bg.mp4" autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-500"/>
         <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${c.bg} 0%, transparent 45%)` }}/>
         <div className="absolute top-4 left-4 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full" style={{ background: c.primary }}/>
