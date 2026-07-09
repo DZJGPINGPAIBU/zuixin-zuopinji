@@ -72,7 +72,7 @@ export function BrandPortal() {
 </div>
 <div className="col-span-12 lg:col-span-7 relative h-[60vh] lg:h-[80vh] flex items-center justify-center">
 <div className="absolute inset-0 bg-mascot-primary/5 rounded-full blur-[100px] -z-10"></div>
-<img alt="A high-fidelity 3D render of a futuristic, spherical robot mascot with a white and metallic orange chassis, featuring glowing blue digital eyes, suspended mid-air against a pristine white studio background with soft ambient lighting." className="w-full h-full object-contain mix-blend-multiply scale-110 drop-shadow-2xl z-10" src="/images/mascot/img_07.jpg"  loading="lazy" />
+<img alt="A high-fidelity 3D render of a futuristic, spherical robot mascot with a white and metallic orange chassis, featuring glowing blue digital eyes, suspended mid-air against a pristine white studio background with soft ambient lighting." className="w-full h-full object-contain mix-blend-multiply scale-110 drop-shadow-2xl z-10" src="/images/mascot/brand-portal/吉祥物与集团标志组合 1.jpg"  loading="lazy" />
 </div>
 </div>
 </header>
@@ -101,7 +101,7 @@ export function BrandPortal() {
 </ul>
 </div>
 <div className="cursor-target col-span-12 lg:col-span-8 bg-mascot-surface-container/50 rounded-xl border border-mascot-outline-variant/20 p-8 relative overflow-hidden flex items-center justify-center min-h-[500px]">
-<img alt="A detailed technical blueprint and branding guidelines document for the robot mascot, displaying geometric breakdown of the face to form the letter H, color palette specifications in Pantone and RGB, and a diagram showing a literal laser machine." className="w-full h-full object-contain mix-blend-multiply z-10" src="/images/mascot/img_61.jpg"  loading="lazy" />
+<img alt="A detailed technical blueprint and branding guidelines document for the robot mascot, displaying geometric breakdown of the face to form the letter H, color palette specifications in Pantone and RGB, and a diagram showing a literal laser machine." className="w-full h-full object-contain mix-blend-multiply z-10" src="/images/mascot/brand-portal/2吉祥物-设计说明（图例）-1 1.jpg"  loading="lazy" />
 <div className="absolute top-4 right-4 font-label-mono text-label-mono text-mascot-primary/50">DOC_REF: SPEC_01</div>
 </div>
 </div>
@@ -119,7 +119,7 @@ export function BrandPortal() {
                 </div>
 </div>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 relative">
-<img alt="A composite grid image showing multiple real-world environments like office lobbies, factory floors, gymnasiums, and outdoor corporate campuses, with the 2D illustrated version of the robot mascot inserted into each scene exhibiting different contextual emotions." className="w-full h-auto col-span-full object-cover rounded shadow-sm border border-mascot-outline-variant/10" src="/images/mascot/img_26.jpg"  loading="lazy" />
+<img alt="A composite grid image showing multiple real-world environments like office lobbies, factory floors, gymnasiums, and outdoor corporate campuses, with the 2D illustrated version of the robot mascot inserted into each scene exhibiting different contextual emotions." className="w-full h-auto col-span-full object-cover rounded shadow-sm border border-mascot-outline-variant/10" src="/images/mascot/brand-portal/4吉祥物-场景组合 1.jpg"  loading="lazy" />
 </div>
 </div>
 </section>
@@ -132,10 +132,10 @@ export function BrandPortal() {
 </div>
 <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
 <div className="bg-mascot-surface-container/30 border border-mascot-primary/10 rounded-xl p-8 flex items-center justify-center min-h-[400px]">
-<img alt="Three variations of the 2D illustrated robot mascot holding different styles of glowing light sabers or industrial laser pointers, showing different facial expressions from neutral to winking." className="w-full h-full object-contain mix-blend-multiply" src="/images/mascot/img_08.jpg"  loading="lazy" />
+<img alt="Three variations of the 2D illustrated robot mascot holding different styles of glowing light sabers or industrial laser pointers, showing different facial expressions from neutral to winking." className="w-full h-full object-contain mix-blend-multiply" src="/images/mascot/brand-portal/5吉祥物与激光剑组合示例 1.jpg"  loading="lazy" />
 </div>
 <div className="bg-mascot-surface-container/30 border border-mascot-primary/10 rounded-xl p-8 flex items-center justify-center min-h-[400px]">
-<img alt="Six variations of the 2D illustrated robot mascot wearing different corporate uniforms or professional attire, demonstrating the mascot's adaptability across different business units." className="w-full h-full object-contain mix-blend-multiply" src="/images/mascot/img_56.jpg"  loading="lazy" />
+<img alt="Six variations of the 2D illustrated robot mascot wearing different corporate uniforms or professional attire, demonstrating the mascot's adaptability across different business units." className="w-full h-full object-contain mix-blend-multiply" src="/images/mascot/brand-portal/6吉祥物与集团各服装组合展示示例 1.jpg"  loading="lazy" />
 </div>
 </div>
 </div>
@@ -195,10 +195,10 @@ export function GiftDev() {
 </div>
 <div className="grid grid-cols-2 gap-gutter">
 <div className="img-container">
-<img alt="Manual Cover" className="w-full h-auto block" src="/images/mascot/img_40.jpg" loading="lazy" />
+<img alt="Manual Cover" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 1.jpg" loading="lazy" />
 </div>
 <div className="img-container">
-<img alt="Manual Contents" className="w-full h-auto block" src="/images/mascot/img_31.jpg" loading="lazy" />
+<img alt="Manual Contents" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 2 1.jpg" loading="lazy" />
 </div>
 </div>
 </section>
@@ -211,13 +211,13 @@ export function GiftDev() {
 </div>
 <div className="grid grid-cols-1 gap-gutter">
 <div className="img-container">
-<img alt="Products 01-02" className="w-full h-auto block" src="/images/mascot/img_03.jpg" loading="lazy" />
+<img alt="Products 01-02" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 3 1.jpg" loading="lazy" />
 </div>
 <div className="img-container">
-<img alt="Products 03-04" className="w-full h-auto block" src="/images/mascot/img_02.jpg" loading="lazy" />
+<img alt="Products 03-04" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 4 1.jpg" loading="lazy" />
 </div>
 <div className="img-container">
-<img alt="Products 05-06" className="w-full h-auto block" src="/images/mascot/img_59.jpg" loading="lazy" />
+<img alt="Products 05-06" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 5 1.jpg" loading="lazy" />
 </div>
 </div>
 </section>
@@ -230,13 +230,13 @@ export function GiftDev() {
 </div>
 <div className="grid grid-cols-1 gap-gutter">
 <div className="img-container">
-<img alt="Products 07-08" className="w-full h-auto block" src="/images/mascot/img_49.jpg" loading="lazy" />
+<img alt="Products 07-08" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 6 1.jpg" loading="lazy" />
 </div>
 <div className="img-container">
-<img alt="Products 09-10" className="w-full h-auto block" src="/images/mascot/img_32.jpg" loading="lazy" />
+<img alt="Products 09-10" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 7 1.jpg" loading="lazy" />
 </div>
 <div className="img-container">
-<img alt="Products 11-12" className="w-full h-auto block" src="/images/mascot/img_17.jpg" loading="lazy" />
+<img alt="Products 11-12" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 10 1.jpg" loading="lazy" />
 </div>
 </div>
 </section>
@@ -249,13 +249,13 @@ export function GiftDev() {
 </div>
 <div className="grid grid-cols-1 gap-gutter">
 <div className="img-container">
-<img alt="Products 13-14" className="w-full h-auto block" src="/images/mascot/img_23.jpg" loading="lazy" />
+<img alt="Products 13-14" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 11 1.jpg" loading="lazy" />
 </div>
 <div className="img-container">
-<img alt="Products 15-16" className="w-full h-auto block" src="/images/mascot/img_09.jpg" loading="lazy" />
+<img alt="Products 15-16" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 12 1.jpg" loading="lazy" />
 </div>
 <div className="img-container">
-<img alt="Products 17-18" className="w-full h-auto block" src="/images/mascot/img_58.jpg" loading="lazy" />
+<img alt="Products 17-18" className="w-full h-auto block" src="/images/mascot/gift-dev/大族激光礼品本 25-12-5_画板 1 副本 13 1.jpg" loading="lazy" />
 </div>
 </div>
 </section>
@@ -468,7 +468,7 @@ export function EmojiPack() {
 <div className="md:col-span-7 relative h-[50vh] md:h-[70vh] order-1 md:order-2 flex items-center justify-center md:justify-end">
 {/* Glass panel backing */}
 <div className="absolute inset-0 md:inset-auto md:w-3/4 md:h-full right-0 glass-panel -z-10 rounded-2xl transform md:translate-x-[20px] md:translate-y-[20px]"></div>
-<img alt="Xiaozu mascot banner" className="w-full h-full object-contain md:object-cover rounded-xl shadow-2xl relative z-10" src="/images/mascot/img_21.jpg"  loading="lazy" />
+<img alt="Xiaozu mascot banner" className="w-full h-full object-contain md:object-cover rounded-xl shadow-2xl relative z-10" src="/images/mascot/emoji-pack/吉祥物表情包(4期-祝福)-banner 1.jpg"  loading="lazy" />
 {/* Vertical Technical Label */}
 <div className="absolute -right-12 top-1/2 -translate-y-1/2 hidden md:block">
 <span className="font-label-vertical text-label-vertical text-mascot-primary text-vertical uppercase tracking-widest">
@@ -502,50 +502,50 @@ export function EmojiPack() {
   <div className="flex flex-col gap-2 group md:col-span-4 md:row-span-4">
     <div className="glass-panel rounded-lg overflow-hidden relative h-full p-6 flex items-center justify-center hover:border-mascot-primary/80 transition-colors border-mascot-primary/30">
       <div className="absolute top-4 left-4 font-label-mono text-label-mono text-mascot-primary border border-mascot-primary px-2 rounded-sm">FEATURED</div>
-      <img alt="Emoji: 过节嗨皮" className="w-3/4 h-3/4 object-contain transform group-hover:scale-105 transition-transform duration-500" src="/images/mascot/img_15.jpg"  loading="lazy" />
+      <img alt="Emoji: 节日快乐" className="w-3/4 h-3/4 object-contain transform group-hover:scale-105 transition-transform duration-500" src="/images/mascot/emoji-pack/节日快乐 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
-      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">过节嗨皮</span>
+      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">节日快乐</span>
     </div>
   </div>
 
   {/* Standard 1 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 钞票多多" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_28.jpg"  loading="lazy" />
+      <img alt="Emoji: 八方来财" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/八方来财 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
-      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">钞票多多</span>
+      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">八方来财</span>
     </div>
   </div>
 
   {/* Standard 2 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 啥都会点" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_41.jpg"  loading="lazy" />
+      <img alt="Emoji: 多才多艺" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/多才多艺 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
-      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">啥都会点</span>
+      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">多才多艺</span>
     </div>
   </div>
 
   {/* Standard 3 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 财源滚滚来" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_54.jpg"  loading="lazy" />
+      <img alt="Emoji: 多财多亿" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/多财多亿 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
-      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">财源滚滚来</span>
+      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">多财多亿</span>
     </div>
   </div>
 
   {/* Standard 4 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors bg-mascot-primary/5">
-      <img alt="Emoji: 眼光超准" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_18.jpg"  loading="lazy" />
+      <img alt="Emoji: 高瞻远瞩" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/高瞻远瞩 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
-      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">眼光超准</span>
+      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">高瞻远瞩</span>
     </div>
   </div>
 
@@ -553,17 +553,17 @@ export function EmojiPack() {
   <div className="flex flex-col gap-2 group md:col-span-4 md:row-span-4">
     <div className="glass-panel rounded-lg overflow-hidden relative h-full p-6 flex items-center justify-center hover:border-mascot-primary/80 transition-colors border-mascot-primary/30">
       <div className="absolute top-4 left-4 font-label-mono text-label-mono text-mascot-primary border border-mascot-primary px-2 rounded-sm">FEATURED</div>
-      <img alt="Emoji: 开族马力" className="w-3/4 h-3/4 object-contain transform group-hover:scale-105 transition-transform duration-500" src="/images/mascot/img_01.jpg"  loading="lazy" />
+      <img alt="Emoji: 开足马力" className="w-3/4 h-3/4 object-contain transform group-hover:scale-105 transition-transform duration-500" src="/images/mascot/emoji-pack/开足马力 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
-      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">开族马力</span>
+      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">开足马力</span>
     </div>
   </div>
 
   {/* Standard 5 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 龙马精神" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_62.jpg"  loading="lazy" />
+      <img alt="Emoji: 龙马精神" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/龙马精神 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">龙马精神</span>
@@ -573,7 +573,7 @@ export function EmojiPack() {
   {/* Standard 6 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 稳了稳了/马到成功" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_39.jpg"  loading="lazy" />
+      <img alt="Emoji: 稳了稳了/马到成功" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/马到成功 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">马到成功</span>
@@ -583,7 +583,7 @@ export function EmojiPack() {
   {/* Standard 7 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 金榜题名/高考加油" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_37.jpg"  loading="lazy" />
+      <img alt="Emoji: 金榜题名/高考加油" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/金榜题名 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">金榜题名</span>
@@ -593,7 +593,7 @@ export function EmojiPack() {
   {/* Standard 8 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 平安喜乐" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_43.jpg"  loading="lazy" />
+      <img alt="Emoji: 平安喜乐" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/平安喜乐 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">平安喜乐</span>
@@ -604,7 +604,7 @@ export function EmojiPack() {
   <div className="flex flex-col gap-2 group md:col-span-4 md:row-span-4">
     <div className="glass-panel rounded-lg overflow-hidden relative h-full p-6 flex items-center justify-center hover:border-mascot-primary/80 transition-colors border-mascot-primary/30">
       <div className="absolute top-4 left-4 font-label-mono text-label-mono text-mascot-primary border border-mascot-primary px-2 rounded-sm">FEATURED</div>
-      <img alt="Emoji: 身体倍儿棒" className="w-3/4 h-3/4 object-contain transform group-hover:scale-105 transition-transform duration-500" src="/images/mascot/img_38.jpg"  loading="lazy" />
+      <img alt="Emoji: 身体倍儿棒" className="w-3/4 h-3/4 object-contain transform group-hover:scale-105 transition-transform duration-500" src="/images/mascot/emoji-pack/身体健康 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">身体健康</span>
@@ -614,7 +614,7 @@ export function EmojiPack() {
   {/* Standard 9 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 生意兴隆" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_13.jpg"  loading="lazy" />
+      <img alt="Emoji: 生意兴隆" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/生意兴隆 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">生意兴隆</span>
@@ -624,7 +624,7 @@ export function EmojiPack() {
   {/* Standard 10 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 岁岁平安" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_30.jpg"  loading="lazy" />
+      <img alt="Emoji: 岁岁平安" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/岁岁平安 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">岁岁平安</span>
@@ -634,17 +634,17 @@ export function EmojiPack() {
   {/* Standard 11 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 神马都顺" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_46.jpg"  loading="lazy" />
+      <img alt="Emoji: 万事如意" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/万事如意 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
-      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">神马都顺</span>
+      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">万事如意</span>
     </div>
   </div>
 
   {/* Standard 12 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 五福临门" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_52.jpg"  loading="lazy" />
+      <img alt="Emoji: 五福临门" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/五福临门 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">五福临门</span>
@@ -654,27 +654,27 @@ export function EmojiPack() {
   {/* Standard 13 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 想啥来啥" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_51.jpg"  loading="lazy" />
+      <img alt="Emoji: 心想事成" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/心想事成 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
-      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">想啥来啥</span>
+      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">心想事成</span>
     </div>
   </div>
 
   {/* Standard 14 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 平安抵达" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_24.jpg"  loading="lazy" />
+      <img alt="Emoji: 一路平安" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/一路平安 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
-      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">平安抵达</span>
+      <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">一路平安</span>
     </div>
   </div>
 
   {/* Standard 15 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 再来一单" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_60.jpg"  loading="lazy" />
+      <img alt="Emoji: 再来一单" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/再来一单 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">再来一单</span>
@@ -684,7 +684,7 @@ export function EmojiPack() {
   {/* Standard 16 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 蒸蒸日上" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_29.jpg"  loading="lazy" />
+      <img alt="Emoji: 蒸蒸日上" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/蒸蒸日上 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">蒸蒸日上</span>
@@ -694,7 +694,7 @@ export function EmojiPack() {
   {/* Standard 17 (2x2) */}
   <div className="flex flex-col gap-2 group md:col-span-2 md:row-span-2">
     <div className="glass-panel rounded-lg overflow-hidden relative aspect-square p-4 flex items-center justify-center hover:border-mascot-primary/50 transition-colors">
-      <img alt="Emoji: 鸿运当头" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/img_45.jpg"  loading="lazy" />
+      <img alt="Emoji: 鸿运当头" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" src="/images/mascot/emoji-pack/鸿运当头 1.jpg"  loading="lazy" />
     </div>
     <div className="flex justify-center items-center px-1">
       <span className="font-label-mono text-[10px] text-mascot-on-surface-variant">鸿运当头</span>
@@ -722,7 +722,7 @@ export function EmojiPack() {
 {/* Main Feature Box */}
 <div className="md:col-span-8 glass-panel rounded-2xl overflow-hidden relative group">
 <div className="absolute inset-0 bg-gradient-to-t from-mascot-surface-container-lowest via-transparent to-transparent z-10 pointer-events-none"></div>
-<img alt="Premium 3D render of a festive Xiaozu blind box figure, styled with Chinese New Year motifs in a high-tech finish." className="w-full h-auto block" src="/images/mascot/img_36.jpg" />
+<img alt="Premium 3D render of a festive Xiaozu blind box figure, styled with Chinese New Year motifs in a high-tech finish." className="w-full h-auto block" src="/images/mascot/blind-box/gemini-3-pro-image-preview-2k (nano-banana-pro)_a_根据形象设计盲盒，要以中国春节，发财，吉 (1) 2.jpg" />
 <div className="absolute bottom-0 left-0 p-8 z-20 w-full flex justify-between items-end">
 <div>
 <span className="font-label-mono text-label-mono text-mascot-primary block mb-2">MERCH.SERIES_A</span>
@@ -734,20 +734,20 @@ export function EmojiPack() {
 {/* Right Column — GIFT SET top, FIG.01 bottom (flush with blind box bottom) */}
 <div className="md:col-span-4 flex flex-col gap-4 md:gap-8">
 <div className="glass-panel rounded-2xl overflow-hidden relative group">
-<img alt="GIFT SET — two mango mascot figures" className="w-full h-auto block" src="/images/mascot/img_12_crop.jpg"  loading="lazy" />
+<img alt="GIFT SET — two mango mascot figures" className="w-full h-auto block" src="/images/mascot/blind-box/gemini-3-pro-image-preview-2k (nano-banana-pro)_a_根据形象设计盲盒，要以中国春节，发财，吉 (2) 2.jpg"  loading="lazy" />
 </div>
 <div className="glass-panel rounded-2xl overflow-hidden relative group mt-auto">
-<img alt="Secondary render of Xiaozu blind box figure focusing on detailed textures and festive coloring." className="w-full h-auto block" src="/images/mascot/img_27.jpg"  loading="lazy" />
+<img alt="Secondary render of Xiaozu blind box figure focusing on detailed textures and festive coloring." className="w-full h-auto block" src="/images/mascot/blind-box/gemini-3-pro-image-preview-2k (nano-banana-pro)_a_根据形象设计盲盒，要以中国春节，发财，吉 (2) 1.jpg"  loading="lazy" />
 </div>
 </div>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-8">
 <div className="glass-panel rounded-2xl overflow-hidden relative group">
-<img alt="Additional blind box variations" className="w-full h-auto block" src="/images/mascot/img_47.jpg"  loading="lazy" />
+<img alt="Additional blind box variations" className="w-full h-auto block" src="/images/mascot/blind-box/gemini-3-pro-image-preview-2k (nano-banana-pro)_a_根据形象设计盲盒，要以中国春节，发财，吉 1.jpg"  loading="lazy" />
 </div>
 <div className="glass-panel rounded-2xl overflow-hidden relative group">
-<img alt="Merchandise mockups" className="w-full h-auto block" src="/images/mascot/img_06.jpg"  loading="lazy" />
+<img alt="Merchandise mockups" className="w-full h-auto block" src="/images/mascot/blind-box/gemini-3-pro-image-preview-2k (nano-banana-pro)_a_根据形象生成不同的样机礼盒，包括但不限于 (1) 1.jpg"  loading="lazy" />
 </div>
 </div></section>
 </main>
@@ -847,7 +847,7 @@ export function AppShowcase() {
 <div className="relative h-[600px] w-full flex items-center justify-center">
 <div className="relative w-full h-full max-w-[400px] mx-auto group">
 <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10 bottom-0 h-1/4"></div>
-<img alt="Han's Laser Mascot Hero Image" className="w-full h-full object-contain filter drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-700 ease-out z-0 relative" src="/images/mascot/img_69.jpg" loading="lazy" />
+<img alt="Han's Laser Mascot Hero Image" className="w-full h-full object-contain filter drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-700 ease-out z-0 relative" src="/images/mascot/app-showcase/Container-7.png" loading="lazy" />
 </div>
 </div>
 </div>
@@ -866,7 +866,7 @@ export function AppShowcase() {
 <h3 className="font-headline-md text-headline-md text-mascot-on-surface mb-4">智能首页</h3>
 <p className="font-body-md text-body-md text-mascot-on-surface-variant mb-8 flex-grow">Your personalized gateway to laser technology solutions and services.</p>
 <div className="relative w-full aspect-[0.48] rounded-[2rem] overflow-hidden border-4 border-mascot-surface-container shadow-2xl">
-<img alt="App Home Screen Showcase" className="w-full h-full object-cover" src="/images/mascot/img_63.jpg" loading="lazy" />
+<img alt="App Home Screen Showcase" className="w-full h-full object-cover" src="/images/mascot/app-showcase/Container-1.png" loading="lazy" />
 </div>
 </div>
 {/* Feature 2 */}
@@ -874,7 +874,7 @@ export function AppShowcase() {
 <h3 className="font-headline-md text-headline-md text-mascot-on-surface mb-4">便捷登录</h3>
 <p className="font-body-md text-body-md text-mascot-on-surface-variant mb-8 flex-grow">Secure and fast access to your account and personalized settings.</p>
 <div className="relative w-full aspect-[0.48] rounded-[2rem] overflow-hidden border-4 border-mascot-surface-container shadow-2xl">
-<img alt="App Login Screen Showcase" className="w-full h-full object-cover" src="/images/mascot/img_64.jpg" loading="lazy" />
+<img alt="App Login Screen Showcase" className="w-full h-full object-cover" src="/images/mascot/app-showcase/Container-2.png" loading="lazy" />
 </div>
 </div>
 {/* Feature 3 */}
@@ -882,7 +882,7 @@ export function AppShowcase() {
 <h3 className="font-headline-md text-headline-md text-mascot-on-surface mb-4">个人中心</h3>
 <p className="font-body-md text-body-md text-mascot-on-surface-variant mb-8 flex-grow">Manage your profile, track interactions, and customize your experience.</p>
 <div className="relative w-full aspect-[0.48] rounded-[2rem] overflow-hidden border-4 border-mascot-surface-container shadow-2xl">
-<img alt="App Profile Screen Showcase" className="w-full h-full object-cover" src="/images/mascot/img_65.jpg" loading="lazy" />
+<img alt="App Profile Screen Showcase" className="w-full h-full object-cover" src="/images/mascot/app-showcase/Container-3.png" loading="lazy" />
 </div>
 </div>
 </div>
@@ -903,14 +903,14 @@ export function AppShowcase() {
 </div>
 <div className="w-full md:w-1/2 relative bg-mascot-surface-variant/30 flex justify-center items-center p-8">
 <div className="relative w-full max-w-[300px] aspect-[0.48] rounded-[2rem] overflow-hidden border-4 border-white shadow-xl rotate-3 hover:rotate-0 transition-transform duration-500">
-<img alt="Community App Screen" className="w-full h-full object-cover" src="/images/mascot/img_66.jpg" loading="lazy" />
+<img alt="Community App Screen" className="w-full h-full object-cover" src="/images/mascot/app-showcase/Group 34.png" loading="lazy" />
 </div>
 </div>
 </div>
 {/* Rewards Block */}
 <div className="md:col-span-4 glass-panel rounded-xl overflow-hidden relative flex flex-col justify-end p-8 group">
 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-<img alt="Daily Sign-in Gamification" className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" src="/images/mascot/img_68.jpg" loading="lazy" />
+<img alt="Daily Sign-in Gamification" className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" src="/images/mascot/app-showcase/Container.png" loading="lazy" />
 <div className="relative z-20 text-white">
 <span className="font-label-mono text-label-mono text-mascot-primary-fixed mb-2 inline-block">REWARDS</span>
 <h3 className="font-headline-md text-headline-md mb-2">每日签到</h3>
@@ -924,7 +924,7 @@ export function AppShowcase() {
 <p className="font-body-md text-body-md text-mascot-on-surface-variant mb-6">Delve into the history and lore of the Xiaozu IP.</p>
 <div className="mt-auto flex justify-center">
 <div className="relative w-[200px] aspect-[0.48] rounded-[1.5rem] overflow-hidden border-2 border-mascot-surface-container shadow-lg -mb-12">
-<img alt="IP Archival Information Screen" className="w-full h-full object-cover" src="/images/mascot/img_67.jpg" loading="lazy" />
+<img alt="IP Archival Information Screen" className="w-full h-full object-cover" src="/images/mascot/app-showcase/Container-6.png" loading="lazy" />
 </div>
 </div>
 </div>
@@ -938,7 +938,7 @@ export function AppShowcase() {
 </div>
 <div className="w-full md:w-1/2 relative bg-mascot-surface-variant/30 flex justify-center items-center p-8">
 <div className="relative w-full max-w-[300px] aspect-[0.48] rounded-[2rem] overflow-hidden border-4 border-white shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-500">
-<img alt="Merchandise Store App Screen" className="w-full h-full object-cover" src="/images/mascot/img_70.jpg" loading="lazy" />
+<img alt="Merchandise Store App Screen" className="w-full h-full object-cover" src="/images/mascot/app-showcase/Container-5.png" loading="lazy" />
 </div>
 </div>
 </div>

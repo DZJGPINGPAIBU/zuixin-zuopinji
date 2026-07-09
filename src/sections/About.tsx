@@ -62,7 +62,7 @@ export default function About() {
                 </h3>
                 <p className="mt-1 text-sm font-body font-light flex items-center justify-between gap-4" style={{ color: 'var(--text-secondary)' }}>
                   <span>{personalInfo.role} · {personalInfo.age}岁 · {personalInfo.city}</span>
-                  <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>{personalInfo.email} · {personalInfo.phone}</span>
+                  <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>{personalInfo.email} · {personalInfo.phone} · 期望薪资 20-30K</span>
                 </p>
               </div>
             </div>
