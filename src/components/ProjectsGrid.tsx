@@ -132,7 +132,7 @@ export default function ProjectsGrid() {
                       </a>
                     </div>
                   ) : (
-                    <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed">
+                    <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed whitespace-pre-line">
                       {p.shortDesc}
                     </p>
                   )}
@@ -196,7 +196,7 @@ export default function ProjectsGrid() {
                 <p className="mt-3 text-xs lg:text-sm text-black/50 font-body font-light tracking-[0.1em] uppercase">
                   {p.subtitle}
                 </p>
-                <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed">
+                <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed whitespace-pre-line">
                   {p.shortDesc}
                 </p>
                 <button

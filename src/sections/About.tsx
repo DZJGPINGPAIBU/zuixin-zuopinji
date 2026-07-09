@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo, stats, education, awards } from '@/data/resume';
+import TiltedCard from '@/components/TiltedCard';
 
 const fadeUp = (d: number) => ({
   initial: { filter: 'blur(10px)', opacity: 0, y: 20 },
@@ -57,13 +58,11 @@ export default function About() {
               </div>
               <div>
                 <h3 className="font-heading italic text-2xl tracking-[-1px]" style={{ color: 'var(--text-primary)' }}>
-                  {personalInfo.nameEn || 'Xuankun Huang'}
+                  {personalInfo.nameEn || '黄选坤'}
                 </h3>
-                <p className="mt-1 text-sm font-body font-light" style={{ color: 'var(--text-secondary)' }}>
-                  {personalInfo.role} · {personalInfo.age}岁 · {personalInfo.city}
-                </p>
-                <p className="text-[10px] font-body mt-1" style={{ color: 'var(--text-muted)' }}>
-                  {personalInfo.email} · {personalInfo.phone}
+                <p className="mt-1 text-sm font-body font-light flex items-center justify-between gap-4" style={{ color: 'var(--text-secondary)' }}>
+                  <span>{personalInfo.role} · {personalInfo.age}岁 · {personalInfo.city}</span>
+                  <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>{personalInfo.email} · {personalInfo.phone}</span>
                 </p>
               </div>
             </div>
@@ -80,33 +79,72 @@ export default function About() {
             </div>
 
             <div className="text-sm lg:text-base font-body font-light leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              拥有5年品牌视觉设计经验，现任大族激光集团总部品牌部设计师。熟练运用PS、AI、Figma、即梦、Lovart、Nano Banana、ChatGPT Image2、Seedance等多款AI视觉模型，将AIGC深度应用于IP、VI、LOGO、创意视频等全流程设计，赋能部门设计效率提升50%以上。
+              拥有5年品牌视觉与AI多媒体设计实战经验，现任大族激光集团总部AI多媒体设计师。深度运用即梦、Lovart、Nano Banana、Seedance等多款AI视觉模型，精通Claude Codex等前沿Agent工具，可独立覆盖从需求拆解到落地交付的全链路设计工作。主导集团30周年庆典、大族激光×飞书AI全域落地等多项重磅项目，10+场国际顶级大展全案负责人。
             </div>
           </motion.div>
 
-          {/* Right — education + awards */}
-          <motion.div {...fadeUp(0.7)} className="cursor-target rounded-[1.25rem] p-6 border flex flex-col"
+          {/* Right — education card with TiltedCard */}
+          <motion.div {...fadeUp(0.7)} className="cursor-target rounded-[1.25rem] p-6 border flex flex-col gap-5"
             style={{ background: 'rgba(255,255,255,0.6)', borderColor: 'var(--bg-warm)' }}>
-            <div className="w-11 h-11 rounded-[0.75rem] flex items-center justify-center shrink-0 mb-4" style={{ background: 'var(--accent-light)' }}>
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--accent)' }}>
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                <path d="M6 12v5c3 3 9 3 12 0v-5" />
-              </svg>
+            {/* TiltedCard 资料卡 */}
+            <div className="w-full flex justify-center">
+              <TiltedCard
+                imageSrc="/canvas/profile-photo.jpg"
+                altText="黄选坤 个人照片"
+                captionText="广东白云学院 · 环境艺术设计"
+                containerHeight="320px"
+                containerWidth="100%"
+                imageHeight="280px"
+                imageWidth="280px"
+                rotateAmplitude={12}
+                scaleOnHover={1.08}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <div className="absolute inset-0 flex flex-col justify-end p-5 bg-gradient-to-t from-black/50 to-transparent rounded-[15px]">
+                    <p className="text-white/90 text-sm font-semibold tracking-wide">{personalInfo.name}</p>
+                    <p className="text-white/70 text-xs mt-0.5">{personalInfo.role}</p>
+                  </div>
+                }
+              />
             </div>
-            <h3 className="font-heading italic text-2xl md:text-3xl tracking-[-1px] leading-none" style={{ color: 'var(--text-primary)' }}>
-              {education.school}
-            </h3>
-            <p className="mt-2 text-sm font-body font-light" style={{ color: 'var(--text-secondary)' }}>{education.degree}</p>
-            <p className="mt-1 text-[11px] font-body" style={{ color: 'var(--text-muted)' }}>{education.year}</p>
 
-            <div className="mt-6 pt-4 border-t" style={{ borderColor: 'var(--bg-warm)' }}>
-              <div className="flex flex-wrap gap-1.5">
-                {awards.map((a) => (
-                  <span key={a} className="rounded-full px-2.5 py-1 text-[10px] font-body whitespace-nowrap border"
-                    style={{ background: 'var(--accent-light)', color: 'var(--accent)', borderColor: 'var(--bg-warm)' }}>
-                    {a}
-                  </span>
-                ))}
+            {/* 资料信息卡 */}
+            <div className="rounded-xl p-5 space-y-3" style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid var(--bg-warm)' }}>
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>院校</span>
+                <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{education.school}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>专业</span>
+                <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{education.degree}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>就读时间</span>
+                <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{education.year}</span>
+              </div>
+            </div>
+
+            {/* 荣誉标签 */}
+            <div className="pt-1">
+              <div className="grid grid-cols-2 gap-1.5">
+                {awards.map((a) => {
+                  const isBilibili = a.includes('B站') || a.includes('全网粉丝');
+                  return (
+                    <span key={a}
+                      className="rounded-full px-2.5 py-1 text-[10px] font-body text-center border col-span-2"
+                      style={{
+                        background: isBilibili ? 'var(--accent)' : 'var(--accent-light)',
+                        color: isBilibili ? '#fff' : 'var(--accent)',
+                        borderColor: isBilibili ? 'var(--accent)' : 'var(--bg-warm)',
+                        fontWeight: isBilibili ? 700 : 400,
+                        gridColumn: isBilibili ? 'span 2' : 'span 1',
+                      }}>
+                      {a}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </motion.div>

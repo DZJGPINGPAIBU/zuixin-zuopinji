@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { workData } from '@/data/resume';
 
@@ -9,9 +8,25 @@ const fadeUp = (d: number) => ({
   transition: { duration: 0.8, ease: 'easeOut' as const, delay: d },
 });
 
-export default function Experience() {
-  const [hoveredIdx, setHoveredIdx] = useState(-1);
+const covers = ['/images/大族科技.jpg', '/images/奋达科技.jpg', '/images/乔邦教育.jpg'];
 
+/** Bold key metrics in highlight text: percentages, numbers with +, large figures */
+function boldMetrics(text: string): React.ReactNode {
+  // Match patterns like: 35%, 50+套, 200+件, 320+人次, 98%, 3天, 8小时, 70%, 300人天
+  const re = /(\d+[+套件人次天小时人天个家场个月年万亿百千]*(?:%以上)?)/g;
+  const parts: React.ReactNode[] = [];
+  let last = 0;
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    parts.push(<strong key={match.index} style={{ color: 'var(--accent)', fontWeight: 700 }}>{match[0]}</strong>);
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts.length > 0 ? <>{parts}</> : text;
+}
+
+export default function Experience() {
   return (
     <section id="experience" className="relative px-8 md:px-16 lg:px-20 pt-28 pb-10" style={{ background: 'var(--bg-primary)' }}>
       <div className="relative z-10 max-w-[1200px] mx-auto">
@@ -22,109 +37,71 @@ export default function Experience() {
           Work<br />experience
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="flex flex-col gap-12 md:gap-20">
           {workData.map((item, idx) => {
-            const isHovered = hoveredIdx === idx;
-            const isCurrent = idx === 0;
-            const covers = ['/images/大族科技.jpg', '/images/奋达科技.jpg', '/images/乔邦教育.jpg'];
+            const isOdd = idx % 2 === 1;
+
             return (
               <motion.div
                 key={item.company}
                 {...fadeUp(0.6 + idx * 0.15)}
-                onMouseEnter={() => setHoveredIdx(idx)}
-                onMouseLeave={() => setHoveredIdx(-1)}
-                className="cursor-target rounded-[1.25rem] border flex flex-col cursor-pointer transition-all relative overflow-hidden min-h-[360px]"
-                style={{ borderColor: 'var(--bg-warm)' }}
+                className={`flex flex-col md:flex-row gap-6 md:gap-10 items-stretch ${
+                  isOdd ? 'md:flex-row-reverse' : ''
+                }`}
               >
-                {/* Cover image — full opacity by default */}
-                <img
-                  src={covers[idx]}
-                  alt={item.company}
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                  style={{ opacity: isHovered ? 0.15 : 1 }}
-                />
-
-                {/* Warm overlay — fades in on hover */}
-                <div
-                  className="absolute inset-0 transition-opacity duration-500"
-                  style={{
-                    background: 'rgba(250,248,245,0.88)',
-                    opacity: isHovered ? 1 : 0,
-                  }}
-                />
-
-                {/* Content */}
-                <div className="relative z-10 flex flex-col flex-1 p-6">
-                  {/* Header — always visible */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="w-11 h-11 rounded-[0.75rem] flex items-center justify-center shrink-0 transition-colors duration-500"
-                      style={{
-                        background: isHovered
-                          ? (isCurrent ? 'var(--accent-light)' : 'var(--bg-secondary)')
-                          : 'rgba(255,255,255,0.2)',
-                        backdropFilter: isHovered ? 'none' : 'blur(4px)',
-                      }}>
-                      <span className="font-heading italic text-lg transition-colors duration-500"
-                        style={{
-                          color: isHovered
-                            ? (isCurrent ? 'var(--accent)' : 'var(--text-muted)')
-                            : 'white',
-                        }}>
-                        {isCurrent ? '★' : '○'}
-                      </span>
-                    </div>
-                    <span className="rounded-full px-2.5 py-1 text-[10px] font-body whitespace-nowrap border transition-colors duration-500"
-                      style={{
-                        background: isHovered ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.25)',
-                        borderColor: 'var(--bg-warm)',
-                        color: isHovered ? 'var(--text-muted)' : 'white',
-                      }}>
-                      {item.year}
-                    </span>
+                {/* Cover image side */}
+                <div className="md:w-5/12 shrink-0">
+                  <div className="rounded-[1.25rem] overflow-hidden border h-full min-h-[280px]" style={{ borderColor: 'var(--bg-warm)' }}>
+                    <img
+                      src={covers[idx]}
+                      alt={item.company}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
+                </div>
 
-                  <div className="flex-1" />
+                {/* Content side */}
+                <div className={`md:w-7/12 flex flex-col justify-center ${
+                  isOdd ? 'md:text-left md:items-start' : 'md:text-left md:items-start'
+                }`}>
+                  {/* Year badge */}
+                  <span className="inline-block rounded-full px-3.5 py-1.5 text-xs font-medium border mb-4"
+                    style={{ background: 'rgba(255,255,255,0.8)', borderColor: 'var(--bg-warm)', color: 'var(--text-muted)' }}>
+                    {item.year}
+                  </span>
 
-                  {/* Company & Role — always visible */}
-                  <div className="mt-6">
-                    <h3 className="font-bold text-xl md:text-2xl leading-tight whitespace-nowrap transition-colors duration-500"
-                      style={{ color: isHovered ? 'var(--text-primary)' : 'white' }}>
-                      {item.company}
-                    </h3>
-                    <p className="mt-2 text-sm font-body font-light transition-colors duration-500"
-                      style={{ color: isHovered ? 'var(--text-secondary)' : 'rgba(255,255,255,0.8)' }}>
-                      {item.role}
-                    </p>
-                  </div>
+                  {/* Company + Role */}
+                  <h3 className="font-heading italic text-3xl md:text-4xl lg:text-5xl tracking-[-1px] leading-tight" style={{ color: 'var(--text-primary)' }}>
+                    {item.company}
+                  </h3>
+                  <p className="mt-2.5 text-base md:text-lg font-bold" style={{ color: 'var(--accent)' }}>
+                    {item.role}
+                  </p>
 
-                  {/* Expandable highlights — only on hover */}
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      opacity: isHovered ? 1 : 0,
-                      height: isHovered ? 'auto' : 0,
-                    }}
-                    transition={{ duration: 0.4, ease: 'easeOut' }}
-                    className="overflow-hidden"
-                  >
-                    <div className="mt-4 pt-3 border-t" style={{ borderColor: 'var(--bg-warm)' }}>
-                      {item.highlights.map((h, i) => (
-                        <p key={i} className="text-xs font-body font-light leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>
-                          · {h}
-                        </p>
+                  {/* Highlights — all visible as bullet points */}
+                  <ul className="mt-5 space-y-3">
+                    {item.highlights.map((h, i) => (
+                      <li key={i} className="flex items-start gap-3 text-base font-body leading-relaxed"
+                        style={{ color: 'var(--text-secondary)' }}>
+                        <span className="mt-[0.4em] w-2 h-2 rounded-full shrink-0" style={{ background: 'var(--accent)' }} />
+                        <span style={h.includes('获评优秀教师') ? { fontWeight: 700, color: 'var(--accent)' } : undefined}>
+                          {boldMetrics(h)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Tags */}
+                  {item.tags && item.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-5">
+                      {item.tags.map((t) => (
+                        <span key={t} className="rounded-full px-3 py-1 text-xs font-medium border"
+                          style={{ background: 'var(--accent-light)', color: 'var(--accent)', borderColor: 'var(--bg-warm)' }}>
+                          {t}
+                        </span>
                       ))}
-                      {item.tags && item.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5 mt-3">
-                          {item.tags.map((t) => (
-                            <span key={t} className="rounded-full px-2 py-0.5 text-[9px] font-body border"
-                              style={{ background: 'var(--accent-light)', color: 'var(--accent)', borderColor: 'var(--bg-warm)' }}>
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      )}
                     </div>
-                  </motion.div>
+                  )}
                 </div>
               </motion.div>
             );

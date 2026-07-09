@@ -416,7 +416,7 @@ export default function Hero() {
           {/* Typing title */}
           <motion.div {...f(0.4)} className="text-center">
             <TextType
-              text={['Xuankun Huang']}
+              text={['黄选坤']}
               typingSpeed={80}
               pauseDuration={1500}
               deletingSpeed={35}
@@ -429,7 +429,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <motion.p {...f(0.7)} className="mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight text-center opacity-70">
-            品牌平面设计师 · AIGC创意实践者 · 大族激光集团总部品牌部
+            AI多媒体设计师 · AIGC创意实践者 · 大族激光集团总部
           </motion.p>
 
           {/* CTA */}

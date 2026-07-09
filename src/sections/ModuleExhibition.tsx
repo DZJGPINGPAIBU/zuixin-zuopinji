@@ -113,6 +113,19 @@ export function ExhibitionModal({ onClose }: { onClose: () => void }) {
           >
             A documentation of spatial narrative and technical precision across industrial, optoelectronic, and high-tech sectors.
           </p>
+          <p
+            className="max-w-xl mt-6"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 13,
+              lineHeight: 1.7,
+              fontWeight: 400,
+              color: '#999',
+            }}
+          >
+            因集团保密特性，仅展示部分视觉主KV设计<br />
+            <strong style={{ fontWeight: 600, color: '#666' }}>观看更多 可关注 大族激光官方公众号/官网</strong>
+          </p>
         </div>
       </section>
 
