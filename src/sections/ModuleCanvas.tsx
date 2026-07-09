@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import CanvasProfileSection from '@/components/CanvasProfileSection';
 
 const pages = [
   { id: 'sec-storyboard', file: 'page_6', label: '分镜创作', en: 'Storyboard Creation' },
@@ -104,6 +105,26 @@ export function CanvasModal({ onClose }: { onClose: () => void }) {
         {pages.map((p, idx) => {
           const isLast = idx === pages.length - 1;
           const h = heights[p.id] || window.innerHeight;
+
+          // Profile page: render React component instead of iframe
+          if (p.id === 'sec-profile') {
+            return (
+              <section
+                key={p.id}
+                id={p.id}
+                className="relative w-full"
+                style={{ minHeight: h }}
+              >
+                <CanvasProfileSection />
+                {isLast && (
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm text-[10px] font-mono text-white/60 tracking-wider pointer-events-none">
+                    {p.label} · {p.en}
+                  </div>
+                )}
+              </section>
+            );
+          }
+
           return (
             <section
               key={p.id}
