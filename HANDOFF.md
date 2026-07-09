@@ -1,48 +1,51 @@
-# Handoff — 2026-07-08（B站模块 Ink & Soul 纵向排版重构）
+# Handoff — 2026-07-09
 
 > 下一会话启动时读取此文件，快速恢复上下文。
 
 ## 当前状态
+- 吉祥物IP模块：5/6 个板块已完成图片替换（日历待重新映射）
+- 移动端自适应：4文件14处修改已完成，编译通过
+- 品牌视觉：AI多媒体设计师 → AI品牌视觉设计 全局替换
+- About卡片：分点简介已优化，照片裁剪已修复
+- **代码已推送到 GitHub `main` 分支**（commit `f685153`）
 
-- **Dev server**: `npm run dev` → `http://localhost:3000/`
-- **Git**: 有未提交变更（B站模块重构 + 移动端导航适配）
-- **素材**: `public/bilibili/` 含 4 个 screen (HTML + PNG/JPG)
+## 🔴 待处理
 
-## 本次完成
+### 1. 阿里云轻量服务器上线（未完成）
+- 服务器: `118.31.14.19`，root 密码 `277181Hxk`
+- `dist/` 已构建并上传到 `/var/www/zuopinji/`
+- Nginx 配置: `/zuopinji/` → 内部 8081（静态+OSS代理）
+- **问题**: 从服务器外部 curl 全部 HTTP 200 正常，但用户浏览器无法打开
+- 可能原因: 阿里云安全组需放行、浏览器缓存、需进一步排查
 
-### 移动端导航适配 — `src/sections/Hero.tsx`
-- Navbar 右侧新增汉堡按钮（`lg:hidden`），三横线 → X 形变动画
-- 全屏暗色 overlay 菜单（AnimatePresence + 圆形裁剪展开）
-- 5 个中文锚点导航（首页/关于/经历/作品/联系）
-- SCROLL 指示器滚动渐隐（`scrollYProgress 0→0.08` 控制 opacity）
+### 2. 日历板块图片重新映射
+- 20张日历图片已上传 OSS `images/mascot/calendar-dev/`
+- 但文件序号与月份不对应（图片上印有月份数字）
+- 当前代码已恢复为原始 `img_XX.jpg`
+- 需人工对照图片上的月份数字，逐一映射
 
-### B站模块 Ink & Soul 纵向重构 — `src/sections/ModuleAIGC.tsx`
-- 从 `/Downloads/b站独家签约/` 提取全部内容，1:1 纵向排版
-- 4 大 screen 完整保留：
-  - **墨刃纪**：Landing page — 惊蛰封印、风起云涌标题、踏入江湖 CTA
-  - **辰墨**：角色档案 — 本源/印记/法器/因果图谱/觉醒之阶 SSS/诛杀令五行追缉
-  - **暴走卷**：暴走·态/触发·机/力·变/失控·价/形态·异/觉醒·深/收束·路
-  - **洛清漪**：碧水长卷 7 章节目录
-- Design System 色板（5 色）+ Typography（3 字体）+ 统计
-- 右侧 nav dots 桌面端锚点跳转
-- 卡片使用 screen-1.png + 暗色渐变叠加
+### 3. 企业微信表情包（文件夹6）未使用
+- 25张已上传 OSS `images/mascot/enterprise-emoji/`
+- 尚未创建展示区域
 
-### 响应式修复 — `src/components/ProjectsGrid.tsx`
-- 副标题 `whitespace-nowrap` → `px-4`（移动端文字溢出修复）
-
-## 素材结构
-
+## 服务器 Nginx 架构
 ```
-public/bilibili/
-├── screen-1.html / screen-1.png          (墨刃纪 landing)
-├── screen-2.html / screen-2.png          (辰墨 character)
-├── screen-3.html / screen-3.png          (洛清漪 character)
-└── screen-berserk.html / ...jpg          (暴走卷 berserk)
+80端口 (aikoutu):
+  /          → 127.0.0.1:8000 (无限画布 Python)
+  /yitai     → 127.0.0.1:3000 (Next.js)
+  /zuopinji/ → 127.0.0.1:8081 (作品集)
+
+8081端口 (zuopinji, 仅内部):
+  /          → /var/www/zuopinji (静态文件)
+  /images/   → OSS代理
+  /videos/   → OSS代理
+  /3c/       → OSS代理
 ```
 
-## 待办
-
-- [ ] 生产构建 OSS URL 替换方案
-- [ ] Git 配置 user.name / user.email
-- [ ] 移动端响应式适配测试
-- [ ] Spline viewer 渲染修复
+## 部署更新命令
+```bash
+# 构建 + 上传到服务器
+npm run build   # 或 npx vite build
+# 然后 SCP dist/ 到服务器 /var/www/zuopinji/
+# SSH 连接: ssh root@118.31.14.19
+```
