@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChenmoSections } from '@/sections/ModuleChenmo';
 import { LuoqingyiSections } from '@/sections/ModuleLuoqingyi';
+import { ZhanglongSections } from '@/sections/ModuleZhanglong';
 
 const c = {
   bg: '#131313', bgDeep: '#0e0e0e', surface: '#1c1b1b',
@@ -15,8 +16,10 @@ const L = "'Space Grotesk', monospace";
 export function AIGCModal({ onClose }: { onClose: () => void }) {
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [page, setPage] = useState<'main' | 'zhanglong'>('main');
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
 
   const handleFullscreen = () => {
     const video = videoRef.current;
@@ -31,8 +34,19 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <motion.div className="fixed inset-0 z-[90] overflow-y-auto overflow-x-hidden" style={{ background: c.bgDeep }}
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <motion.div className="fixed inset-0 z-[90] overflow-hidden" style={{ background: c.bgDeep }}
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      onTouchStart={e => { touchStartX.current = e.touches[0].clientX; }}
+      onTouchEnd={e => {
+        const dx = e.changedTouches[0].clientX - touchStartX.current;
+        if (Math.abs(dx) > 80) {
+          if (dx < -60 && page === 'main') setPage('zhanglong');
+          if (dx > 60 && page === 'zhanglong') setPage('main');
+        }
+      }}>
+
+      {page === 'main' ? (
+        <div className="overflow-y-auto overflow-x-hidden h-full">
 
       {/* Ink brush texture SVG filter */}
       <svg width="0" height="0" style={{ position: 'absolute' }}>
@@ -57,14 +71,17 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
         <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 md:px-16 py-6" style={{ background: 'rgba(14,14,14,0.85)', backdropFilter: 'blur(12px)' }}>
           <span className="ink-brush text-2xl md:text-3xl uppercase tracking-widest font-bold" style={{ color: '#fff', fontFamily: B, textShadow: 'rgba(0,0,0,0.8) 2px 2px 4px, rgba(255,255,255,0.2) 0px 0px 10px', filter: 'url(#ink-bleed) contrast(1.5)' }}>墨刃纪</span>
           <div className="hidden md:flex flex-row items-center gap-8">
-            <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => { e.preventDefault(); onClose(); }}>首页</a>
+            <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1 flex items-center gap-1" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => { e.preventDefault(); onClose(); }}>
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              返回主页
+            </a>
             <div className="group relative">
               <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1 flex items-center" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => e.preventDefault()}>角色档案<svg className="ml-1 w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg></a>
               <div className="absolute top-full left-0 mt-2 w-48 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border rounded-sm" style={{ background: 'rgba(19,19,19,0.9)', backdropFilter: 'blur(20px)', borderColor: 'rgba(242,202,80,0.3)' }}>
                 {['辰墨','暴走 辰墨','洛清漪'].map(n => <a key={n} href="#" className="ink-brush block px-4 py-2 text-base font-bold hover:bg-primary/10 transition-colors text-white" style={{ fontFamily: B, filter: 'url(#ink-bleed)' }} onClick={e => { e.preventDefault(); if (n === '暴走 辰墨') { document.getElementById('bz-hero')?.scrollIntoView({ behavior: 'smooth' }); } if (n === '洛清漪') { document.getElementById('lq-hero')?.scrollIntoView({ behavior: 'smooth' }); } }}>{n}</a>)}
               </div>
             </div>
-            <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => e.preventDefault()}>其他作品</a>
+            <a href="#" className="ink-brush text-lg font-bold cursor-pointer pb-1" style={{ color: '#fff', fontFamily: B, filter: 'url(#ink-bleed)', textShadow: 'rgba(0,0,0,0.8) 1px 1px 3px, rgba(255,255,255,0.2) 0px 0px 8px' }} onClick={e => { e.preventDefault(); setPage('zhanglong'); }}>其他作品</a>
           </div>
           <div className="flex items-center gap-4">
             <button className="hover:scale-105 transition-transform" style={{ color: c.onSurface }} onClick={onClose}><svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></button>
@@ -252,6 +269,23 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
         </div>
         <p className="text-xs text-gray-500 opacity-60" style={{ fontFamily: L }}>© 墨刃纪卷宗 — 虚空纪元</p>
       </footer>
+        </div>
+      ) : (
+        <div className="overflow-y-auto h-full" style={{ background: '#0a0a0a' }}>
+          {/* 斩龙 top nav */}
+          <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-16 py-5" style={{ background: 'rgba(14,14,14,0.9)', backdropFilter: 'blur(16px)' }}>
+            <button onClick={() => setPage('main')} className="flex items-center gap-1.5 text-white/70 hover:text-[#e9c349] transition-colors cursor-pointer" style={{ fontFamily: B }}>
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+              <span className="text-base hidden sm:inline">返回墨刃纪</span>
+            </button>
+            <span className="text-xl md:text-2xl font-bold tracking-widest text-white" style={{ fontFamily: B, textShadow: '0 0 10px rgba(233,195,73,0.3)' }}>斩龙</span>
+            <button onClick={onClose} className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors" style={{ background: 'rgba(255,255,255,0.06)' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+          </nav>
+          <ZhanglongSections />
+        </div>
+      )}
     </motion.div>
   );
 }

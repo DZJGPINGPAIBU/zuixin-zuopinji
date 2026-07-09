@@ -65,9 +65,15 @@ export function CanvasModal({ onClose }: { onClose: () => void }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {/* Top bar — project num + centered nav + close */}
+      {/* Top bar — back + project num + centered nav + close */}
       <div className="relative flex items-center justify-center px-6 py-3 bg-white/90 backdrop-blur-md border-b border-black/5 shrink-0">
-        <span className="absolute left-6 text-xs font-mono text-black/30 tracking-wider">PROJECT 02</span>
+        <div className="absolute left-3 flex items-center gap-2">
+          <button onClick={onClose} className="flex items-center gap-1 px-2 py-1 rounded-full bg-black/5 hover:bg-black/10 transition-colors cursor-pointer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+            <span className="text-[10px] font-medium hidden sm:inline">返回主页</span>
+          </button>
+          <span className="text-xs font-mono text-black/30 tracking-wider">PROJECT 02</span>
+        </div>
         <nav className="flex items-center gap-1">
           {pages.map((p) => (
             <button

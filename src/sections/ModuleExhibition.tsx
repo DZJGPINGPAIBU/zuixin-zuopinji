@@ -47,9 +47,15 @@ export function ExhibitionModal({ onClose }: { onClose: () => void }) {
       exit={{ opacity: 0 }}
       style={{ fontFamily: "'Inter', sans-serif" }}
     >
-      {/* Top bar: project label + close */}
+      {/* Top bar: back + project label + close */}
       <div className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-white/80 backdrop-blur-md border-b border-black/5">
-        <span className="text-xs font-mono text-black/30 tracking-wider">PROJECT 03</span>
+        <div className="flex items-center gap-3">
+          <button onClick={onClose} className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-black/5 hover:bg-black/10 transition-colors cursor-pointer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+            <span className="text-[11px] font-medium hidden sm:inline">返回主页</span>
+          </button>
+          <span className="text-xs font-mono text-black/30 tracking-wider">PROJECT 03</span>
+        </div>
         <button onClick={onClose} className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center hover:bg-black/10 transition-colors">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 6L6 18M6 6l12 12" />
@@ -392,7 +398,7 @@ export function ExhibitionCard({ onClick }: { onClick: () => void }) {
       transition={{ duration: 0.3 }}
       onClick={onClick}
     >
-      <div className="card-3d-inner overflow-hidden bg-white relative aspect-[4/5]" style={{ borderRadius: 0 }}>
+      <div className="card-3d-inner overflow-hidden bg-white relative aspect-[21/9]" style={{ borderRadius: 0 }}>
         <img
           src="/images/exhibition/ciif_01_main.jpg"
           alt="展会视觉体系"

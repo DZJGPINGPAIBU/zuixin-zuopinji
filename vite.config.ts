@@ -11,6 +11,7 @@ export default defineConfig({
     proxy: {
       '/images': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
       '/videos': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
+      '/bilibili/zhanglong': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
     },
   },
   resolve: {

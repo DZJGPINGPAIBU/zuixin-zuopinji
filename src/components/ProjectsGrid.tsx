@@ -35,7 +35,8 @@ export default function ProjectsGrid() {
     setActive(id); window.history.pushState({ modal: id }, '', '#project=' + id);
   }, []);
   const closeModal = useCallback(() => {
-    setActive(null); if (window.history.state?.modal) window.history.back();
+    setActive(null);
+    window.history.replaceState(null, '', window.location.pathname);
   }, []);
   const navigateProject = useCallback((dir: number) => {
     if (!active) return;

@@ -983,7 +983,13 @@ export function MascotModal({ onClose }: { onClose: () => void }) {
       {/* Close bar */}
       <div className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 py-4 backdrop-blur-md border-b border-white/10"
         style={{ background: 'rgba(255,255,255,0.85)' }}>
-        <span className="text-xs font-mono text-black/30 tracking-wider">PROJECT 01 · 集团吉祥物IP</span>
+        <div className="flex items-center gap-3">
+          <button onClick={onClose} className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-black/5 hover:bg-black/10 transition-colors cursor-pointer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+            <span className="text-[11px] font-medium hidden sm:inline">返回主页</span>
+          </button>
+          <span className="text-xs font-mono text-black/30 tracking-wider">PROJECT 01 · 集团吉祥物IP</span>
+        </div>
         <button onClick={onClose} className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center hover:bg-black/10 transition-colors">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
         </button>
@@ -1054,7 +1060,7 @@ export function MascotModal({ onClose }: { onClose: () => void }) {
 export function MascotCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -4 }} transition={{ duration: 0.3 }} onClick={onClick}>
-      <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[4/5]">
+      <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[21/9]">
         <video src="/videos/小族_opt.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 flex items-end justify-between">

@@ -90,7 +90,11 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
       ref={containerRef}
       className="fixed inset-0 z-[90] overflow-y-auto" style={{ background: C.background }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
 
-      {/* Close button */}
+      {/* Back + Close buttons */}
+      <button onClick={onClose} className="fixed top-4 left-4 z-50 flex items-center gap-1.5 px-3 py-2 rounded-full bg-black/10 backdrop-blur-md hover:bg-black/20 transition-colors cursor-pointer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+        <span className="text-xs font-medium text-white hidden sm:inline">返回主页</span>
+      </button>
       <button onClick={onClose} className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/10 backdrop-blur-md flex items-center justify-center hover:bg-black/20 transition-colors">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
           <path d="M18 6L6 18M6 6l12 12" />
@@ -496,7 +500,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
 export function Ecom3CCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
-      <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[4/5]">
+      <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[21/9]">
         <video src="/videos/airm_opt.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-5">

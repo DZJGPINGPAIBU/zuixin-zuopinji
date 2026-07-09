@@ -9,7 +9,7 @@ function VideoPlayer({ onClose }: { onClose: () => void }) {
       <motion.div className="w-full max-w-[1200px] aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl"
         initial={{ scale: 0.85, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.85, opacity: 0 }}
         transition={{ type: 'spring', damping: 25 }} onClick={(e) => e.stopPropagation()}>
-        <video src="/videos/大族宣传.mp4" controls playsInline className="w-full h-full object-contain" />
+        <video src="/videos/anniversary-30th.mp4" controls playsInline className="w-full h-full object-contain" />
       </motion.div>
       <button className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
         onClick={(e) => { e.stopPropagation(); onClose(); }}>
@@ -71,7 +71,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 
 {/* ═══ Hero Video Background ═══ */}
 <div className="relative min-h-screen overflow-hidden">
-  <video src="/videos/大族宣传.mp4" muted loop autoPlay playsInline
+  <video src="/videos/anniversary-30th.mp4" muted loop autoPlay playsInline
     className="absolute inset-0 w-full h-full object-cover"
     style={{ filter: 'brightness(0.45)' }} />
   <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-black/40 to-transparent z-0" />
@@ -106,6 +106,12 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
   <div className="absolute inset-x-0 bottom-0 h-[25%] z-0"
     style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0.85) 85%, rgb(255,255,255) 100%)' }} />
 </div>
+
+{/* ═══ 返回主页 ═══ */}
+      <button onClick={onClose} className="fixed top-4 left-4 z-[100] flex items-center gap-1.5 px-3 py-2 rounded-full bg-black/10 backdrop-blur-md hover:bg-black/20 transition-colors cursor-pointer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+        <span className="text-xs font-medium hidden sm:inline">返回主页</span>
+      </button>
 
 {/* ═══ 关闭按钮 ═══ */}
       <button onClick={onClose} className="fixed top-4 right-4 z-[100] w-10 h-10 rounded-full bg-black/10 backdrop-blur-md flex items-center justify-center hover:bg-black/20 transition-colors cursor-pointer">
@@ -356,8 +362,8 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 export function AnniversaryCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-target cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
-      <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[4/5]">
-        <video src="/videos/大族宣传.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+      <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[21/9]">
+        <video src="/videos/anniversary-30th.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <span className="text-[10px] font-mono text-white/50 tracking-wider uppercase">PROJECT 02</span>
