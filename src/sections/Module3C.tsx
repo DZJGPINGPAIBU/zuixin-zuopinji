@@ -199,7 +199,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             </div>
             <div className="w-full max-w-5xl relative" style={{ animation: 'float 6s ease-in-out infinite' }}>
               <img alt="AeroSound Pro earbuds" className="w-full h-auto object-contain drop-shadow-2xl" style={{ mixBlendMode: 'multiply' }}
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu7d7MgtHe3OP9TS1hMskQZ19cf73VpGpuiskmZuc-B_0q7fhNCQPhK3s3frDXw6YOazn1vNC3l1zyQRKBk0ja0-XqT-b46aoJHVt7EfSJ3kR9yck7GY5M-Vm-jMja0Wp5UtL_8ZOCOSpjXUYfk9H6go4fQ8WJoGjf76TdncJYGp0MjLkDQxtCv8vf7VGB8cka5CUzJ_yQj6ZXoyhsaFYPVY6e-iNEUmmVKtMMtY2f-HErxNAS2SVBJMrdVZm_XDeACCb4Nv-1x-0I" />
+                src="/3c/1.png" />
             </div>
           </div>
         </section>
@@ -234,7 +234,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
               {/* Vertical Image Card */}
               <div className="rounded-xl overflow-hidden relative col-span-1 row-span-2 group">
                 <img alt="Close-up of AeroSound Pro earbud internals" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi4Y7vnbaQ9OybLXFBB0j0mio8vYzKQWSGl-Ac2Z6c9RLnr4azBITLAN7XSEVIpNUPq0SvvyBHoYlwZEcxGqFTVfHXhPnh5-w3PebOqJ3k6BWgIEsdWDU2B8j-_piznkRbS49q6Fxh4ZUQVzwawzmnq30E_SxGj7bXsPpl9RBzTw6nUZs05vZhKSa9nIzNNnT6PLvxoYxzFTkhR8Kh87yb9xg8Z5Eo2colqYNJMVNa-VBbXB9pjGhd8pvLqJJRjAFfCQEt4s4LGNZJ" />
+                  src="/3c/8.png" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8 w-full">
                   <h3 className="mb-2 text-white" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '32px', fontWeight: 600 }}>Hi-Fi Architecture</h3>
@@ -270,9 +270,9 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
           <div className="max-w-7xl mx-auto px-5 md:px-16">
             <div className="flex flex-col md:flex-row items-center gap-16">
               <div className="w-full md:w-1/2 relative">
-                <div className="aspect-[4/5] rounded-xl overflow-hidden relative shadow-2xl">
-                  <img alt="Professional wearing AeroSound Pro" className="w-full h-full object-cover"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoobK29ifNwmXzeL2iV6n4HSt7IZ52ANckudS1Cwk8-qVY-96VsgVwxd-s0a8iCFZJ0oVXel2Wy9-tJNjO_2g-M19NjYAr6OiNsl4wgtQqblxfYnLv8VQQS1w7Q7I83daEW3aKBt4IQ97C6A1mxhQTpNueITd0xLHNuivzvOC7gzKGG_sjvp7nZ_07vHS7F5ZbA_0bujEJ9SHwFiUA4rMEMOzgzxJwLENLj5uBv9ixjNhkwct3ZghVu-cbO4aLirETkNFSp62i8i8M" />
+                <div className="rounded-xl overflow-hidden relative shadow-2xl">
+                  <img alt="Professional wearing AeroSound Pro" className="w-full h-auto"
+                    src="/3c/2.png" />
                   <div className="absolute inset-0 border border-white/20 rounded-xl pointer-events-none" style={{ mixBlendMode: 'overlay' }} />
                 </div>
                 <div className="absolute -bottom-10 -right-10 p-6 rounded-xl max-w-xs" style={{ ...glassPanel, animation: 'float 6s ease-in-out infinite', animationDelay: '1s' }}>
@@ -318,8 +318,8 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             <p className="max-w-2xl mx-auto" style={{ color: C.onSurfaceVariant }}>Discover the meticulous specifications and comprehensive support that define the AeroSound Pro experience.</p>
           </div>
           <div className="relative rounded-xl overflow-hidden aspect-[16/9] md:aspect-[21/9]" style={{ ...glassPanel, boxShadow: `0 0 20px ${C.primary}26` }}>
-            <img alt="AeroSound Pro Overview" className="w-full h-full object-cover opacity-90"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtBYuDnWQ3fbXNWi0UPMmDbPoAaOy74ewfs-1R97wiyrXlELjWdB8GVfZ8wfrYfnHeewl82MN2bSI-eQqK6N6RYt0JSDJX_wr_lfNQbZNZrtIOi6GHWarXowiVhUFdlvldtiUTTZQLyNRMuJdSxO4TMPs_k6qjBNQbG_J3256rnl1lJ-ge81rPuMMZZhkZ5YUx3WQPu1jKVAmJnIF_pYyTxVUhn_ipuuBNqaEwcH-ZiWfSHTlTkeQW2oAb86AU-VqmXetKsjRtPFB3Ig4" />
+            <video src="/3c/precision-engineering.mp4" autoPlay loop muted playsInline
+              className="w-full h-full object-cover opacity-90" />
           </div>
         </section>
 
@@ -397,7 +397,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             <div className="relative w-full aspect-[1.78] rounded-lg overflow-hidden z-10 flex items-center justify-center"
               style={{ background: C.surfaceContainerLowest }}>
               <img alt="Exploded view" className="w-full h-full object-contain"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7LK325dTIX3mIFTYOEVK5vbyIGpz21L6sjRgGjvzNxuTZYO2ycXRwSEU6YBPZLNrD_c_7q-c9uglECBnQSOiZ9PDsXh63mwnrFXn2H9Dnq6hQWoZFTlyePM86ju7lZFVJc5hLyOQF74bK8suV3QQysvO0IbmouVJKCDNqx_QsMEFHoHWgZ_upi53pH7bUWCCmNyph3sEiA0kydTfcbwjb2dDSGBJRBRSA2qm_V1mg_MXfagrkcW7o2v5fkcHZW28fJCRHC5NeVntz" />
+                src="/3c/5.png" />
               <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-[30%] left-[20%] flex flex-col items-center animate-pulse">
                   <div className="w-3 h-3 rounded-full" style={{ background: C.primary, boxShadow: `0 0 15px ${C.primary}cc` }} />
@@ -448,7 +448,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             <div className="md:col-span-7 order-1 md:order-2 flex justify-center md:justify-end mb-12 md:mb-0 relative">
               <div className="w-full max-w-[400px] aspect-[0.56] rounded-2xl overflow-hidden relative group" style={glassPanel}>
                 <img alt="ANC" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9MfEeo_FizhrE5Y5vhyihV9eC0hY13Ch5DZM9hqqDGbHOSy522vQeCEJEZUmEodoaZhEzCFblYBpeOzuXn-xNx3z5hEa9e7aJjqpkFj7rW1lPVbCWPKoZiNqmT43IZJuy7eI3FosdeIpZppDPK-v_Ctm0GVeSLGyJ5gI0by8ADbSH3UxwOJtTIQMp-AkeLIBoFJaOBA-O19exBNC6aivxy8rDtw315u1pP7WD6MeouYBOJ7ecKkDJ3-I9a5IXBs7Ca4mrCCvtAkY" />
+                  src="/3c/3.png" />
                 <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.background}cc, transparent)` }} /></div>
             </div>
           </div>
@@ -460,7 +460,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             <div className="md:col-span-7 flex justify-center md:justify-start mb-12 md:mb-0 relative">
               <div className="w-full max-w-[400px] aspect-[0.56] rounded-2xl overflow-hidden relative group" style={glassPanel}>
                 <img alt="Water resistance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6ndDOyCB2plUDUXRTh0k4h0F_TsPEB2YwZ2owu82LrRKqiWbxUc40djCNn9cSBv09jPdtpN4Mb55QO45CKmHR8474QwXKtWlgdGDiD-Jfcvdw9uFb90J9b5pyFtvaSDLlDrouenA-aLxzmgG4rlwlY2G4GYn5XEkjGQlr9cWPFNgL8xpThR082dvEq6hokcAPbfIyIQDffJVFlA1ZySveyvB2g6ke2sk6R8-AMokA8e9HDjXiQ-qOgytm4-h6MNR_gDGm5mIOVVA7" />
+                  src="/3c/4.png" />
                 <div className="absolute inset-0 mix-blend-overlay" style={{ background: `linear-gradient(to bottom, ${C.secondaryFixed}33, transparent)` }} /></div>
             </div>
             <div className="md:col-span-5 pl-0 md:pl-12">

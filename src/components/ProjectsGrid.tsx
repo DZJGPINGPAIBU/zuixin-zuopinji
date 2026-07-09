@@ -29,6 +29,17 @@ const fadeUp = (d: number) => ({
   transition: { duration: 0.8, ease: 'easeOut' as const, delay: d },
 });
 
+/** Parse **bold** markers in text into JSX */
+function renderRichText(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={i} className="text-black/80 font-semibold">{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
+
 export default function ProjectsGrid() {
   const [active, setActive] = useState<ActiveModal>(null);
   const openModal = useCallback((id: Exclude<ActiveModal, null>) => {
@@ -133,7 +144,7 @@ export default function ProjectsGrid() {
                     </div>
                   ) : (
                     <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed whitespace-pre-line">
-                      {p.shortDesc}
+                      {renderRichText(p.shortDesc)}
                     </p>
                   )}
                   {isJihui ? (
@@ -197,7 +208,7 @@ export default function ProjectsGrid() {
                   {p.subtitle}
                 </p>
                 <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed whitespace-pre-line">
-                  {p.shortDesc}
+                  {renderRichText(p.shortDesc)}
                 </p>
                 <button
                   onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}

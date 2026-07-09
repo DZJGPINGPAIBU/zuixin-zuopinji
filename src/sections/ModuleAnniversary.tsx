@@ -162,6 +162,9 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 <p className="text-base text-on-surface-variant max-w-[600px] mb-8 leading-relaxed">
 以数字「30」为核心符号，将激光光路抽象为几何线条，虚实交织中传递品牌三十载技术积淀与未来探索。
 </p>
+<div className="gallery-img-wrapper border border-on-surface bg-surface-container-lowest mb-6">
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/design-philosophy.jpg" />
+</div>
 <div className="gallery-img-wrapper border border-on-surface bg-surface-container-lowest">
 <img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/concept.jpg" />
 </div>

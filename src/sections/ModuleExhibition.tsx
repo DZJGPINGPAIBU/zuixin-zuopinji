@@ -124,7 +124,7 @@ export function ExhibitionModal({ onClose }: { onClose: () => void }) {
             }}
           >
             因集团保密特性，仅展示部分视觉主KV设计<br />
-            <strong style={{ fontWeight: 600, color: '#666' }}>观看更多 可关注 大族激光官方公众号/官网</strong>
+            <strong style={{ fontWeight: 600, color: '#666' }}>观看更多 可关注 <span style={{ fontWeight: 800, color: '#333' }}>大族激光官方公众号/官网</span></strong>
           </p>
         </div>
       </section>
@@ -294,20 +294,21 @@ export function ExhibitionModal({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="flex flex-col gap-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              '/images/exhibition/chtf_01_banner.jpg',
-              '/images/exhibition/chtf_02_banner.jpg',
-            ].map((src, i) => (
-              <img
-                key={i}
-                alt={`CHTF Banner ${i + 1}`}
-                className="w-full h-auto border border-[#c4c5da] shadow-sm cursor-pointer"
-                style={{ borderRadius: 0 }}
-                src={src}
-                onClick={() => setLightbox(src)}
-              />
-            ))}
+          <div className="flex flex-col gap-8">
+            <img
+              alt="CHTF Banner 1"
+              className="w-full h-auto border border-[#c4c5da] shadow-sm cursor-pointer"
+              style={{ borderRadius: 0 }}
+              src="/images/exhibition/chtf_01_banner.jpg"
+              onClick={() => setLightbox('/images/exhibition/chtf_01_banner.jpg')}
+            />
+            <img
+              alt="CHTF Banner 2"
+              className="w-full h-auto border border-[#c4c5da] shadow-sm cursor-pointer"
+              style={{ borderRadius: 0 }}
+              src="/images/exhibition/chtf_02_banner.jpg"
+              onClick={() => setLightbox('/images/exhibition/chtf_02_banner.jpg')}
+            />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[

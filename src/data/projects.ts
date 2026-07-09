@@ -59,7 +59,7 @@ export const projects: ProjectMeta[] = [
     num: 'PROJECT 06',
     title: '展会视觉',
     subtitle: 'Exhibition Archive',
-    shortDesc: 'CIIF 工业精密 · CIOE 光电视觉 · CHTF 高科技生态\n因集团保密特性，仅展示部分视觉主KV设计\n观看更多 可关注 大族激光官方公众号/官网',
+    shortDesc: 'CIIF 工业精密 · CIOE 光电视觉 · CHTF 高科技生态\n因集团保密特性，仅展示部分视觉主KV设计\n观看更多 可关注 **大族激光官方公众号/官网**',
     cover: '/images/gen-08.jpg',
     tags: ['展会设计', '主视觉KV', '导视系统', 'CIIF', 'CIOE', 'CHTF'],
   },

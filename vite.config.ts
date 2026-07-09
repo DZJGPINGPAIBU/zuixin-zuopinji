@@ -12,6 +12,7 @@ export default defineConfig({
       '/images': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
       '/videos': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
       '/bilibili/zhanglong': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
+      '/3c': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
     },
   },
   resolve: {
