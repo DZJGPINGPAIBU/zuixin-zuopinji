@@ -60,7 +60,7 @@ export default function About() {
                 <h3 className="font-heading italic text-2xl tracking-[-1px]" style={{ color: 'var(--text-primary)' }}>
                   {personalInfo.nameEn || '黄选坤'}
                 </h3>
-                <p className="mt-1 text-sm font-body font-light flex items-center justify-between gap-4" style={{ color: 'var(--text-secondary)' }}>
+                <p className="mt-1 text-sm font-body font-light flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4" style={{ color: 'var(--text-secondary)' }}>
                   <span>{personalInfo.role} · {personalInfo.age}岁 · {personalInfo.city}</span>
                   <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>{personalInfo.email} · {personalInfo.phone} · 期望薪资 20-30K</span>
                 </p>
@@ -78,9 +78,32 @@ export default function About() {
               ))}
             </div>
 
-            <div className="text-sm lg:text-base font-body font-light leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              拥有5年品牌视觉与AI多媒体设计实战经验，现任大族激光集团总部AI多媒体设计师。深度运用即梦、Lovart、Nano Banana、Seedance等多款AI视觉模型，精通Claude Codex等前沿Agent工具，可独立覆盖从需求拆解到落地交付的全链路设计工作。主导集团30周年庆典、大族激光×飞书AI全域落地等多项重磅项目，10+场国际顶级大展全案负责人。
-            </div>
+                        <ul className="space-y-3.5 text-sm lg:text-[15px] font-body font-light leading-relaxed mt-4" style={{ color: 'var(--text-secondary)' }}>
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-1 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }}></span>
+                <span><strong style={{ color: 'var(--text-primary)' }}>5年品牌视觉与AI多媒体设计经验</strong>，从品牌设计师到总部AI品牌视觉设计，覆盖平面视觉全链路</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-1 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }}></span>
+                <span>深度运用<strong style={{ color: 'var(--text-primary)' }}>即梦、Lovart、Nano Banana、Seedance</strong>等多款AI视觉模型，熟练驾驭<strong style={{ color: 'var(--text-primary)' }}>PS、AI、Figma</strong>等专业设计工具</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-1 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }}></span>
+                <span>精通<strong style={{ color: 'var(--text-primary)' }}>Claude Code/Codex</strong>等前沿Agent工具，<strong style={{ color: 'var(--text-primary)' }}>自研集团内部AI设计平台</strong>，沉淀20+套可复用设计资产模板，削减70%重复工作量，部门设计产能提升50%以上</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-1 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }}></span>
+                <span>主导<strong style={{ color: 'var(--text-primary)' }}>集团30周年庆典</strong>总视觉设计（覆盖全国20+子公司、30+应用场景）、<strong style={{ color: 'var(--text-primary)' }}>大族激光×飞书AI全域落地</strong>视觉规范（输出配套物料50+套，覆盖12+核心事业部）</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-1 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }}></span>
+                <span>全权负责<strong style={{ color: 'var(--text-primary)' }}>深圳光博会、上海工博会、德国慕尼黑工博会、新加坡工博会等10+场国际顶级大展</strong>，单场输出标准化物料200+件，落地准确率99%</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="shrink-0 mt-1 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }}></span>
+                <span>主导集团吉祥物<strong style={{ color: 'var(--text-primary)' }}>"小族"IP全案设计</strong>，拓展8大应用场景、50+衍生设计版本，成功申请3项国家版权与外观专利，物料累计应用超2万份</span>
+              </li>
+            </ul>
           </motion.div>
 
           {/* Right — education card with TiltedCard */}
@@ -100,18 +123,19 @@ export default function About() {
                 scaleOnHover={1.08}
                 showMobileWarning={false}
                 showTooltip={true}
-                displayOverlayContent={true}
-                overlayContent={
-                  <div className="absolute inset-0 flex flex-col justify-end p-5 bg-gradient-to-t from-black/50 to-transparent rounded-[15px]">
-                    <p className="text-white/90 text-sm font-semibold tracking-wide">{personalInfo.name}</p>
-                    <p className="text-white/70 text-xs mt-0.5">{personalInfo.role}</p>
-                  </div>
-                }
+                displayOverlayContent={false}
+                objectPosition="50% 20%"
               />
             </div>
 
+            {/* 姓名 + 职位（照片下方） */}
+            <div className="text-center -mt-2">
+              <p className="text-base font-heading italic font-semibold" style={{ color: 'var(--text-primary)' }}>{personalInfo.name}</p>
+              <p className="text-xs font-body mt-0.5" style={{ color: 'var(--accent)' }}>{personalInfo.role}</p>
+            </div>
+
             {/* 资料信息卡 */}
-            <div className="rounded-xl p-5 space-y-3" style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid var(--bg-warm)' }}>
+            <div className="rounded-xl p-5 space-y-3 mt-4" style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid var(--bg-warm)' }}>
               <div className="flex justify-between items-center">
                 <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>院校</span>
                 <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{education.school}</span>
@@ -128,7 +152,7 @@ export default function About() {
 
             {/* 荣誉标签 */}
             <div className="pt-1">
-              <div className="grid grid-cols-2 gap-1.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                 {awards.map((a) => {
                   const isBilibili = a.includes('B站') || a.includes('全网粉丝');
                   return (

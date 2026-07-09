@@ -27,7 +27,7 @@ export function BrandPortal() {
     <div>
 
 {/* TopNavBar */}
-<nav className="fixed w-full flex justify-between items-center px-margin-desktop py-4 max-w-[1920px] mx-auto bg-mascot-surface/60 backdrop-blur-xl border-b border-mascot-primary/10 top-0 z-50 transition-transform">
+<nav className="fixed w-full flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-[1920px] mx-auto bg-mascot-surface/60 backdrop-blur-xl border-b border-mascot-primary/10 top-0 z-50 transition-transform">
 <div className="font-display-xl text-body-md font-black text-mascot-primary uppercase tracking-widest scale-95 transition-transform active:scale-90 cursor-pointer">
             MASCOT.SYS
         </div>
@@ -46,7 +46,7 @@ export function BrandPortal() {
 <div className="absolute left-0 top-1/2 -translate-y-1/2 px-4 hidden lg:block z-0 opacity-10 pointer-events-none">
 <h1 className="font-display-xl text-[180px] writing-vertical-rl rotate-180 text-mascot-on-surface-variant leading-none tracking-tighter">XIAOZU</h1>
 </div>
-<div className="w-full max-w-[1100px] mx-auto grid grid-cols-12 gap-gutter relative z-10">
+<div className="w-full max-w-[1100px] mx-auto grid grid-cols-4 md:grid-cols-12 gap-gutter relative z-10">
 <div className="col-span-12 lg:col-span-5 flex flex-col justify-center gap-8 relative z-20">
 <div className="flex items-center gap-2">
 <span className="w-2 h-2 rounded-full bg-mascot-primary animate-pulse"></span>
@@ -100,7 +100,7 @@ export function BrandPortal() {
 </li>
 </ul>
 </div>
-<div className="cursor-target col-span-12 lg:col-span-8 bg-mascot-surface-container/50 rounded-xl border border-mascot-outline-variant/20 p-8 relative overflow-hidden flex items-center justify-center min-h-[500px]">
+<div className="cursor-target col-span-12 lg:col-span-8 bg-mascot-surface-container/50 rounded-xl border border-mascot-outline-variant/20 p-6 md:p-8 relative overflow-hidden flex items-center justify-center min-h-[300px] md:min-h-[500px]">
 <img alt="A detailed technical blueprint and branding guidelines document for the robot mascot, displaying geometric breakdown of the face to form the letter H, color palette specifications in Pantone and RGB, and a diagram showing a literal laser machine." className="w-full h-full object-contain mix-blend-multiply z-10" src="/images/mascot/brand-portal/2吉祥物-设计说明（图例）-1 1.jpg"  loading="lazy" />
 <div className="absolute top-4 right-4 font-label-mono text-label-mono text-mascot-primary/50">DOC_REF: SPEC_01</div>
 </div>
@@ -131,10 +131,10 @@ export function BrandPortal() {
 <div className="w-24 h-[2px] bg-mascot-primary mx-auto mt-6"></div>
 </div>
 <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
-<div className="bg-mascot-surface-container/30 border border-mascot-primary/10 rounded-xl p-8 flex items-center justify-center min-h-[400px]">
+<div className="bg-mascot-surface-container/30 border border-mascot-primary/10 rounded-xl p-6 md:p-8 flex items-center justify-center min-h-[250px] md:min-h-[400px]">
 <img alt="Three variations of the 2D illustrated robot mascot holding different styles of glowing light sabers or industrial laser pointers, showing different facial expressions from neutral to winking." className="w-full h-full object-contain mix-blend-multiply" src="/images/mascot/brand-portal/5吉祥物与激光剑组合示例 1.jpg"  loading="lazy" />
 </div>
-<div className="bg-mascot-surface-container/30 border border-mascot-primary/10 rounded-xl p-8 flex items-center justify-center min-h-[400px]">
+<div className="bg-mascot-surface-container/30 border border-mascot-primary/10 rounded-xl p-6 md:p-8 flex items-center justify-center min-h-[250px] md:min-h-[400px]">
 <img alt="Six variations of the 2D illustrated robot mascot wearing different corporate uniforms or professional attire, demonstrating the mascot's adaptability across different business units." className="w-full h-full object-contain mix-blend-multiply" src="/images/mascot/brand-portal/6吉祥物与集团各服装组合展示示例 1.jpg"  loading="lazy" />
 </div>
 </div>
@@ -157,13 +157,13 @@ export function GiftDev() {
     <div>
 
 
-<main className="pt-24 px-margin-desktop max-w-[1100px] mx-auto">
+<main className="pt-24 px-margin-mobile md:px-margin-desktop max-w-[1100px] mx-auto">
 {/* Header Section */}
 <section className="mb-20">
 <div className="mb-4">
 <span className="technical-tag">ARCHIVE // INDEX.001</span>
 </div>
-<h1 className="text-[80px] leading-[0.9] font-black tracking-tighter mb-12 max-w-4xl">
+<h1 className="text-[clamp(40px,10vw,80px)] leading-[0.9] font-black tracking-tighter mb-8 md:mb-12 max-w-4xl">
                 AVANT-GARDE<br/>MERCH DEVELOPMENT
             </h1>
 {/* 2x2 Hero Grid */}
@@ -292,14 +292,14 @@ export function CalendarDev() {
                     </span>
 <span className="text-mascot-outline font-label-mono text-label-mono">REV_01</span>
 </div>
-<h1 className="font-display-xl text-display-xl text-mascot-on-surface tracking-tighter mb-4 mix-blend-multiply">
+<h1 className="font-display-xl text-[clamp(48px,12vw,120px)] leading-[0.85] md:leading-[100px] tracking-tighter mb-4 mix-blend-multiply">
                     CALENDAR<br /><span className="text-mascot-primary">/ 2026</span>
 </h1>
 <p className="font-body-md text-body-md text-mascot-on-surface-variant max-w-xl">
                     A clinical-futuristic synthesis of corporate identity and functional timekeeping. The 2026 Mascot Calendar project transforms the 'Little H' IP into a series of technical dioramas, bridging industrial precision with festive narrative.
                 </p>
 </div>
-<div className="col-span-12 lg:col-span-4 relative h-[60vh] min-h-[500px]">
+<div className="col-span-12 lg:col-span-4 relative h-[50vh] md:h-[60vh] min-h-[280px] md:min-h-[500px]">
 <div className="absolute inset-0 glass-panel ambient-shadow rounded-xl overflow-hidden flex items-center justify-center p-6 transform rotate-2 hover:rotate-0 transition-transform duration-700">
 <img alt="Year of the Horse Cover" className="w-full h-auto object-cover rounded shadow-lg mix-blend-multiply opacity-90" src="/images/mascot/img_57.jpg"  loading="lazy" />
 </div>
@@ -844,8 +844,8 @@ export function AppShowcase() {
                         </button>
 </div>
 </div>
-<div className="relative h-[600px] w-full flex items-center justify-center">
-<div className="relative w-full h-full max-w-[400px] mx-auto group">
+<div className="relative h-[400px] sm:h-[500px] md:h-[600px] w-full flex items-center justify-center">
+<div className="relative w-full h-full max-w-[280px] sm:max-w-[340px] md:max-w-[400px] mx-auto group">
 <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10 bottom-0 h-1/4"></div>
 <img alt="Han's Laser Mascot Hero Image" className="w-full h-full object-contain filter drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-700 ease-out z-0 relative" src="/images/mascot/app-showcase/Container-7.png" loading="lazy" />
 </div>

@@ -50,8 +50,8 @@ export default function Experience() {
                 }`}
               >
                 {/* Cover image side */}
-                <div className="md:w-5/12 shrink-0">
-                  <div className="rounded-[1.25rem] overflow-hidden border h-full min-h-[280px]" style={{ borderColor: 'var(--bg-warm)' }}>
+                <div className="w-full md:w-5/12 shrink-0">
+                  <div className="rounded-[1.25rem] overflow-hidden border h-full min-h-[200px] md:min-h-[280px]" style={{ borderColor: 'var(--bg-warm)' }}>
                     <img
                       src={covers[idx]}
                       alt={item.company}

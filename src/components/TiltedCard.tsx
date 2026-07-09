@@ -22,6 +22,7 @@ interface TiltedCardProps {
   showTooltip?: boolean;
   overlayContent?: React.ReactNode;
   displayOverlayContent?: boolean;
+  objectPosition?: string;
 }
 
 export default function TiltedCard({
@@ -38,6 +39,7 @@ export default function TiltedCard({
   showTooltip = true,
   overlayContent = null,
   displayOverlayContent = false,
+  objectPosition = 'center',
 }: TiltedCardProps) {
   const ref = useRef<HTMLFigureElement>(null);
 
@@ -124,6 +126,7 @@ export default function TiltedCard({
           style={{
             width: imageWidth,
             height: imageHeight,
+            objectPosition,
           }}
         />
 

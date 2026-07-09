@@ -266,7 +266,7 @@ function Navbar() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.6 }}
-      className={`fixed top-4 left-0 right-0 px-8 lg:px-16 z-50 transition-all duration-500 ${scrolled ? 'top-2' : ''}`}
+      className={`fixed top-4 left-0 right-0 px-4 md:px-8 lg:px-16 z-50 transition-all duration-500 ${scrolled ? 'top-2' : ''}`}
     >
       <div
         style={{ overflow: 'visible' }}
@@ -429,7 +429,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <motion.p {...f(0.7)} className="mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight text-center opacity-70">
-            AI多媒体设计师 · AIGC创意实践者 · 大族激光集团总部
+            AI品牌视觉设计 · AIGC创意实践者 · 大族激光集团总部
           </motion.p>
 
           {/* CTA */}
