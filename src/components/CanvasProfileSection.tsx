@@ -1,61 +1,10 @@
-import TiltedCard from '@/components/TiltedCard';
-
 export default function CanvasProfileSection() {
   return (
     <section className="w-full min-h-screen bg-[#f9f9f9] flex items-center justify-center">
       <div className="max-w-[1280px] mx-auto px-6 md:px-16 py-20 md:py-40 w-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          {/* Left: TiltedCard profile photo */}
-          <aside className="md:col-span-3 flex flex-col items-center">
-            <TiltedCard
-              imageSrc="/canvas/profile-photo.jpg"
-              altText="Mohe 个人照片"
-              captionText="广东白云学院 · 视觉设计"
-              containerHeight="360px"
-              containerWidth="100%"
-              imageHeight="300px"
-              imageWidth="300px"
-              rotateAmplitude={12}
-              scaleOnHover={1.08}
-              showMobileWarning={false}
-              showTooltip={true}
-              displayOverlayContent={true}
-              overlayContent={
-                <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/50 to-transparent rounded-[15px]">
-                  <p className="text-white/90 text-sm font-semibold tracking-wide">Mohe</p>
-                  <p className="text-white/70 text-xs mt-0.5">视觉前端工程师 FDE</p>
-                </div>
-              }
-            />
-
-            {/* Info card below photo */}
-            <div className="glass-card rounded-xl p-6 w-full mt-6 text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-[#005da7]/5 to-transparent" />
-              <h2 className="relative font-semibold text-lg text-[#1a1c1c] mb-1">莫鹤</h2>
-              <p className="relative text-xs text-[#555c67] mb-3">视觉前端工程师 / UI&UX 设计师</p>
-              <div className="relative flex gap-2 justify-center mb-4">
-                <span className="px-3 py-1 bg-[#EBF2FF] text-[#005da7] rounded-full text-[11px] font-medium">FDE</span>
-                <span className="px-3 py-1 bg-[#EBF2FF] text-[#005da7] rounded-full text-[11px] font-medium">UI&UX</span>
-              </div>
-              <div className="relative border-t border-[#c1c7d3]/20 pt-4 space-y-3 text-left">
-                <div className="flex justify-between items-center">
-                  <span className="text-[13px] text-[#414751]">院校</span>
-                  <span className="text-[11px] font-mono text-[#1a1c1c]">广东白云学院</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-[13px] text-[#414751]">专业</span>
-                  <span className="text-[11px] font-mono text-[#1a1c1c]">视觉传达设计</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-[13px] text-[#414751]">所在地</span>
-                  <span className="text-[11px] font-mono text-[#1a1c1c]">深圳</span>
-                </div>
-              </div>
-            </div>
-          </aside>
-
           {/* Middle: Stats & Projects */}
-          <div className="md:col-span-6 space-y-8">
+          <div className="md:col-span-9 space-y-8">
             {/* AI Quota Card */}
             <section className="glass-card rounded-xl p-8">
               <div className="flex justify-between items-end mb-6">

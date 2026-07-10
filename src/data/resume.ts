@@ -1,14 +1,14 @@
 /* ===== Personal Info ===== */
 export const personalInfo = {
   name: '黄选坤',
-  nameEn: '黄选坤',
+  nameEn: 'Xuankun Huang',
   age: 28,
   city: '深圳',
   email: '1157967122@qq.com',
   phone: '18024558356',
   role: 'AI品牌视觉设计',
   salary: '18-30K',
-  avatar: '/images/简历_p1_img3.png',
+  avatar: './images/简历_p1_img3.png',
 };
 
 export const stats = [

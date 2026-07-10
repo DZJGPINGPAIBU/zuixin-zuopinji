@@ -44,7 +44,7 @@ export function ZhanglongSections() {
       <section id="zl-hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <video
           ref={heroVideoRef}
-          src="/bilibili/zhanglong/hero.mov"
+          src="http://118.31.14.19/zuopinji/bilibili/zhanglong/hero.mov"
           autoPlay muted loop playsInline
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: 'brightness(0.45)' }}
@@ -103,7 +103,7 @@ export function ZhanglongSections() {
             <div className="absolute top-0 left-0 w-2 h-2 border-t border-l" style={{ borderColor: c.secondary }} />
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r" style={{ borderColor: c.secondary }} />
             <img
-              src="/bilibili/zhanglong/2.jpg"
+              src="http://118.31.14.19/zuopinji/bilibili/zhanglong/2.jpg"
               alt="Dragon Awakening"
               className="w-full h-auto block opacity-90 hover:opacity-100 transition-opacity duration-700 border"
               style={{ borderColor: 'rgba(233,195,73,0.3)' }}
@@ -148,7 +148,7 @@ export function ZhanglongSections() {
                 <div className="absolute top-0 left-0 w-2 h-2 border-t border-l" style={{ borderColor: c.secondary }} />
                 <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r" style={{ borderColor: c.secondary }} />
                 <img
-                  src="/bilibili/zhanglong/3.png"
+                  src="http://118.31.14.19/zuopinji/bilibili/zhanglong/3.png"
                   alt="Close Combat Intensity"
                   className="w-full h-auto block grayscale hover:grayscale-0 transition-all duration-1000 border"
                   style={{ borderColor: 'rgba(233,195,73,0.3)' }}
@@ -173,7 +173,7 @@ export function ZhanglongSections() {
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l" style={{ borderColor: c.secondary }} />
               <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r" style={{ borderColor: c.secondary }} />
               <img
-                src="/bilibili/zhanglong/4.png"
+                src="http://118.31.14.19/zuopinji/bilibili/zhanglong/4.png"
                 alt="The Ink Blade"
                 className="w-full h-auto block border"
                 style={{ borderColor: 'rgba(233,195,73,0.3)' }}
@@ -217,7 +217,7 @@ export function ZhanglongSections() {
             <div className="absolute top-0 left-0 w-2 h-2 border-t border-l" style={{ borderColor: c.secondary }} />
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r" style={{ borderColor: c.secondary }} />
             <img
-              src="/bilibili/zhanglong/5.png"
+              src="http://118.31.14.19/zuopinji/bilibili/zhanglong/5.png"
               alt="Zen Reflection"
               className="w-full h-auto block opacity-80 border"
               style={{ borderColor: 'rgba(233,195,73,0.3)' }}
@@ -267,7 +267,7 @@ export function ZhanglongSections() {
       {/* ════════════ FULLSCREEN VIDEO: 佛刹视频 ════════════ */}
       <section id="zl-fosha-video" className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
         <video
-          src="/bilibili/zhanglong/fosha.mp4"
+          src="http://118.31.14.19/zuopinji/bilibili/zhanglong/fosha.mp4"
           autoPlay muted loop playsInline
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: 'brightness(0.55)' }}

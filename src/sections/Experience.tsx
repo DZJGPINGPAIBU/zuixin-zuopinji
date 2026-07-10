@@ -8,7 +8,7 @@ const fadeUp = (d: number) => ({
   transition: { duration: 0.8, ease: 'easeOut' as const, delay: d },
 });
 
-const covers = ['/images/大族科技.jpg', '/images/奋达科技.jpg', '/images/乔邦教育.jpg'];
+const covers = ['./images/大族科技.jpg', './images/奋达科技.jpg', './images/乔邦教育.jpg'];
 
 /** Bold key metrics in highlight text: percentages, numbers with +, large figures */
 function boldMetrics(text: string): React.ReactNode {

@@ -376,7 +376,7 @@ export default function Hero() {
     <section id="hero" className="relative w-full min-h-screen bg-black overflow-hidden" ref={heroRef}>
       {/* Spline 3D Robot Background */}
       <div id="hero-robot-container" className="hero-robot-bg" style={{ zIndex: 0 }}>
-        <SplineViewer scene="/robot-scene.splinecode" />
+        <SplineViewer scene="./robot-scene.splinecode" />
       </div>
 
       {/* Bottom gradient overlay */}
@@ -416,7 +416,7 @@ export default function Hero() {
           {/* Typing title */}
           <motion.div {...f(0.4)} className="text-center">
             <TextType
-              text={['黄选坤']}
+              text={['Xuankun Huang']}
               typingSpeed={80}
               pauseDuration={1500}
               deletingSpeed={35}

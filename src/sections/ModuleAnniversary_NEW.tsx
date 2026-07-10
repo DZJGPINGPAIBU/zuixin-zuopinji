@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
    All images: local high-res
    ═══════════════════════════════════════════════════════ */
 
-export function AnniversaryModal({ onClose }: { onClose: () => void }) {
+export function AnniversaryModal({ onClose: _onClose }: { onClose: () => void }) {
   return (
     <motion.div
       className="fixed inset-0 z-[90] bg-white overflow-y-auto overflow-x-hidden"
@@ -45,7 +45,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 </div>
 <div className="col-span-12 md:col-span-8 md:col-start-5 mt-12 md:-mt-32 relative z-0">
 <div className="gallery-img-wrapper border border-on-surface aspect-[1.54]">
-<img alt="" className="gallery-img" src="/images/30周年手册/01.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/01.jpg" />
 </div>
 {/* Technical Meta Data overlays */}
 <div className="absolute -bottom-4 -left-4 bg-surface border border-on-surface p-2 font-meta-sm text-meta-sm">
@@ -61,7 +61,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 <div className="deconstructed-grid items-center">
 <div className="col-span-12 md:col-span-8">
 <div className="gallery-img-wrapper border border-on-surface aspect-[3.38]">
-<img alt="" className="gallery-img object-contain bg-surface-container-low p-4" src="/images/30周年手册/02.jpg" />
+<img alt="" className="gallery-img object-contain bg-surface-container-low p-4" src="./images/30周年手册/02.jpg" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-4 flex flex-col gap-8 md:pl-12">
@@ -106,7 +106,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 {/* Image 47 Intro */}
 <div className="relative">
 <div className="gallery-img-wrapper border border-on-surface aspect-[1.54] w-[85%]">
-<img alt="" className="gallery-img" src="/images/30周年手册/03.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/03.jpg" />
 </div>
 <div className="absolute -right-4 md:-right-12 bottom-12 bg-surface border border-on-surface p-6 max-w-xs offset-shadow">
 <h3 className="font-meta-bold text-meta-bold text-electric-blue mb-2">01. INTRODUCTION</h3>
@@ -120,7 +120,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 <p className="font-meta-sm text-meta-sm">Taxonomy of identity assets. Strict categorization of permissible logo variations, color hierarchies, and typographic rules.</p>
 </div>
 <div className="gallery-img-wrapper border border-on-surface aspect-[1.54] w-[85%] z-10">
-<img alt="" className="gallery-img" src="/images/30周年手册/04.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/04.jpg" />
 </div>
 </div>
 </div>
@@ -140,17 +140,17 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 {/* Row 1: Feature + 2 Small */}
 <div className="col-span-12 md:col-span-8">
 <div className="gallery-img-wrapper border border-on-surface h-full">
-<img alt="" className="gallery-img" src="/images/30周年手册/05.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/05.jpg" />
 <div className="absolute top-4 left-4 bg-surface border border-on-surface px-2 py-1 font-meta-bold text-meta-bold text-xs">P.04</div>
 </div>
 </div>
 <div className="col-span-12 md:col-span-4 flex flex-col gap-6">
 <div className="gallery-img-wrapper border border-on-surface flex-1">
-<img alt="" className="gallery-img" src="/images/30周年手册/06.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/06.jpg" />
 <div className="absolute top-4 left-4 bg-surface border border-on-surface px-2 py-1 font-meta-bold text-meta-bold text-xs">P.07</div>
 </div>
 <div className="gallery-img-wrapper border border-on-surface flex-1">
-<img alt="" className="gallery-img" src="/images/30周年手册/07.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/07.jpg" />
 <div className="absolute top-4 left-4 bg-surface border border-on-surface px-2 py-1 font-meta-bold text-meta-bold text-xs">P.08</div>
 </div>
 </div>
@@ -162,52 +162,52 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 </div>
 {/* Row 2: 3 Equal */}
 <div className="col-span-12 md:col-span-4 gallery-img-wrapper border border-on-surface aspect-[1.54]">
-<img alt="" className="gallery-img" src="/images/30周年手册/08.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/08.jpg" />
 <div className="absolute top-4 left-4 bg-surface border border-on-surface px-2 py-1 font-meta-bold text-meta-bold text-xs">P.09</div>
 </div>
 <div className="col-span-12 md:col-span-4 gallery-img-wrapper border border-on-surface aspect-[1.54]">
-<img alt="" className="gallery-img" src="/images/30周年手册/09.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/09.jpg" />
 <div className="absolute top-4 left-4 bg-surface border border-on-surface px-2 py-1 font-meta-bold text-meta-bold text-xs">P.12</div>
 </div>
 <div className="col-span-12 md:col-span-4 gallery-img-wrapper border border-on-surface aspect-[1.54]">
-<img alt="" className="gallery-img" src="/images/30周年手册/10.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/10.jpg" />
 <div className="absolute top-4 left-4 bg-surface border border-on-surface px-2 py-1 font-meta-bold text-meta-bold text-xs">P.11</div>
 </div>
 {/* Row 3: 2 Small + Feature Right */}
 <div className="col-span-12 md:col-span-4 flex flex-col gap-6 mt-8">
 <div className="gallery-img-wrapper border border-on-surface flex-1 aspect-[1.54]">
-<img alt="" className="gallery-img" src="/images/30周年手册/11.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/11.jpg" />
 <div className="absolute top-4 left-4 bg-surface border border-on-surface px-2 py-1 font-meta-bold text-meta-bold text-xs">P.14</div>
 </div>
 <div className="gallery-img-wrapper border border-on-surface flex-1 aspect-[1.54]">
-<img alt="" className="gallery-img" src="/images/30周年手册/12.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/12.jpg" />
 <div className="absolute top-4 left-4 bg-surface border border-on-surface px-2 py-1 font-meta-bold text-meta-bold text-xs">P.13</div>
 </div>
 </div>
 <div className="col-span-12 md:col-span-8 mt-8">
 <div className="gallery-img-wrapper border border-on-surface h-full">
-<img alt="" className="gallery-img" src="/images/30周年手册/13.jpg" />
+<img alt="" className="gallery-img" src="./images/30周年手册/13.jpg" />
 <div className="absolute top-4 left-4 bg-surface border border-on-surface px-2 py-1 font-meta-bold text-meta-bold text-xs">P.15</div>
 </div>
 </div>
 {/* Dense Grid for remaining */}
 <div className="col-span-12 mt-16">
 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/14.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/15.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/16.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/17.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/18.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/19.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/20.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/21.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/22.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/23.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/24.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/25.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/26.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="/images/30周年手册/27.jpg" /></div>
-<div className="gallery-img-wrapper border border-on-surface col-span-2"><img alt="" className="gallery-img" src="/images/30周年手册/28.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/14.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/15.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/16.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/17.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/18.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/19.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/20.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/21.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/22.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/23.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/24.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/25.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/26.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface"><img alt="" className="gallery-img" src="./images/30周年手册/27.jpg" /></div>
+<div className="gallery-img-wrapper border border-on-surface col-span-2"><img alt="" className="gallery-img" src="./images/30周年手册/28.jpg" /></div>
 </div>
 </div>
 </div>
@@ -224,7 +224,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 {/* Large Feature */}
 <div className="col-span-12 md:col-span-8">
 <div className="gallery-img-wrapper border border-on-surface aspect-[2.05] offset-shadow bg-surface">
-<img alt="" className="gallery-img object-contain" src="/images/30周年手册/29.jpg" />
+<img alt="" className="gallery-img object-contain" src="./images/30周年手册/29.jpg" />
 </div>
 <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
 <span className="">APP_01: Architecture Signage</span>
@@ -234,7 +234,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 {/* Tall Portrait */}
 <div className="col-span-12 md:col-span-4">
 <div className="gallery-img-wrapper border border-on-surface aspect-[0.56] bg-surface h-[600px]">
-<img alt="" className="gallery-img object-contain" src="/images/30周年手册/30.jpg" />
+<img alt="" className="gallery-img object-contain" src="./images/30周年手册/30.jpg" />
 </div>
 <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
 <span className="">APP_02: Vertical Banner</span>
@@ -244,7 +244,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 {/* Square + Landscape Bottom Row */}
 <div className="col-span-12 md:col-span-5 mt-12 md:mt-0">
 <div className="gallery-img-wrapper border border-on-surface aspect-square bg-surface">
-<img alt="" className="gallery-img object-contain" src="/images/30周年手册/concept.jpg" />
+<img alt="" className="gallery-img object-contain" src="./images/30周年手册/concept.jpg" />
 </div>
 <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
 <span className="">APP_03: Iconography Box</span>
@@ -253,7 +253,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 </div>
 <div className="col-span-12 md:col-span-7 mt-12 md:mt-0">
 <div className="gallery-img-wrapper border border-on-surface aspect-[1.22] bg-surface">
-<img alt="" className="gallery-img object-contain" src="/images/30周年应用/v1.jpg" />
+<img alt="" className="gallery-img object-contain" src="./images/30周年应用/v1.jpg" />
 </div>
 <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
 <span className="">APP_04: Stationery System</span>
@@ -275,7 +275,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
     {/* Row 1: Gold Foil & Silver Foil */}
     <div className="col-span-12 md:col-span-7">
       <div className="gallery-img-wrapper border border-on-surface aspect-[1.54] bg-surface">
-        <img src="/images/30周年应用/v2.jpg" alt="办公用品烫金" className="gallery-img object-contain" />
+        <img src="./images/30周年应用/v2.jpg" alt="办公用品烫金" className="gallery-img object-contain" />
       </div>
       <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
         <span className="">APP_05: 办公用品烫金工艺</span>
@@ -284,7 +284,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
     </div>
     <div className="col-span-12 md:col-span-5">
       <div className="gallery-img-wrapper border border-on-surface aspect-[1.22] bg-surface">
-        <img src="/images/30周年应用/v3.png" alt="笔记本烫银" className="gallery-img object-contain" />
+        <img src="./images/30周年应用/v3.png" alt="笔记本烫银" className="gallery-img object-contain" />
       </div>
       <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
         <span className="">APP_06: 笔记本烫银工艺</span>
@@ -295,7 +295,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
     {/* Row 2: Lifestyle & Gift Box */}
     <div className="col-span-12 md:col-span-4">
       <div className="gallery-img-wrapper border border-on-surface aspect-[0.56] h-[600px] bg-surface">
-        <img src="/images/30周年应用/v4.jpg" alt="生活方式样机" className="gallery-img object-contain" />
+        <img src="./images/30周年应用/v4.jpg" alt="生活方式样机" className="gallery-img object-contain" />
       </div>
       <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
         <span className="">APP_07: 生活方式应用</span>
@@ -304,7 +304,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
     </div>
     <div className="col-span-12 md:col-span-8">
       <div className="gallery-img-wrapper border border-on-surface aspect-[2.05] bg-surface offset-shadow">
-        <img src="/images/30周年应用/h1.png" alt="礼盒包装" className="gallery-img object-contain" />
+        <img src="./images/30周年应用/h1.png" alt="礼盒包装" className="gallery-img object-contain" />
       </div>
       <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
         <span className="">APP_08: 礼盒包装彩色印刷</span>
@@ -315,7 +315,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
     {/* Row 3: Embossing & Stationery */}
     <div className="col-span-12 md:col-span-6">
       <div className="gallery-img-wrapper border border-on-surface aspect-[1.54] bg-surface">
-        <img src="/images/30周年应用/h2.png" alt="日常用品压纹" className="gallery-img object-contain" />
+        <img src="./images/30周年应用/h2.png" alt="日常用品压纹" className="gallery-img object-contain" />
       </div>
       <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
         <span className="">APP_09: 日常用品压纹工艺</span>
@@ -324,7 +324,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
     </div>
     <div className="col-span-12 md:col-span-6">
       <div className="gallery-img-wrapper border border-on-surface aspect-[1.54] bg-surface">
-        <img src="/images/30周年应用/h3.png" alt="办公文具系统" className="gallery-img object-contain" />
+        <img src="./images/30周年应用/h3.png" alt="办公文具系统" className="gallery-img object-contain" />
       </div>
       <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
         <span className="">APP_10: 办公文具系统</span>
@@ -335,7 +335,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
     {/* Row 4: Desktop & Notebook Detail */}
     <div className="col-span-12 md:col-span-5">
       <div className="gallery-img-wrapper border border-on-surface aspect-square bg-surface">
-        <img src="/images/30周年应用/h4.png" alt="桌面办公场景" className="gallery-img object-contain" />
+        <img src="./images/30周年应用/h4.png" alt="桌面办公场景" className="gallery-img object-contain" />
       </div>
       <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
         <span className="">APP_11: 桌面办公场景</span>
@@ -344,7 +344,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
     </div>
     <div className="col-span-12 md:col-span-7">
       <div className="gallery-img-wrapper border border-on-surface aspect-[0.56] h-[600px] bg-surface">
-        <img src="/images/30周年手册/01.jpg" alt="笔记本细节" className="gallery-img object-contain" />
+        <img src="./images/30周年手册/01.jpg" alt="笔记本细节" className="gallery-img object-contain" />
       </div>
       <div className="mt-4 font-meta-bold text-meta-bold text-xs uppercase flex justify-between border-b border-on-surface pb-2">
         <span className="">APP_12: 笔记本细节展示</span>
@@ -378,7 +378,7 @@ export function AnniversaryCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
       <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[4/5]">
-        <img src="/images/30周年手册/concept.jpg" alt="" className="w-full h-full object-cover" />
+        <img src="./images/30周年手册/concept.jpg" alt="" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <span className="text-[10px] font-mono text-white/50 tracking-wider uppercase">PROJECT 02</span>

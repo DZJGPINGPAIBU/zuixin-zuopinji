@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import CanvasProfileSection from '@/components/CanvasProfileSection';
 
 const pages = [
@@ -133,7 +133,7 @@ export function CanvasModal({ onClose }: { onClose: () => void }) {
               style={{ height: h }}
             >
               <iframe
-                src={`/canvas/${p.file}.html`}
+                src={`./canvas/${p.file}.html`}
                 className="w-full h-full border-0 pointer-events-none"
                 title={p.label}
                 scrolling="no"
@@ -164,7 +164,7 @@ export function CanvasCard({ onClick }: { onClick: () => void }) {
       <div className="card-3d-inner overflow-hidden bg-white relative aspect-[21/9] md:aspect-[21/9]" style={{ borderRadius: '0.5rem' }}>
         {/* Live iframe — renders page_6 (分镜创作) hero section, shifted up 3 grid units */}
         <iframe
-          src="/canvas/page_6.html"
+          src="./canvas/page_6.html"
           className="absolute inset-0 w-full h-full border-0 pointer-events-none"
           style={{ transform: 'translateY(-40px)', transformOrigin: 'top left' }}
           scrolling="no"

@@ -112,7 +112,7 @@ export default function About() {
             {/* TiltedCard 资料卡 */}
             <div className="w-full flex justify-center">
               <TiltedCard
-                imageSrc="/canvas/profile-photo.jpg"
+                imageSrc="./canvas/profile-photo.jpg"
                 altText="黄选坤 个人照片"
                 captionText="广东白云学院 · 环境艺术设计"
                 containerHeight="320px"

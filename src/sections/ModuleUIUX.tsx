@@ -154,7 +154,7 @@ export function UIUXCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
       <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[4/5]">
-        <img src="/images/uiux/mascot_01.jpg" alt="UI/UX设计" className="w-full h-full object-cover" />
+        <img src="./images/uiux/mascot_01.jpg" alt="UI/UX设计" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <span className="text-[10px] font-mono text-white/50 tracking-wider uppercase">PROJECT 05</span>

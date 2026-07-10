@@ -15,7 +15,6 @@ const L = "'Space Grotesk', monospace";
 
 export function AIGCModal({ onClose }: { onClose: () => void }) {
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  const [videoPlaying, setVideoPlaying] = useState(false);
   const [page, setPage] = useState<'main' | 'zhanglong'>('main');
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
@@ -88,7 +87,7 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
             <button className="hover:scale-105 transition-transform" style={{ color: c.onSurface }} onClick={onClose}><svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
           </div>
         </nav>
-        <div className="absolute inset-0"><video src="/bilibili/hero-bg.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover"/></div>
+        <div className="absolute inset-0"><video src="./bilibili/hero-bg.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover"/></div>
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(19,19,19,0.4) 0%, transparent 40%, rgba(19,19,19,0.8) 100%)' }}/>
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 0%, rgba(19,19,19,0.2) 40%, rgba(19,19,19,0.6) 100%)' }}/>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce opacity-40" onClick={() => go('cm-header')}>
@@ -107,7 +106,7 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
         <div ref={videoContainerRef} className="absolute inset-0">
           <video
             ref={videoRef}
-            src="/videos/bilibili-preview.mp4"
+            src="./videos/bilibili-preview.mp4"
             autoPlay
             muted
             loop
@@ -135,7 +134,7 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
 
       {/* ════════════ S2: hero 辰墨 ════════════ */}
       <section id="cm-hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <img src="/bilibili/m1_角色档案.png" alt="" className="absolute inset-0 w-full h-full object-cover object-center"/>
+        <img src="./bilibili/m1_角色档案.png" alt="" className="absolute inset-0 w-full h-full object-cover object-center"/>
         <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at center, transparent 0%, rgba(14,14,14,0.8) 70%, #0e0e0e 100%)' }}/>
         <div className="relative z-10 text-center px-6">
           <h1 className="text-6xl md:text-8xl font-black leading-none tracking-widest mb-6 text-white" style={{ fontFamily: B, filter: 'url(#ink-bleed)', textShadow: '0 0 20px rgba(255,255,255,0.6), 2px 4px 8px rgba(0,0,0,0.8)' }}>辰墨</h1>
@@ -155,7 +154,7 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
             <div className="w-24 h-1 rounded-full opacity-50" style={{ background: '#fff' }}/>
           </div>
           <div className="relative w-full overflow-hidden">
-            <img src="/bilibili/m3身世之谜.png" alt="" className="w-full h-auto object-cover"/>
+            <img src="./bilibili/m3身世之谜.png" alt="" className="w-full h-auto object-cover"/>
           </div>
         </div>
       </section>
@@ -171,7 +170,7 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
               <div className="relative group cursor-pointer">
                 <div className="absolute -inset-1 rounded-xl blur opacity-5 group-hover:opacity-50 transition duration-1000" style={{ background: 'linear-gradient(to right, #374151, #111827)' }}/>
                 <div className="relative p-2 rounded-xl border overflow-hidden" style={{ background: c.bg, borderColor: 'rgba(77,70,53,0.5)' }}>
-                  <img src="/bilibili/m4_印记档案.png" alt="" className="w-full aspect-square object-cover rounded-lg"/>
+                  <img src="./bilibili/m4_印记档案.png" alt="" className="w-full aspect-square object-cover rounded-lg"/>
                   <div className="absolute bottom-4 left-4 right-4 text-center">
                     <span className="inline-block px-4 py-1 rounded-sm border backdrop-blur-md text-sm font-bold tracking-wider text-white" style={{ background: '#1f2937', borderColor: '#4b5563', fontFamily: B, filter: 'url(#ink-bleed)' }}>阴阳共鸣</span>
                   </div>
@@ -184,7 +183,7 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
               <div className="relative group cursor-pointer">
                 <div className="absolute -inset-1 rounded-xl blur opacity-5 group-hover:opacity-50 transition duration-1000" style={{ background: 'linear-gradient(to left, #374151, #131313)' }}/>
                 <div className="relative p-2 rounded-xl border overflow-hidden" style={{ background: c.bg, borderColor: 'rgba(77,70,53,0.5)' }}>
-                  <img src="/bilibili/m2_神器档案.png" alt="" className="w-full aspect-square object-cover rounded-lg"/>
+                  <img src="./bilibili/m2_神器档案.png" alt="" className="w-full aspect-square object-cover rounded-lg"/>
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #131313, transparent)' }}/>
                   <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-xl font-bold mb-2 tracking-wider text-white" style={{ fontFamily: B, filter: 'url(#ink-bleed)' }}>墨月弯刀</h3>
@@ -203,7 +202,7 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
         <div className="w-full px-6 flex flex-col items-center">
           <h2 className="text-5xl md:text-6xl font-black mb-12 text-center tracking-widest text-white" style={{ fontFamily: B, filter: 'url(#ink-bleed)' }}>因果图谱</h2>
           <div className="relative w-full max-w-5xl overflow-hidden border p-4 backdrop-blur-sm" style={{ borderColor: 'rgba(77,70,53,0.5)', background: 'rgba(28,27,27,0.5)' }}>
-            <img src="/bilibili/m5_关系图谱.png" alt="" className="w-full h-auto"/>
+            <img src="./bilibili/m5_关系图谱.png" alt="" className="w-full h-auto"/>
             <div className="absolute inset-0 flex flex-col justify-between p-8 pointer-events-none">
               <div className="self-start text-sm tracking-widest border-b border-white/30 pb-2" style={{ color: c.dim, fontFamily: B, filter: 'url(#ink-bleed)' }}>同盟与宿敌</div>
               <div className="self-end text-right">
@@ -226,14 +225,14 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
           </div>
           <div className="relative px-4">
             <div className="absolute top-1/2 left-0 w-full h-1 -translate-y-1/2 hidden md:block" style={{ background: 'rgba(153,144,124,0.3)' }}/>
-            <img src="/bilibili/m6_能力觉醒轴.png" alt="" className="relative z-10 w-full object-cover shadow-2xl"/>
+            <img src="./bilibili/m6_能力觉醒轴.png" alt="" className="relative z-10 w-full object-cover shadow-2xl"/>
           </div>
         </div>
       </section>
 
       {/* ════════════ S7: hunt 诛杀令 ════════════ */}
       <section id="cm-hunt" className="relative min-h-screen flex items-center overflow-hidden bg-black">
-        <img src="/bilibili/m7_五行追杀令.png" alt="" className="absolute inset-0 w-full h-full object-cover object-right md:object-center opacity-60" style={{ mixBlendMode: 'screen' }}/>
+        <img src="./bilibili/m7_五行追杀令.png" alt="" className="absolute inset-0 w-full h-full object-cover object-right md:object-center opacity-60" style={{ mixBlendMode: 'screen' }}/>
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, black, rgba(0,0,0,0.8), transparent)' }}/>
         <div className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-16 py-16 flex flex-col md:w-1/2 md:mr-auto">
           <div className="inline-block mb-4 px-3 py-1 rounded-sm border text-sm w-max text-white" style={{ background: 'rgba(127,29,29,0.8)', borderColor: 'rgba(185,28,28,0.5)', fontFamily: B, filter: 'url(#ink-bleed)' }}>威胁等级：寂灭</div>
@@ -294,7 +293,7 @@ export function AIGCCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
       <div className="card-3d-inner rounded-2xl overflow-hidden relative aspect-[21/9]" style={{ background: c.bg }}>
-        <video src="/bilibili/hero-bg.mp4" autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-500"/>
+        <video src="./bilibili/hero-bg.mp4" autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-500"/>
         <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${c.bg} 0%, transparent 45%)` }}/>
         <div className="absolute top-4 left-4 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full" style={{ background: c.primary }}/>

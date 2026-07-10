@@ -9,7 +9,7 @@ function VideoPlayer({ onClose }: { onClose: () => void }) {
       <motion.div className="w-full max-w-[1200px] aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl"
         initial={{ scale: 0.85, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.85, opacity: 0 }}
         transition={{ type: 'spring', damping: 25 }} onClick={(e) => e.stopPropagation()}>
-        <video src="/videos/airm.mp4" controls playsInline className="w-full h-full object-contain" />
+        <video src="./videos/airm.mp4" controls playsInline className="w-full h-full object-contain" />
       </motion.div>
       <button className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
         onClick={(e) => { e.stopPropagation(); onClose(); }}>
@@ -134,7 +134,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
 
       {/* ===== Hero Video (unchanged) ===== */}
       <div className="relative min-h-screen overflow-hidden">
-        <video src="/videos/airm.mp4" muted loop autoPlay playsInline className="absolute inset-0 w-full h-full object-cover"
+        <video src="./videos/airm.mp4" muted loop autoPlay playsInline className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: 'brightness(0.45)' }} />
         <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-black/40 to-transparent z-0" />
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-6 pt-20">
@@ -199,7 +199,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             </div>
             <div className="w-full max-w-5xl relative" style={{ animation: 'float 6s ease-in-out infinite' }}>
               <img alt="AeroSound Pro earbuds" className="w-full h-auto object-contain drop-shadow-2xl" style={{ mixBlendMode: 'multiply' }}
-                src="/3c/1.png" />
+                src="./3c/1.png" />
             </div>
           </div>
         </section>
@@ -234,7 +234,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
               {/* Vertical Image Card */}
               <div className="rounded-xl overflow-hidden relative col-span-1 row-span-2 group">
                 <img alt="Close-up of AeroSound Pro earbud internals" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  src="/3c/8.png" />
+                  src="./3c/8.png" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8 w-full">
                   <h3 className="mb-2 text-white" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '32px', fontWeight: 600 }}>Hi-Fi Architecture</h3>
@@ -272,7 +272,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
               <div className="w-full md:w-1/2 relative">
                 <div className="rounded-xl overflow-hidden relative shadow-2xl">
                   <img alt="Professional wearing AeroSound Pro" className="w-full h-auto"
-                    src="/3c/2.png" />
+                    src="./3c/2.png" />
                   <div className="absolute inset-0 border border-white/20 rounded-xl pointer-events-none" style={{ mixBlendMode: 'overlay' }} />
                 </div>
                 <div className="absolute -bottom-10 -right-10 p-6 rounded-xl max-w-xs" style={{ ...glassPanel, animation: 'float 6s ease-in-out infinite', animationDelay: '1s' }}>
@@ -318,7 +318,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             <p className="max-w-2xl mx-auto" style={{ color: C.onSurfaceVariant }}>Discover the meticulous specifications and comprehensive support that define the AeroSound Pro experience.</p>
           </div>
           <div className="relative rounded-xl overflow-hidden aspect-[16/9] md:aspect-[21/9]" style={{ ...glassPanel, boxShadow: `0 0 20px ${C.primary}26` }}>
-            <video src="/3c/precision-engineering.mp4" autoPlay loop muted playsInline
+            <video src="./3c/precision-engineering.mp4" autoPlay loop muted playsInline
               className="w-full h-full object-cover opacity-90" />
           </div>
         </section>
@@ -397,7 +397,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             <div className="relative w-full aspect-[1.78] rounded-lg overflow-hidden z-10 flex items-center justify-center"
               style={{ background: C.surfaceContainerLowest }}>
               <img alt="Exploded view" className="w-full h-full object-contain"
-                src="/3c/5.png" />
+                src="./3c/5.png" />
               <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-[30%] left-[20%] flex flex-col items-center animate-pulse">
                   <div className="w-3 h-3 rounded-full" style={{ background: C.primary, boxShadow: `0 0 15px ${C.primary}cc` }} />
@@ -448,7 +448,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             <div className="md:col-span-7 order-1 md:order-2 flex justify-center md:justify-end mb-12 md:mb-0 relative">
               <div className="w-full max-w-[400px] aspect-[0.56] rounded-2xl overflow-hidden relative group" style={glassPanel}>
                 <img alt="ANC" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  src="/3c/3.png" />
+                  src="./3c/3.png" />
                 <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.background}cc, transparent)` }} /></div>
             </div>
           </div>
@@ -460,7 +460,7 @@ export function Ecom3CModal({ onClose }: { onClose: () => void }) {
             <div className="md:col-span-7 flex justify-center md:justify-start mb-12 md:mb-0 relative">
               <div className="w-full max-w-[400px] aspect-[0.56] rounded-2xl overflow-hidden relative group" style={glassPanel}>
                 <img alt="Water resistance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  src="/3c/4.png" />
+                  src="./3c/4.png" />
                 <div className="absolute inset-0 mix-blend-overlay" style={{ background: `linear-gradient(to bottom, ${C.secondaryFixed}33, transparent)` }} /></div>
             </div>
             <div className="md:col-span-5 pl-0 md:pl-12">
@@ -501,7 +501,7 @@ export function Ecom3CCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
       <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[21/9]">
-        <video src="/videos/airm_opt.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+        <video src="./videos/airm_opt.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <span className="text-[10px] font-mono text-white/50 tracking-wider uppercase">PROJECT 05</span>

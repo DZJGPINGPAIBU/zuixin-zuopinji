@@ -16,15 +16,13 @@ const c = {
 };
 const CALLIGRAPHY = "'Zhi Mang Xing', 'STKaiti', 'Kaiti SC', 'Ma Shan Zheng', cursive";
 const SERIF = "'Noto Serif SC', 'Songti SC', 'STSong', serif";
-const MONO = "'Space Grotesk', monospace";
-
 const SECTIONS = [
   {
     id: 'state',
     title: '暴走 · 态',
     titleClass: 'text-white',
     lineColor: 'rgba(242,202,80,0.5)',
-    img: '/images/chenmo/bz1_暴走档案.png',
+    img: './images/chenmo/bz1_暴走档案.png',
     imgClass: 'object-cover object-center',
     desc: '神识溃散，真气逆流。形态在狂乱中重组，展现出超越常理的扭曲之美与毁灭之力。此为暴走之初态，混沌之始。',
     align: 'right' as const,
@@ -34,7 +32,7 @@ const SECTIONS = [
     title: '触发 · 机',
     titleClass: 'text-red-300',
     lineColor: 'rgba(255,180,172,0.5)',
-    img: '/images/chenmo/bz2_触发机制.png',
+    img: './images/chenmo/bz2_触发机制.png',
     imgClass: 'object-cover object-center opacity-70',
     desc: '极怒、绝望或执念触及灵根底线。心魔引燃，如同星火燎原，瞬间吞噬理智的堤坝。',
     align: 'right' as const,
@@ -43,7 +41,7 @@ const SECTIONS = [
     id: 'power',
     title: '力 · 变',
     titleClass: 'text-amber-400',
-    img: '/images/chenmo/bz3_能力暴增.png',
+    img: './images/chenmo/bz3_能力暴增.png',
     imgClass: 'object-center object-contain',
     desc: '',
     align: 'center' as const,
@@ -52,7 +50,7 @@ const SECTIONS = [
     id: 'cost',
     title: '失控 · 价',
     titleClass: 'text-red-400',
-    img: '/images/chenmo/bz4_失控代价.png',
+    img: './images/chenmo/bz4_失控代价.png',
     imgClass: 'object-cover object-right filter grayscale',
     align: 'vertical' as const,
   },
@@ -60,7 +58,7 @@ const SECTIONS = [
     id: 'form',
     title: '形态 · 异',
     titleClass: 'text-white',
-    img: '/images/chenmo/bz5_形态对比.png',
+    img: './images/chenmo/bz5_形态对比.png',
     imgClass: 'object-cover object-center',
     desc: '',
     align: 'dual' as const,
@@ -69,7 +67,7 @@ const SECTIONS = [
     id: 'depth',
     title: '觉醒 · 深',
     titleClass: 'text-green-300',
-    img: '/images/chenmo/bz6_觉醒深度.png',
+    img: './images/chenmo/bz6_觉醒深度.png',
     imgClass: 'object-cover object-bottom',
     desc: '在暴走的深渊中，触及灵境的真实界限。理智虽失，却可能窥见大道法则的本源残片。',
     align: 'center' as const,
@@ -78,7 +76,7 @@ const SECTIONS = [
     id: 'convergence',
     title: '收束 · 路',
     titleClass: 'text-white',
-    img: '/images/chenmo/bz7_收束之路.png',
+    img: './images/chenmo/bz7_收束之路.png',
     imgClass: 'object-cover object-center opacity-60',
     desc: '是浴火重生，还是彻底消亡？收束狂暴的真气，找回自我，方能将暴走转化为真正的觉醒蜕变。',
     align: 'center' as const,
@@ -144,14 +142,6 @@ export function ChenmoSections() {
           <div
             className="relative z-10 w-full h-full flex flex-col px-8 md:px-16 py-16 md:py-32"
           >
-            {s.align === 'left' && (
-              <div className="flex flex-col justify-end h-full pb-12 max-w-lg">
-                <h2 className="text-5xl md:text-7xl mb-4 leading-none" style={{ fontFamily: CALLIGRAPHY, background: 'linear-gradient(to bottom, #ffffff 0%, #d0c5af 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{s.title}</h2>
-                <div className="h-px w-32 mb-6" style={{ background: s.lineColor }} />
-                <p className="text-lg leading-loose tracking-widest" style={{ color: c.muted }}>{s.desc}</p>
-              </div>
-            )}
-
             {s.align === 'right' && (
               <div className="flex flex-col items-end justify-end h-full pb-12 ml-auto max-w-lg text-right">
                 <h2 className="text-5xl md:text-7xl mb-4 leading-none" style={{ fontFamily: CALLIGRAPHY, color: '#ffdad6' }}>{s.title}</h2>
@@ -261,7 +251,7 @@ export function ChenmoCard({ onClick }: { onClick: () => void }) {
         style={{ background: c.bg }}
       >
         <img
-          src="/images/chenmo/screen.png"
+          src="./images/chenmo/screen.png"
           alt=""
           className="w-full h-full object-cover object-top opacity-70 group-hover:opacity-90 transition-opacity duration-500"
         />

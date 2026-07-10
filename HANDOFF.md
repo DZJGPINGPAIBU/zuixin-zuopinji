@@ -1,51 +1,40 @@
-# Handoff — 2026-07-09
+# Handoff — 2026-07-10 (v2)
 
 > 下一会话启动时读取此文件，快速恢复上下文。
 
-## 当前状态
-- 吉祥物IP模块：5/6 个板块已完成图片替换（日历待重新映射）
-- 移动端自适应：4文件14处修改已完成，编译通过
-- 品牌视觉：AI多媒体设计师 → AI品牌视觉设计 全局替换
-- About卡片：分点简介已优化，照片裁剪已修复
-- **代码已推送到 GitHub `main` 分支**（commit `f685153`）
+## ✅ 线上状态
+- **`http://118.31.14.19/zuopinji/`** — 全部资源可达，171 个资源路径已验证
+- Spline Viewer 已本地化（`spline-viewer.js`, 2.2MB，不再依赖 jsDelivr CDN）
+- 所有 JSX/data 中的绝对路径已改为相对路径（`./`），零残留
+- OSS 图片/视频代理正常工作
+- 唯一缺失文件：`images/30周年模块/概念解析.jpg` → 已用 `30周年手册/01.jpg` 替代
 
-## 🔴 待处理
-
-### 1. 阿里云轻量服务器上线（未完成）
-- 服务器: `118.31.14.19`，root 密码 `277181Hxk`
-- `dist/` 已构建并上传到 `/var/www/zuopinji/`
-- Nginx 配置: `/zuopinji/` → 内部 8081（静态+OSS代理）
-- **问题**: 从服务器外部 curl 全部 HTTP 200 正常，但用户浏览器无法打开
-- 可能原因: 阿里云安全组需放行、浏览器缓存、需进一步排查
+## 🔴 待处理（非部署问题）
+### 1. Canvas/B站 iframe CDN 依赖
+- `cdn.tailwindcss.com` — 国内被墙，iframe 无样式
+- `lh3.googleusercontent.com` — Google Photos 外链国内不可达
+- 需回到源 HTML 文件中本地化这些依赖
 
 ### 2. 日历板块图片重新映射
 - 20张日历图片已上传 OSS `images/mascot/calendar-dev/`
-- 但文件序号与月份不对应（图片上印有月份数字）
-- 当前代码已恢复为原始 `img_XX.jpg`
+- 文件序号与月份不对应（图片上印有月份数字）
 - 需人工对照图片上的月份数字，逐一映射
 
-### 3. 企业微信表情包（文件夹6）未使用
+### 3. 企业微信表情包未使用
 - 25张已上传 OSS `images/mascot/enterprise-emoji/`
 - 尚未创建展示区域
 
-## 服务器 Nginx 架构
-```
-80端口 (aikoutu):
-  /          → 127.0.0.1:8000 (无限画布 Python)
-  /yitai     → 127.0.0.1:3000 (Next.js)
-  /zuopinji/ → 127.0.0.1:8081 (作品集)
+## 本次修复历史（07/10）
+1. 修复 13 个 TypeScript 编译错误
+2. Spline Viewer CDN → 本地 `public/spline-viewer.js`
+3. JSX `src="/..."` 176处 → `src="./..."`（sed 批量）
+4. data 文件 `cover/imageSrc/avatar/img` 绝对路径 → 相对路径（Experience/Projects/Resume/About/CanvasProfile/Chenmo/Luoqingyi/Exhibition/Anniversary）
+5. `images/30周年模块/概念解析.jpg` (OSS 404) → `images/30周年手册/01.jpg`
 
-8081端口 (zuopinji, 仅内部):
-  /          → /var/www/zuopinji (静态文件)
-  /images/   → OSS代理
-  /videos/   → OSS代理
-  /3c/       → OSS代理
-```
-
-## 部署更新命令
+## 部署命令
 ```bash
-# 构建 + 上传到服务器
-npm run build   # 或 npx vite build
-# 然后 SCP dist/ 到服务器 /var/www/zuopinji/
-# SSH 连接: ssh root@118.31.14.19
+cd /Users/mohe/Documents/zuixin-zuopinji/app
+npm run build
+rsync -avz --delete -e "ssh" dist/ root@118.31.14.19:/var/www/zuopinji/
+# 密码: 277181Hxk
 ```

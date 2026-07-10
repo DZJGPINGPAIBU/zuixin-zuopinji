@@ -9,7 +9,7 @@ function VideoPlayer({ onClose }: { onClose: () => void }) {
       <motion.div className="w-full max-w-[1200px] aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl"
         initial={{ scale: 0.85, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.85, opacity: 0 }}
         transition={{ type: 'spring', damping: 25 }} onClick={(e) => e.stopPropagation()}>
-        <video src="/videos/anniversary-30th.mp4" controls playsInline className="w-full h-full object-contain" />
+        <video src="./videos/anniversary-30th.mp4" controls playsInline className="w-full h-full object-contain" />
       </motion.div>
       <button className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
         onClick={(e) => { e.stopPropagation(); onClose(); }}>
@@ -71,7 +71,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 
 {/* ═══ Hero Video Background ═══ */}
 <div className="relative min-h-screen overflow-hidden">
-  <video src="/videos/anniversary-30th.mp4" muted loop autoPlay playsInline
+  <video src="./videos/anniversary-30th.mp4" muted loop autoPlay playsInline
     className="absolute inset-0 w-full h-full object-cover"
     style={{ filter: 'brightness(0.45)' }} />
   <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-black/40 to-transparent z-0" />
@@ -163,10 +163,10 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 以数字「30」为核心符号，将激光光路抽象为几何线条，虚实交织中传递品牌三十载技术积淀与未来探索。
 </p>
 <div className="gallery-img-wrapper border border-on-surface bg-surface-container-lowest mb-6">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/design-philosophy.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/design-philosophy.jpg" />
 </div>
 <div className="gallery-img-wrapper border border-on-surface bg-surface-container-lowest">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/concept.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/concept.jpg" />
 </div>
 <div className="flex flex-wrap gap-6 mt-6 pt-4 border-t border-on-surface/10">
 <div className="flex items-center gap-2">
@@ -190,7 +190,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 <div className="deconstructed-grid items-center">
 <div className="col-span-12 md:col-span-8">
 <div className="gallery-img-wrapper border border-on-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/02.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/02.jpg" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-4 flex flex-col gap-8 md:pl-12 mt-8 md:mt-0">
@@ -208,16 +208,16 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 {/* 左：手册封面 */}
 <div className="col-span-12 md:col-span-7">
 <div className="gallery-img-wrapper border border-on-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/01.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/01.jpg" />
 </div>
 </div>
 {/* 右：目录页 03.jpg + 04.jpg 错位 */}
 <div className="col-span-12 md:col-span-5 flex flex-col mt-4 md:mt-0">
 <div className="gallery-img-wrapper border border-on-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/03.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/03.jpg" />
 </div>
 <div className="gallery-img-wrapper border border-on-surface offset-shadow -mt-6 -ml-6 md:-ml-10 z-10">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/04.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/04.jpg" />
 </div>
 </div>
 </div>
@@ -231,41 +231,41 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 {/* Row 1 */}
 <div className="col-span-12 md:col-span-8">
 <div className="gallery-img-wrapper border border-on-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/05.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/05.jpg" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-4 flex flex-col gap-4 mt-4 md:mt-0">
 <div className="gallery-img-wrapper border border-on-surface flex-1">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/06.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/06.jpg" />
 </div>
 <div className="gallery-img-wrapper border border-on-surface flex-1">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/07.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/07.jpg" />
 </div>
 </div>
 
 {/* Row 2 */}
 <div className="col-span-12 md:col-span-4 mt-4 gallery-img-wrapper border border-on-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/08.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/08.jpg" />
 </div>
 <div className="col-span-12 md:col-span-4 mt-4 gallery-img-wrapper border border-on-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/09.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/09.jpg" />
 </div>
 <div className="col-span-12 md:col-span-4 mt-4 gallery-img-wrapper border border-on-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/10.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/10.jpg" />
 </div>
 
 {/* Row 3 */}
 <div className="col-span-12 md:col-span-4 flex flex-col gap-4 mt-4">
 <div className="gallery-img-wrapper border border-on-surface flex-1">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/11.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/11.jpg" />
 </div>
 <div className="gallery-img-wrapper border border-on-surface flex-1">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/12.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/12.jpg" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-8 mt-4">
 <div className="gallery-img-wrapper border border-on-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/13.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/13.jpg" />
 </div>
 </div>
 
@@ -274,7 +274,7 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
 {[14,15,16,17,18,19,20,21,22,23,24,25,26,27,28].map(n => (
 <div key={n} className="gallery-img-wrapper border border-on-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src={'/images/30周年手册/' + String(n).padStart(2,'0') + '.jpg'} />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src={'./images/30周年手册/' + String(n).padStart(2,'0') + '.jpg'} />
 </div>
 ))}
 </div>
@@ -284,10 +284,10 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 <div className="col-span-12 mt-8">
 <div className="grid grid-cols-2 gap-4">
 <div className="gallery-img-wrapper border border-on-surface bg-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/29.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/29.jpg" />
 </div>
 <div className="gallery-img-wrapper border border-on-surface bg-surface">
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年手册/30.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年手册/30.jpg" />
 </div>
 </div>
 </div>
@@ -315,42 +315,42 @@ export function AnniversaryModal({ onClose }: { onClose: () => void }) {
 <div className="grid grid-cols-12 gap-4">
 <div className="col-span-12 md:col-span-7">
 <div className="gallery-img-wrapper border border-on-surface bg-surface" style={{ aspectRatio: "1.54" }}>
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年应用/v2.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年应用/v2.jpg" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-5">
 <div className="gallery-img-wrapper border border-on-surface bg-surface" style={{ aspectRatio: "1.22" }}>
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年应用/v3.png" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年应用/v3.png" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-4 mt-4">
 <div className="gallery-img-wrapper border border-on-surface bg-surface" style={{ aspectRatio: "0.56" }}>
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年应用/v4.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年应用/v4.jpg" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-8 mt-4">
 <div className="gallery-img-wrapper border border-on-surface bg-surface offset-shadow" style={{ aspectRatio: "2.05" }}>
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年应用/h1.png" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年应用/h1.png" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-6 mt-4">
 <div className="gallery-img-wrapper border border-on-surface bg-surface" style={{ aspectRatio: "1.54" }}>
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年应用/h2.png" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年应用/h2.png" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-6 mt-4">
 <div className="gallery-img-wrapper border border-on-surface bg-surface" style={{ aspectRatio: "1.54" }}>
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年应用/h3.png" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年应用/h3.png" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-5 mt-4">
 <div className="gallery-img-wrapper border border-on-surface bg-surface" style={{ aspectRatio: "1" }}>
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年应用/h4.png" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年应用/h4.png" />
 </div>
 </div>
 <div className="col-span-12 md:col-span-7 mt-4">
 <div className="gallery-img-wrapper border border-on-surface bg-surface" style={{ aspectRatio: "0.56" }}>
-<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="/images/30周年应用/v1.jpg" />
+<img alt="" className="gallery-img w-full h-auto" style={{ objectFit: "contain" }} src="./images/30周年应用/v1.jpg" />
 </div>
 </div>
 </div>
@@ -366,7 +366,7 @@ export function AnniversaryCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-target cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
       <div className="card-3d-inner rounded-2xl overflow-hidden bg-white relative aspect-[21/9]">
-        <video src="/videos/anniversary-30th.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+        <video src="./videos/anniversary-30th.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <span className="text-[10px] font-mono text-white/50 tracking-wider uppercase">PROJECT 02</span>

@@ -164,21 +164,21 @@ export function ExhibitionModal({ onClose }: { onClose: () => void }) {
 
         <div className="flex flex-col gap-12">
           {/* Hero Image */}
-          <div className="w-full cursor-pointer" onClick={() => setLightbox('/images/exhibition/ciif_01_main.jpg')}>
+          <div className="w-full cursor-pointer" onClick={() => setLightbox('./images/exhibition/ciif_01_main.jpg')}>
             <img
               alt="CIIF Main Billboard"
               className="w-full h-auto border border-[#c4c5da] shadow-sm"
               style={{ borderRadius: 0 }}
-              src="/images/exhibition/ciif_01_main.jpg"
+              src="./images/exhibition/ciif_01_main.jpg"
             />
           </div>
           {/* Detail Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              '/images/exhibition/ciif_02_keyvisual.jpg',
-              '/images/exhibition/ciif_03_guide.jpg',
-              '/images/exhibition/ciif_04_visitor.jpg',
-              '/images/exhibition/ciif_05_invite.jpg',
+              './images/exhibition/ciif_02_keyvisual.jpg',
+              './images/exhibition/ciif_03_guide.jpg',
+              './images/exhibition/ciif_04_visitor.jpg',
+              './images/exhibition/ciif_05_invite.jpg',
             ].map((src, i) => (
               <img
                 key={i}
@@ -229,8 +229,8 @@ export function ExhibitionModal({ onClose }: { onClose: () => void }) {
         <div className="flex flex-col gap-12">
           <div className="grid grid-cols-1 gap-8">
             {[
-              '/images/exhibition/cioe_01_banner.jpg',
-              '/images/exhibition/cioe_02_banner.jpg',
+              './images/exhibition/cioe_01_banner.jpg',
+              './images/exhibition/cioe_02_banner.jpg',
             ].map((src, i) => (
               <img
                 key={i}
@@ -244,8 +244,8 @@ export function ExhibitionModal({ onClose }: { onClose: () => void }) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              '/images/exhibition/cioe_03_mobile_a.jpg',
-              '/images/exhibition/cioe_04_mobile_b.jpg',
+              './images/exhibition/cioe_03_mobile_a.jpg',
+              './images/exhibition/cioe_04_mobile_b.jpg',
             ].map((src, i) => (
               <img
                 key={i}
@@ -299,21 +299,21 @@ export function ExhibitionModal({ onClose }: { onClose: () => void }) {
               alt="CHTF Banner 1"
               className="w-full h-auto border border-[#c4c5da] shadow-sm cursor-pointer"
               style={{ borderRadius: 0 }}
-              src="/images/exhibition/chtf_01_banner.jpg"
-              onClick={() => setLightbox('/images/exhibition/chtf_01_banner.jpg')}
+              src="./images/exhibition/chtf_01_banner.jpg"
+              onClick={() => setLightbox('./images/exhibition/chtf_01_banner.jpg')}
             />
             <img
               alt="CHTF Banner 2"
               className="w-full h-auto border border-[#c4c5da] shadow-sm cursor-pointer"
               style={{ borderRadius: 0 }}
-              src="/images/exhibition/chtf_02_banner.jpg"
-              onClick={() => setLightbox('/images/exhibition/chtf_02_banner.jpg')}
+              src="./images/exhibition/chtf_02_banner.jpg"
+              onClick={() => setLightbox('./images/exhibition/chtf_02_banner.jpg')}
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              '/images/exhibition/chtf_03_mobile_a.jpg',
-              '/images/exhibition/chtf_04_mobile_b.jpg',
+              './images/exhibition/chtf_03_mobile_a.jpg',
+              './images/exhibition/chtf_04_mobile_b.jpg',
             ].map((src, i) => (
               <img
                 key={i}
@@ -414,7 +414,7 @@ export function ExhibitionCard({ onClick }: { onClick: () => void }) {
     >
       <div className="card-3d-inner overflow-hidden bg-white relative aspect-[21/9]" style={{ borderRadius: 0 }}>
         <img
-          src="/images/exhibition/ciif_01_main.jpg"
+          src="./images/exhibition/ciif_01_main.jpg"
           alt="展会视觉体系"
           className="w-full h-full object-cover"
         />

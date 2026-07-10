@@ -13,13 +13,13 @@ const CALLIGRAPHY = "'Zhi Mang Xing', 'Ma Shan Zheng', 'STKaiti', 'Kaiti SC', cu
 const SERIF = "'Noto Serif SC', 'Songti SC', 'STSong', serif";
 
 const SECTIONS = [
-  { id: 'profile', label: '角色档案', img: '/images/luoqingyi/ly1_角色档案.png' },
-  { id: 'lineage', label: '水脉传承', img: '/images/luoqingyi/ly2_水脉传承.png' },
-  { id: 'technique', label: '清漪诀', img: '/images/luoqingyi/ly3_清漪诀.png' },
-  { id: 'origin', label: '身世之卷', img: '/images/luoqingyi/ly4_身世之卷.png' },
-  { id: 'network', label: '关系网络', img: '/images/luoqingyi/ly5_关系网络.png' },
-  { id: 'elements', label: '五行格局', img: '/images/luoqingyi/ly7_五行格局.png' },
-  { id: 'choice', label: '抉择', img: '/images/luoqingyi/ly6_抉择.png' },
+  { id: 'profile', label: '角色档案', img: './images/luoqingyi/ly1_角色档案.png' },
+  { id: 'lineage', label: '水脉传承', img: './images/luoqingyi/ly2_水脉传承.png' },
+  { id: 'technique', label: '清漪诀', img: './images/luoqingyi/ly3_清漪诀.png' },
+  { id: 'origin', label: '身世之卷', img: './images/luoqingyi/ly4_身世之卷.png' },
+  { id: 'network', label: '关系网络', img: './images/luoqingyi/ly5_关系网络.png' },
+  { id: 'elements', label: '五行格局', img: './images/luoqingyi/ly7_五行格局.png' },
+  { id: 'choice', label: '抉择', img: './images/luoqingyi/ly6_抉择.png' },
 ];
 
 export function LuoqingyiSections() {
@@ -93,7 +93,7 @@ export function LuoqingyiCard({ onClick }: { onClick: () => void }) {
   return (
     <motion.div className="card-3d cursor-pointer group" whileHover={{ y: -6 }} transition={{ duration: 0.3 }} onClick={onClick}>
       <div className="card-3d-inner rounded-2xl overflow-hidden relative aspect-[4/5]" style={{ background: c.bg }}>
-        <img src="/images/luoqingyi/screen.png" alt="" className="w-full h-full object-cover object-top opacity-70 group-hover:opacity-90 transition-opacity duration-500"/>
+        <img src="./images/luoqingyi/screen.png" alt="" className="w-full h-full object-cover object-top opacity-70 group-hover:opacity-90 transition-opacity duration-500"/>
         <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${c.bg} 0%, transparent 45%)` }}/>
         <div className="absolute top-4 left-4 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full" style={{ background: c.primary }}/>

@@ -105,7 +105,7 @@ export default function Contact() {
         {/* PDF Download — full width */}
         <motion.div className="flex justify-center mt-10" {...fadeUp(1.0)}>
           <a
-            href="/resume.pdf"
+            href="./resume.pdf"
             download="黄选坤-AI多媒体设计师-简历.pdf"
             className="flex items-center justify-center gap-4 px-10 py-4 rounded-2xl text-white transition-colors hover:opacity-90 w-full max-w-md"
             style={{ background: 'var(--accent)' }}
