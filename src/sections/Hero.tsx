@@ -7,21 +7,60 @@ function ScrollProgress() {
   return <motion.div className="scroll-progress" style={{ scaleX }} />;
 }
 
-/* ===== SplineViewer wrapper — ref-based to prevent React re-creation ===== */
+/* ===== SplineViewer wrapper — lazy load spline runtime ===== */
 function SplineViewer({ scene }: { scene: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<HTMLElement | null>(null);
+  const [ready, setReady] = useState(false);
 
+  // Lazy load spline-viewer.js only when component enters viewport
   useEffect(() => {
-    if (!containerRef.current || viewerRef.current) return;
-    const viewer = document.createElement('spline-viewer') as HTMLElement;
-    viewer.setAttribute('url', scene);
-    viewer.setAttribute('events-target', 'global');
-    Object.assign(viewer.style, { width: '100%', height: '100%', border: 'none', background: 'transparent', display: 'block' });
-    containerRef.current.appendChild(viewer);
-    viewerRef.current = viewer;
-    return () => { viewer.remove(); viewerRef.current = null; };
-  }, [scene]);
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setReady(true);
+        obs.disconnect();
+      }
+    }, { rootMargin: '200px' });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // Load spline runtime and create viewer
+  useEffect(() => {
+    if (!ready || !containerRef.current || viewerRef.current) return;
+
+    const loadSpline = async () => {
+      // Dynamically inject spline-viewer script if not already loaded
+      if (!customElements.get('spline-viewer')) {
+        await new Promise<void>((resolve, reject) => {
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.src = './spline-viewer.js';
+          script.onload = () => resolve();
+          script.onerror = () => reject(new Error('Failed to load spline-viewer'));
+          document.head.appendChild(script);
+        });
+        // Wait for custom element to be defined
+        await customElements.whenDefined('spline-viewer');
+      }
+
+      const viewer = document.createElement('spline-viewer') as HTMLElement;
+      viewer.setAttribute('url', scene);
+      viewer.setAttribute('events-target', 'global');
+      Object.assign(viewer.style, { width: '100%', height: '100%', border: 'none', background: 'transparent', display: 'block' });
+      containerRef.current?.appendChild(viewer);
+      viewerRef.current = viewer;
+    };
+
+    loadSpline().catch(console.error);
+
+    return () => {
+      viewerRef.current?.remove();
+      viewerRef.current = null;
+    };
+  }, [ready, scene]);
 
   return <div ref={containerRef} style={{ width: '100%', height: '100%' }} />;
 }
