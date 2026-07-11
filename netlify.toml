@@ -38,6 +38,15 @@
   status = 200
   force = true
 
+# ---- Spline 运行时 wasm ----
+# spline-viewer.js 内硬编码了 ECS 子路径 /zuopinji/ui.wasm、/zuopinji/navmesh.wasm 等，
+# Netlify 是根路径，这些绝对路径会 404 → 命中 SPA 回退返回 HTML → WASM magic word 报错 → 机器人黑屏。
+# 剥掉 /zuopinji 前缀，映射到 dist 根目录里的同名 wasm（application/wasm 由 Netlify 自动带）。
+[[redirects]]
+  from = "/zuopinji/*"
+  to = "/:splat"
+  status = 200
+
 # ---- SPA 回退（不加 force：已存在的静态文件优先本地提供）----
 [[redirects]]
   from = "/*"

@@ -6,7 +6,7 @@ import { MascotCard, MascotModal } from '@/sections/ModuleMascot';
 import { ExhibitionCard, ExhibitionModal } from '@/sections/ModuleExhibition';
 import { AIGCCard, AIGCModal } from '@/sections/ModuleAIGC';
 import { Ecom3CCard, Ecom3CModal } from '@/sections/Module3C';
-import { CanvasCard, CanvasModal } from '@/sections/ModuleCanvas';
+import { CanvasCard } from '@/sections/ModuleCanvas';
 import { JihuiCard } from '@/sections/ModuleJihui';
 import ModalNavShell from '@/components/shared/ModalNavShell';
 
@@ -18,7 +18,7 @@ const cardMap: Record<string, React.FC<{ onClick: () => void }>> = {
 };
 const modalMap: Record<string, React.FC<{ onClose: () => void }>> = {
   anniversary: AnniversaryModal, mascot: MascotModal, exhibition: ExhibitionModal,
-  aigc: AIGCModal, ecom3c: Ecom3CModal, canvas: CanvasModal,
+  aigc: AIGCModal, ecom3c: Ecom3CModal,
 };
 
 /* ===== fadeUp helper ===== */
@@ -103,8 +103,8 @@ export default function ProjectsGrid() {
 
             return (
               <motion.div key={p.id} {...fadeUp(0.3 + i * 0.1)} className="mb-16 md:mb-24">
-                {/* Jihui: card handles its own external-link click; Canvas: modal */}
-                {isJihui ? (
+                {/* Jihui & Canvas: card handles its own external-link click; others open modal */}
+                {isJihui || isCanvas ? (
                   <div className="cursor-pointer cursor-target w-full">
                     <Card onClick={() => {}} />
                   </div>
@@ -130,7 +130,7 @@ export default function ProjectsGrid() {
                   {isCanvas ? (
                     <div className="mt-4 space-y-3">
                       <p className="text-sm lg:text-base text-black/60 font-body font-light leading-relaxed max-w-2xl mx-auto">
-                        目前该平台还在内测调试中，此IP链接只用于进入平台观看体验，部分功能目前无法使用，敬请期待开放！点击下方链接可以直接跳转平台，目前作品集中只展示前端部分UI设计
+                        目前该平台还在内测调试中，部分功能暂无法使用，敬请期待开放！点击卡片或下方链接可直接进入平台在线体验。
                       </p>
                       <a
                         href="http://118.31.14.19/yitai"
@@ -160,7 +160,7 @@ export default function ProjectsGrid() {
                         <path d="M7 7h10v10" />
                       </svg>
                     </a>
-                  ) : (
+                  ) : isCanvas ? null : (
                     <button
                       onClick={() => openModal(p.id as Exclude<ActiveModal, null>)}
                       className="cursor-target mt-5 liquid-glass-strong rounded-full px-5 py-2.5 text-xs font-medium text-black/70 font-body inline-flex items-center gap-2 hover:bg-black/5 transition-colors"

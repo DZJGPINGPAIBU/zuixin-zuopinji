@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { ThemeProvider, useTheme } from '@/context/ThemeContext';
+import { useAutoplayVideos } from '@/hooks/use-autoplay-videos';
 import Hero from '@/sections/Hero';
 import About from '@/sections/About';
 import Experience from '@/sections/Experience';
@@ -8,6 +9,7 @@ import Contact from '@/sections/Contact';
 
 function AppContent() {
   const { setActiveSection } = useTheme();
+  useAutoplayVideos();
   useEffect(() => {
     const sections = ['hero', 'about', 'experience', 'projects', 'contact'];
     const observers: IntersectionObserver[] = [];

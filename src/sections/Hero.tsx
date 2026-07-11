@@ -302,12 +302,12 @@ function Navbar() {
           scrolled ? 'liquid-glass-strong' : 'liquid-glass'
         }`}
       >
-        <span className="font-heading italic text-neutral-900 text-xl leading-none tracking-tight">H</span>
+        <span className="font-heading italic text-white text-xl leading-none tracking-tight">H</span>
         <div className="hidden lg:flex items-center">
           <GooeyNav items={navItems} particleCount={12} animationTime={600} timeVariance={300} particleDistances={[80, 10]} particleR={100} initialActiveIndex={0} />
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-mono text-neutral-400 tracking-wider">PORTFOLIO</span>
+          <span className="text-[10px] font-mono text-white/30 tracking-wider">PORTFOLIO</span>
           {/* Mobile hamburger */}
           <button
             className="lg:hidden cursor-target w-8 h-8 flex flex-col items-center justify-center gap-1.5 p-1"
@@ -316,17 +316,17 @@ function Navbar() {
           >
             <motion.span
               animate={mobileOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
-              className="block w-5 h-[1.5px] bg-neutral-700 rounded-full"
+              className="block w-5 h-[1.5px] bg-white/60 rounded-full"
               transition={{ duration: 0.2 }}
             />
             <motion.span
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-5 h-[1.5px] bg-neutral-700 rounded-full"
+              className="block w-5 h-[1.5px] bg-white/60 rounded-full"
               transition={{ duration: 0.15 }}
             />
             <motion.span
               animate={mobileOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
-              className="block w-5 h-[1.5px] bg-neutral-700 rounded-full"
+              className="block w-5 h-[1.5px] bg-white/60 rounded-full"
               transition={{ duration: 0.2 }}
             />
           </button>
@@ -401,7 +401,7 @@ export default function Hero() {
   });
 
   return (
-    <section id="hero" className="relative w-full min-h-screen overflow-hidden" ref={heroRef} style={{ backgroundColor: '#FAF8F5' }}>
+    <section id="hero" className="relative w-full min-h-screen bg-black overflow-hidden" ref={heroRef}>
       {/* Spline 3D Robot Background */}
       <div id="hero-robot-container" className="hero-robot-bg" style={{ zIndex: 0 }}>
         <SplineViewer scene="./robot-scene.splinecode" />
@@ -437,8 +437,8 @@ export default function Hero() {
         <div className="flex-1 flex flex-col items-center justify-center px-4 pointer-events-auto">
           {/* Badge */}
           <motion.div {...f(0.3)} className="liquid-glass rounded-full inline-flex items-center gap-0 mb-4">
-            <span className="bg-[#0055FF] text-white px-3 py-1 text-xs font-semibold rounded-full">Portfolio</span>
-            <span className="text-sm text-neutral-700 pr-3 pl-2 font-body">Brand Visual Designer</span>
+            <span className="bg-white text-black px-3 py-1 text-xs font-semibold rounded-full">Portfolio</span>
+            <span className="text-sm text-white/90 pr-3 font-body">Brand Visual Designer</span>
           </motion.div>
 
           {/* Typing title */}
@@ -456,7 +456,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Subtitle */}
-          <motion.p {...f(0.7)} className="mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight text-center">
+          <motion.p {...f(0.7)} className="mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight text-center opacity-70">
             AI品牌视觉设计 · AIGC创意实践者 · 大族激光集团总部
           </motion.p>
 
@@ -464,7 +464,7 @@ export default function Hero() {
           <motion.div {...f(1.0)} className="flex items-center gap-6 mt-6">
             <a
               href="#projects"
-              className="cursor-target bg-neutral-900 hover:bg-neutral-800 transition-colors rounded-full px-6 py-3 text-sm font-medium text-white font-body flex items-center gap-2 shadow-lg shadow-neutral-900/10"
+              className="cursor-target liquid-glass-strong rounded-full px-6 py-3 text-sm font-medium text-white font-body flex items-center gap-2"
             >
               探索作品
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -484,9 +484,9 @@ export default function Hero() {
         style={{ opacity: scrollOpacity }}
         transition={{ delay: 1.5 }}
       >
-        <span className="text-[10px] font-mono text-neutral-400 tracking-wider">SCROLL</span>
+        <span className="text-[10px] font-mono text-white/20 tracking-wider">SCROLL</span>
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
-          <svg className="h-5 w-5 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="h-5 w-5 text-white/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M6 9l6 6 6-6" />
           </svg>
         </motion.div>

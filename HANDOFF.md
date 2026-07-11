@@ -1,9 +1,62 @@
 # ⚡ Claude 唤醒词
 
-> **「上线」** = 直接构建并部署到 Netlify，一步到位：
+> **「上线」= 部署到阿里云 ECS（主力，2026-07-11 起 Mohe 定）**。其他平台上线局限性更大。
 > ```bash
-> cd /Users/mohe/Documents/zuixin-zuopinji/app && npm run build && netlify deploy --dir=dist && netlify api restoreSiteDeploy --data '{"site_id":"f7deb450-13ed-4061-a0ad-4851d5d29479","deploy_id":"<从输出获取>"}'
+> cd /Users/mohe/Documents/zuixin-zuopinji/app
+> npm run build          # ⚠️ 普通 build，不是 build:pages！
+> rsync -az --delete -e ssh dist/ root@118.31.14.19:/var/www/zuopinji/
 > ```
+> 生产：http://118.31.14.19/zuopinji/ ｜ SSH 已配免密（`~/.ssh/id_ed25519`），rsync 直连无需密码。
+> 备用平台见下方 v3(Netlify)、github-pages 记忆。
+
+---
+
+# Handoff — 2026-07-11 (v7 · Claude)
+
+## 本次修复（机器人黑屏 + 封面视频冻结，均已部署 ECS 并验证）
+
+### 1. Spline 机器人黑屏 —— 两层根因
+- **根因A（脚本不注入）**：`Hero.tsx` 旧写法把注入 `spline-viewer.js` 放在 `customElements.whenDefined().catch` 里，但 whenDefined **只 resolve 永不 reject** → 脚本永不注入 → 元素永不注册。**已改为无条件注入**（幂等去重 `script[data-spline-loader]`）。
+- **根因B（wasm 路径错配）**：**昨晚 ECS 黑屏真因** = 把 `build:pages` 的 dist 部署到了 ECS。`pages-fix-spline.mjs` 把 spline 的 wasm 基址 `/zuopinji/` 改成 GH Pages 的 `/zuixin-zuopinji/`；ECS 站点在 `/zuopinji/`，wasm 全 404 → magic word 报错 → 黑屏。**ECS/Netlify 必须用 `npm run build`（或 build:netlify），只有 GitHub Pages 用 build:pages。**
+
+### 2. 卡片封面视频冻结 —— React muted 属性坑
+- **根因**：React `<video muted autoPlay>` 只把 muted 设成 property，不反射为 DOM `muted` **attribute** → 浏览器自动播放策略拦停 → 播 0.7s 冻结。
+- **修复**：新增 `src/hooks/use-autoplay-videos.ts`，`App.tsx` 里调 `useAutoplayVideos()`。强制写 `muted`/`playsinline` attribute + IntersectionObserver 进视口才播、离开暂停 + MutationObserver 兜懒加载视频。一处修全部封面视频。
+
+### 3. Hero 视觉（Mohe 明确要求）
+- 一开始 Claude 自作主张加了「文字保护 scrim」+「深空星空兜底背景」，**Mohe 要求删掉**（机器人要明亮、表面不要被黑盖住）。**已全部移除**，Hero 恢复干净 `bg-black`。
+- ⚠️ 教训：别擅自加覆盖设计原貌的暗色遮罩/兜底层，加视觉层先确认。
+
+### 修改文件
+| 文件 | 改动 |
+|---|---|
+| `src/sections/Hero.tsx` | loadSpline 无条件注入脚本；移除 scrim + 星空兜底层，恢复 `bg-black` |
+| `src/hooks/use-autoplay-videos.ts` | 新增，修封面视频自动播放 |
+| `src/App.tsx` | 调 `useAutoplayVideos()` |
+| `src/sections/ModuleJihui.tsx` | **封面从静态图 `mohe极绘.png` 改回实时 iframe 预览** `http://118.31.14.19/`（见下） |
+| `netlify.toml` | 新增 `/zuopinji/* → /:splat` redirect（仅 Netlify 需要） |
+
+### MH极绘 卡片封面 = 实时 iframe 预览（2026-07-11 Mohe 要求，勿回退成静态图）
+- 之前 Codex 因 `cdn.tailwindcss.com` 被墙把 iframe 换成静态截图。现复测：CDN 可达、MH极绘 站无 X-Frame-Options，且**与 ECS 作品集同源 http（都是 `118.31.14.19:80`）→ 无混合内容/跨域限制**，iframe 实时渲染正常。
+- ⚠️ 仅在 **ECS(http) 主力**成立。若部署到 Netlify/GH Pages(https)，`http://` iframe 会被混合内容拦截 → 需改走 `/mhjihui/` 代理或换 https。静态图 `public/images/mohe极绘.png` 保留未删，备用。
+
+### 无限画布（canvas）= 外链卡 + yitai 实时预览（2026-07-11 Mohe 要求，勿回退）
+- **CanvasModal 整个删除**（原 6 页 iframe 全屏模态）。`ModuleCanvas.tsx` 现只剩 `CanvasCard`。
+- 卡片封面 = `http://118.31.14.19/yitai` **实时 iframe 预览**；点击卡片 → `window.open` 跳 yitai（同 jihui 模式，不再开模态）。
+- `ProjectsGrid.tsx`：移除 `CanvasModal` import + `modalMap.canvas`；canvas 与 jihui 同走外链分支（无 openModal、无全屏观览按钮）。
+- yitai 主页是浅色，卡片标签加了仅底部渐变保证白字可读。同样只在 ECS(http) 同源成立。
+
+### build 变体 × 部署目标（务必配对，别搞混）
+| 目标 | 命令 | spline wasm 基址 |
+|---|---|---|
+| **ECS `/zuopinji/`（主力）** | `npm run build` | `/zuopinji/` 原生 |
+| Netlify 根路径 | `npm run build:netlify` | `/zuopinji/`（netlify.toml redirect） |
+| GitHub Pages | `npm run build:pages` | `/zuixin-zuopinji/`（脚本改写） |
+
+### 当前 ECS 状态（headless 验证）
+- 机器人：`spline-viewer` 已注册、wasm 200、零 page error。✅
+- 封面视频：4 个滚进视口全部 `paused=false` 实时播放。✅
+- **视觉亮度需真机确认**（本机无头只有 SwiftShader 软 GPU，颜色不可信）。
 
 ---
 
