@@ -1,3 +1,12 @@
+# ⚡ Claude 唤醒词
+
+> **「上线」** = 直接构建并部署到 Netlify，一步到位：
+> ```bash
+> cd /Users/mohe/Documents/zuixin-zuopinji/app && npm run build && netlify deploy --dir=dist && netlify api restoreSiteDeploy --data '{"site_id":"f7deb450-13ed-4061-a0ad-4851d5d29479","deploy_id":"<从输出获取>"}'
+> ```
+
+---
+
 # Handoff — 2026-07-10 (v3)
 
 
