@@ -1,0 +1,448 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>团队协作 - AetherWorkbench</title>
+<script src="./tailwind.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#004883",
+                        "primary-fixed": "#d4e3ff",
+                        "secondary-fixed": "#e2e2e8",
+                        "primary": "#005da7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#0060ac",
+                        "surface-bright": "#f9f9f9",
+                        "inverse-primary": "#a4c9ff",
+                        "primary-container": "#2976c7",
+                        "on-secondary-fixed-variant": "#45474b",
+                        "primary-fixed-dim": "#a4c9ff",
+                        "on-surface": "#1a1c1c",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#fdfcff",
+                        "surface-variant": "#e2e2e2",
+                        "outline": "#717783",
+                        "secondary-container": "#dfdfe5",
+                        "on-primary-fixed": "#001c39",
+                        "secondary": "#5d5e63",
+                        "surface-container-low": "#f3f3f4",
+                        "secondary-fixed-dim": "#c5c6cc",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#191c20",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c1c7d3",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#414751",
+                        "on-secondary-container": "#616267",
+                        "tertiary-fixed": "#dce3f0",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "inverse-on-surface": "#f0f1f1",
+                        "tertiary-fixed-dim": "#c0c7d3",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#404751",
+                        "on-background": "#1a1c1c",
+                        "surface-dim": "#dadada",
+                        "surface": "#f9f9f9",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-tertiary-fixed": "#151c25",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-container": "#eeeeee",
+                        "tertiary-container": "#6e7580",
+                        "tertiary": "#555c67"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "section-gap-lg": "160px",
+                        "section-gap-sm": "80px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "headline-xl-mobile": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-xl": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .particle-glow {
+            position: relative;
+        }
+        .particle-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+            border-right: 1px solid rgba(74, 144, 226, 0.1);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.03);
+        }
+        .cyber-input {
+            border: 1px solid #F9F9FF;
+            transition: all 0.3s ease;
+        }
+        .cyber-input:focus {
+            border-color: #4A90E2;
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+            outline: none;
+        }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-effect 0.6s linear;
+            background-color: rgba(74, 144, 226, 0.4);
+        }
+        @keyframes ripple-effect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        .pulse-border {
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(74, 144, 226, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(74, 144, 226, 0); }
+        }
+        
+        .status-ring-online {
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.4), inset 0 0 5px rgba(74, 144, 226, 0.2);
+            border: 2px solid #4A90E2;
+        }
+        .status-ring-offline {
+            box-shadow: 0 0 10px rgba(113, 119, 131, 0.1);
+            border: 2px solid #c1c7d3;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed relative">
+<!-- Ambient Background Glow -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-fixed opacity-30 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-tertiary-fixed opacity-20 blur-[150px] rounded-full"></div>
+</div>
+
+</div>
+<div class="flex items-center gap-4">
+<!-- Search placeholder on left per JSON, but putting it conceptually next to nav for layout balance -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px] group-hover:text-primary transition-colors">search</span>
+<input class="cyber-input bg-surface/50 rounded-full pl-10 pr-4 py-1.5 font-label-sm text-label-sm w-48 focus:w-64 transition-all duration-300" placeholder="搜索工作区..." type="text">
+</div>
+<button class="relative overflow-hidden bg-[#4A90E2] text-white px-4 py-1.5 rounded-DEFAULT font-label-sm text-label-sm hover:shadow-[0_0_15px_rgba(74,144,226,0.4)] transition-all duration-300 flex items-center gap-2 particle-btn shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]">
+                部署
+            </button>
+<div class="flex items-center gap-2 border-l border-outline-variant/30 pl-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:shadow-[0_0_15px_rgba(74,144,226,0.2)] rounded-full p-1"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:shadow-[0_0_15px_rgba(74,144,226,0.2)] rounded-full p-1"><span class="material-symbols-outlined" data-icon="settings">settings</span></button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant/30 cursor-pointer hover:border-primary transition-colors object-cover" data-alt="A close-up portrait of a professional individual in a well-lit, modern office environment. The lighting is soft and high-key, complementing the cyber-minimalist aesthetic of the UI. Subtle blue ambient light reflects softly on their features, ensuring visual cohesion with the overarching clean, tech-forward design palette." src="./images/gphoto_001_fc0c9fcd8ef5.jpg">
+</div>
+</div>
+</header>
+<!-- SideNavBar & Main Content Wrapper -->
+<div class="flex pt-16 min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/50 backdrop-blur-2xl border-r border-outline-variant/20 shadow-none flex flex-col p-4 gap-2 z-40 hidden md:flex">
+<div class="mb-6 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed/50 border border-primary/20 flex items-center justify-center particle-glow">
+<span class="material-symbols-outlined text-primary">hub</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary leading-none text-sm font-bold">Aether Engine</h2>
+<p class="font-label-sm text-[11px] text-on-surface-variant mt-1">活跃节点: 12</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<!-- "Workspace" might be closest to team management, but making it active as default fallback -->
+<a class="flex items-center gap-3 bg-primary-fixed/30 text-primary-fixed-variant rounded-lg p-3 shadow-[0_0_10px_rgba(74,144,226,0.1)] active:scale-95 font-label-sm text-label-sm" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+                    工作区
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant p-3 hover:bg-secondary-container/50 transition-all duration-200 rounded-lg active:scale-95 font-label-sm text-label-sm" href="#">
+<span class="material-symbols-outlined">auto_awesome_motion</span>
+                    库
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant p-3 hover:bg-secondary-container/50 transition-all duration-200 rounded-lg active:scale-95 font-label-sm text-label-sm" href="#">
+<span class="material-symbols-outlined">tune</span>
+                    变量
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant p-3 hover:bg-secondary-container/50 transition-all duration-200 rounded-lg active:scale-95 font-label-sm text-label-sm" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+                    模拟
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant p-3 hover:bg-secondary-container/50 transition-all duration-200 rounded-lg active:scale-95 font-label-sm text-label-sm" href="#">
+<span class="material-symbols-outlined">history</span>
+                    历史记录
+                </a>
+</nav>
+<button class="mt-4 mb-4 bg-transparent border border-primary/30 text-primary hover:bg-[#EBF2FF] px-4 py-2 rounded-DEFAULT font-label-sm text-label-sm transition-all duration-300 w-full flex items-center justify-center gap-2 particle-btn">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                新建分支
+            </button>
+<div class="mt-auto pt-4 border-t border-outline-variant/20 flex flex-col gap-1">
+<a class="flex items-center gap-3 text-on-surface-variant p-2 hover:bg-secondary-container/50 transition-all duration-200 rounded-lg font-label-sm text-[12px]" href="#">
+<span class="material-symbols-outlined text-[16px]">help</span>
+                    文档
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant p-2 hover:bg-secondary-container/50 transition-all duration-200 rounded-lg font-label-sm text-[12px]" href="#">
+<span class="material-symbols-outlined text-[16px]">contact_support</span>
+                    支持
+                </a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop w-full max-w-container-max mx-auto relative">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+<div class="particle-glow relative inline-block">
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-on-surface relative z-10 tracking-tight">团队管理</h1>
+<p class="font-body-md text-on-surface-variant mt-2 max-w-md relative z-10">协调您的 Aether Engine 节点并管理跨协作工作区的访问权限。</p>
+</div>
+<!-- Invite Section -->
+<div class="flex items-center gap-4 relative z-10 bg-surface/50 p-2 rounded-xl border border-outline-variant/20 backdrop-blur-md">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/50 text-[18px]">group_add</span>
+<input class="cyber-input bg-surface-container-lowest rounded-lg pl-10 pr-4 py-2 font-label-sm text-label-sm w-48 md:w-64" placeholder="电子邮件地址..." type="text">
+<!-- Abstract particle flow indicator -->
+<div class="absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary/20 shadow-[0_0_8px_rgba(74,144,226,0.6)] animate-pulse"></div>
+</div>
+<button class="pulse-border bg-[#4A90E2] text-white px-6 py-2 rounded-lg font-label-sm text-label-sm hover:shadow-[0_0_20px_rgba(74,144,226,0.5)] transition-all duration-300 particle-btn shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] relative overflow-hidden">
+                        邀请成员
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Member List Card -->
+<div class="lg:col-span-7 glass-card rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] rounded-full pointer-events-none"></div>
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">diversity_3</span>
+                            活跃成员
+                        </h3>
+<span class="bg-[#EBF2FF] text-[#4A90E2] px-3 py-1 rounded-full font-label-sm text-[11px] shadow-[0_0_10px_rgba(74,144,226,0.1)]">5 名成员</span>
+</div>
+<div class="space-y-2">
+<!-- Member Row 1 (Online) -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container/30 transition-colors border border-transparent hover:border-outline-variant/10 particle-btn cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Member" class="w-10 h-10 rounded-full object-cover status-ring-online" data-alt="A clean, minimalist portrait of a confident female professional. The background is a soft, blurred high-key white, matching the cyber-minimalist UI theme. Subtle cool blue tones accent the image, conveying a sense of advanced technology and serene precision." src="./images/gphoto_002_f75d8755226d.jpg">
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full shadow-[0_0_8px_rgba(74,144,226,0.5)]"></div>
+</div>
+<div>
+<p class="font-body-md font-medium text-on-surface">Elena Rostova</p>
+<p class="font-label-sm text-[11px] text-on-surface-variant">elena.r@aether.io</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<p class="font-label-sm text-[12px] text-primary hidden sm:block">当前活跃</p>
+<select class="cyber-input bg-surface-container-lowest/50 text-on-surface font-label-sm text-[12px] rounded border-outline-variant/30 py-1 pl-2 pr-8 appearance-none focus:ring-0 cursor-pointer">
+<option>管理员</option>
+<option>编辑者</option>
+<option>查看者</option>
+</select>
+</div>
+</div>
+<!-- Member Row 2 (Offline) -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container/30 transition-colors border border-transparent hover:border-outline-variant/10 particle-btn cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Member" class="w-10 h-10 rounded-full object-cover status-ring-offline filter grayscale-[20%]" data-alt="A sophisticated portrait of a male team member looking focused. The environment is bright and minimalist with soft light diffusion typical of glassmorphic aesthetics. Cool grays and crisp whites dominate the palette, reinforcing the high-end, calm innovation brand identity." src="./images/gphoto_003_9873f9530c0e.jpg">
+</div>
+<div>
+<p class="font-body-md font-medium text-on-surface text-on-surface/80">Marcus Chen</p>
+<p class="font-label-sm text-[11px] text-on-surface-variant">m.chen@aether.io</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<p class="font-label-sm text-[12px] text-on-surface-variant hidden sm:block">2小时前</p>
+<select class="cyber-input bg-surface-container-lowest/50 text-on-surface font-label-sm text-[12px] rounded border-outline-variant/30 py-1 pl-2 pr-8 appearance-none focus:ring-0 cursor-pointer">
+<option>编辑者</option>
+<option>管理员</option>
+<option>查看者</option>
+</select>
+</div>
+</div>
+<!-- Member Row 3 (Online) -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container/30 transition-colors border border-transparent hover:border-outline-variant/10 particle-btn cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Member" class="w-10 h-10 rounded-full object-cover status-ring-online" data-alt="Portrait of a female creative director in a bright, modern studio. The lighting is pristine and diffused, casting gentle highlights that match the ethereal cyber-minimalist design. The overall color grading leans towards light grays and subtle blues, evoking a sense of clean, high-tech reliability." src="./images/gphoto_004_67857cffbe39.jpg">
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full shadow-[0_0_8px_rgba(74,144,226,0.5)]"></div>
+</div>
+<div>
+<p class="font-body-md font-medium text-on-surface">Sarah Jenkins</p>
+<p class="font-label-sm text-[11px] text-on-surface-variant">s.jenkins@aether.io</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<p class="font-label-sm text-[12px] text-primary hidden sm:block">当前活跃</p>
+<select class="cyber-input bg-surface-container-lowest/50 text-on-surface font-label-sm text-[12px] rounded border-outline-variant/30 py-1 pl-2 pr-8 appearance-none focus:ring-0 cursor-pointer">
+<option>查看者</option>
+<option>编辑者</option>
+<option>管理员</option>
+</select>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex justify-center">
+<button class="font-label-sm text-label-sm text-primary flex items-center gap-1 hover:text-primary-container transition-colors group">
+                            查看所有成员 
+                            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Shared Projects Grid -->
+<div class="lg:col-span-5 space-y-6">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-outline">dashboard_customize</span>
+                        活跃画布会话
+                    </h3>
+<div class="grid grid-cols-1 gap-4">
+<!-- Project Card 1 -->
+<div class="glass-card rounded-xl p-4 group cursor-pointer relative overflow-hidden particle-btn">
+<!-- Subtle hover glow -->
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<div class="h-24 bg-surface-container-low rounded-lg mb-4 relative overflow-hidden border border-outline-variant/20">
+<!-- Abstract canvas representation -->
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#4A90E2 1px, transparent 1px); background-size: 10px 10px;"></div>
+<div class="absolute top-4 left-4 w-16 h-8 bg-surface-container-lowest rounded shadow-sm border border-outline-variant/30"></div>
+<div class="absolute top-6 left-24 w-20 h-12 bg-primary/10 rounded border border-primary/30"></div>
+<!-- Floating Avatars -->
+<div class="absolute top-8 left-12 w-6 h-6 rounded-full border border-white shadow-sm overflow-hidden z-10 animate-[bounce_3s_infinite]">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="Tiny avatar portrait of a person, matching the high-key white and cool blue ethereal visual style of the application." src="./images/gphoto_005_0eda93b656c1.jpg">
+</div>
+<div class="absolute top-10 left-32 w-6 h-6 rounded-full border border-white shadow-sm overflow-hidden z-10 animate-[bounce_4s_infinite_0.5s]">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="Tiny avatar portrait of another person, maintaining the consistent minimalist, bright studio lighting aesthetic." src="./images/gphoto_006_ca477292482d.jpg">
+</div>
+</div>
+<div class="flex justify-between items-end relative z-10">
+<div>
+<h4 class="font-body-md font-medium text-on-surface group-hover:text-primary transition-colors">神经网络可视化</h4>
+<p class="font-label-sm text-[11px] text-on-surface-variant">5分钟前更新</p>
+</div>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center font-label-sm text-[10px] border border-white z-20">+2</div>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="glass-card rounded-xl p-4 group cursor-pointer relative overflow-hidden particle-btn">
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<div class="h-24 bg-surface-container-low rounded-lg mb-4 relative overflow-hidden border border-outline-variant/20">
+<div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#717783 1px, transparent 1px), linear-gradient(90deg, #717783 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="absolute bottom-4 right-4 w-24 h-16 bg-surface-container-lowest rounded shadow-sm border border-outline-variant/30"></div>
+</div>
+<div class="flex justify-between items-end relative z-10">
+<div>
+<h4 class="font-body-md font-medium text-on-surface group-hover:text-primary transition-colors">核心 API 架构</h4>
+<p class="font-label-sm text-[11px] text-on-surface-variant">1小时前更新</p>
+</div>
+<div class="flex -space-x-2">
+<img alt="Avatar" class="w-6 h-6 rounded-full border border-white relative z-10 object-cover" data-alt="Small circular avatar of a male user, designed with light airy tones to fit the minimal interface." src="./images/gphoto_007_0ccfccdef7dc.jpg">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+
+<!-- Interaction Script for Particle Ripples -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.particle-btn');
+            
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    
+                    // Size is based on the larger dimension to ensure full coverage
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${x - size/2}px`;
+                    ripple.style.top = `${y - size/2}px`;
+                    
+                    // If button has overflow hidden, great. If not, add relative temporarily if needed, 
+                    // but most defined classes above manage this or we just let it overflow for a cool effect.
+                    if(getComputedStyle(this).position === 'static') {
+                        this.style.position = 'relative';
+                        this.style.overflow = 'hidden';
+                    }
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+    </script>
+
+
+
+
+</body></html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html><html class="light" lang="zh" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>以太画布 | 无限画布</title>
+<script src="./tailwind.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        
+        /* Particle Ripple & Glow Effects */
+        .particle-ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .particle-ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(74, 144, 226, 0.4);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        .particle-ripple:hover::after {
+            animation: ripple 1s ease-out;
+        }
+        @keyframes ripple {
+            0% { transform: scale(0, 0); opacity: 0.5; }
+            100% { transform: scale(40, 40); opacity: 0; }
+        }
+
+        .particle-border-glow:hover {
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.15);
+            border-color: rgba(74, 144, 226, 0.3);
+        }
+
+        .node-active {
+            box-shadow: 0 0 20px rgba(0, 93, 167, 0.2);
+            border: 1px solid #005da7 !important;
+        }
+
+        /* Infinite Grid Pattern */
+        .infinite-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 93, 167, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 93, 167, 0.05) 1px, transparent 1px);
+        }
+        .infinite-grid-fine {
+            background-size: 10px 10px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 93, 167, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 93, 167, 0.03) 1px, transparent 1px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 93, 167, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 93, 167, 0.3); }
+
+        /* Property Panel Dissipation Animation */
+        .panel-enter { transform: translateX(100%); opacity: 0; }
+        .panel-active { transform: translateX(0); opacity: 1; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        /* Flowing particle animation for edges */
+        @keyframes flow {
+            from { stroke-dashoffset: 20; }
+            to { stroke-dashoffset: 0; }
+        }
+        .flow-line {
+            stroke-dasharray: 4, 4;
+            animation: flow 1s linear infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "inverse-primary": "#a4c9ff",
+                "on-primary": "#ffffff",
+                "on-surface-variant": "#414751",
+                "primary-container": "#2976c7",
+                "outline": "#717783",
+                "primary": "#005da7",
+                "surface": "#f9f9ff",
+                "on-surface": "#101c2c",
+                "outline-variant": "#c1c7d3",
+                "surface-container-low": "#eff3ff",
+                "surface-container": "#e6eeff",
+                "surface-container-high": "#dde9ff",
+                "surface-dim": "#cfdbf1",
+              },
+              "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+              "spacing": { "base": "4px", "xs": "8px", "sm": "12px", "lg": "32px", "gutter": "24px", "md": "20px", "xl": "48px" },
+              "fontFamily": { "headline-md": ["Geist"], "body-base": ["Geist"], "label-mono": ["JetBrains Mono"] },
+              "fontSize": {
+                "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                "body-base": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-base overflow-hidden h-screen select-none">
+
+</div>
+<div class="flex items-center gap-md">
+<!-- AI Task Queue -->
+<div class="flex items-center gap-xs px-sm py-1.5 rounded-full bg-surface-container-high/50 border border-outline-variant/10 group cursor-help">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-error"></span>
+</span>
+<span class="text-label-mono text-caption uppercase opacity-70">AI 合成中...</span>
+</div>
+<!-- Collaboration Area -->
+<div class="flex -space-x-2">
+<div class="relative group cursor-pointer">
+<div class="absolute inset-0 rounded-full border-2 border-primary/30 animate-spin-slow group-hover:border-primary"></div>
+<img class="w-8 h-8 rounded-full border-2 border-surface" data-alt="Close-up portrait of a digital artist user avatar with glowing neon blue highlights and a clean studio lighting aesthetic." src="./images/gphoto_008_0512014d45e6.jpg">
+</div>
+<div class="relative group cursor-pointer">
+<img class="w-8 h-8 rounded-full border-2 border-surface" data-alt="Sleek modern user avatar profile photo of a creative designer with soft ambient laboratory lighting and high-tech digital elements." src="./images/gphoto_009_a341cc7a7f07.jpg">
+</div>
+</div>
+<button class="bg-primary text-on-primary px-md py-xs rounded-lg font-medium hover:shadow-[0_0_15px_rgba(0,93,167,0.3)] transition-all active:scale-95">
+                部署
+            </button>
+<div class="flex gap-sm border-l border-outline-variant/20 ml-xs pl-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-all" onclick="togglePropertyPanel()">settings</span>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-16 bottom-8 w-64 z-40 flex flex-col bg-surface-container-low/80 backdrop-blur-xl border-r border-outline-variant/10">
+<div class="p-gutter space-y-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-on-surface font-bold text-body-base">项目 Alpha</h2>
+<p class="text-xs opacity-50 font-label-mono">无限画布</p>
+</div>
+<button class="p-1 rounded-full hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-sm px-sm py-2 rounded text-primary bg-primary-container/10 border-r-2 border-primary cursor-pointer transition-all">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="text-body-base font-medium">节点</span>
+</div>
+<div class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high cursor-pointer transition-all">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="text-body-base">资产库</span>
+</div>
+<div class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high cursor-pointer transition-all">
+<span class="material-symbols-outlined">dashboard_customize</span>
+<span class="text-body-base">模板</span>
+</div>
+<div class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high cursor-pointer transition-all">
+<span class="material-symbols-outlined">layers</span>
+<span class="text-body-base">图层</span>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-gutter space-y-sm py-xs">
+<p class="text-[10px] font-label-mono text-outline uppercase tracking-widest px-xs">最近资产</p>
+<!-- Asset Cards -->
+<div class="space-y-sm">
+<div class="group relative bg-white/40 p-2 rounded-xl border border-transparent hover:border-primary/20 hover:shadow-lg transition-all cursor-grab active:cursor-grabbing particle-border-glow">
+<img class="w-full h-24 object-cover rounded-lg mb-2 opacity-80 group-hover:opacity-100 transition-opacity" data-alt="High-resolution digital 3D model of a complex crystalline structure with internal glowing blue light and microscopic details." src="./images/gphoto_010_b841e4d269c0.jpg">
+<p class="text-xs font-medium">Core_Engine_v2.obj</p>
+</div>
+<div class="group relative bg-white/40 p-2 rounded-xl border border-transparent hover:border-primary/20 hover:shadow-lg transition-all cursor-grab active:cursor-grabbing particle-border-glow">
+<img class="w-full h-24 object-cover rounded-lg mb-2 opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Macro view of a futuristic circuit board with glowing cyan data tracks and integrated microchips in a high-tech lab setting." src="./images/gphoto_011_28c6fa50ca9f.jpg">
+<p class="text-xs font-medium">Logic_Array_01.sys</p>
+</div>
+</div>
+</div>
+<div class="p-sm flex gap-sm border-t border-outline-variant/10">
+<button class="flex-1 py-1.5 rounded bg-surface-container-high hover:bg-surface-container-highest transition-all flex items-center justify-center gap-xs text-xs font-label-mono">
+<span class="material-symbols-outlined text-sm">help</span> 帮助
+            </button>
+<button class="flex-1 py-1.5 rounded bg-surface-container-high hover:bg-surface-container-highest transition-all flex items-center justify-center gap-xs text-xs font-label-mono">
+<span class="material-symbols-outlined text-sm">terminal</span> 控制台
+            </button>
+</div>
+</aside>
+<!-- Infinite Canvas -->
+<main class="fixed inset-0 pt-16 pl-64 pb-8 infinite-grid overflow-hidden transition-all duration-300 pr-80" id="canvas">
+<!-- Rulers -->
+<div class="absolute top-16 left-64 w-full h-6 bg-surface/80 border-b border-outline-variant/20 z-10 flex items-center overflow-hidden">
+<div class="flex gap-xl px-md text-[10px] font-label-mono text-outline select-none">
+<span class="">0</span><span class="">200</span><span class="">400</span><span class="">600</span><span class="">800</span><span class="">1000</span><span class="">1200</span><span class="">1400</span><span class="">1600</span>
+</div>
+</div>
+<div class="absolute top-16 left-64 w-6 h-full bg-surface/80 border-r border-outline-variant/20 z-10 flex flex-col items-center py-xl overflow-hidden">
+<div class="flex flex-col gap-xl text-[10px] font-label-mono text-outline select-none">
+<span class="">0</span><span class="">200</span><span class="">400</span><span class="">600</span><span class="">800</span><span class="">1000</span><span class="">1200</span>
+</div>
+</div>
+<!-- Node Layer (Sample Nodes) -->
+<div class="relative w-full h-full p-24">
+<!-- Node 1 -->
+<div class="absolute top-48 left-48 w-64 p-sm bg-white/80 backdrop-blur-xl rounded-xl border border-outline-variant/20 shadow-lg cursor-move node-active particle-border-glow">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-xs font-label-mono text-primary bg-primary/10 px-xs py-0.5 rounded">起始节点</span>
+<span class="material-symbols-outlined text-sm text-outline">more_vert</span>
+</div>
+<h3 class="font-bold text-body-base mb-xs">系统初始化</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">初始化核心内核并为主要工作线程映射内存分配。</p>
+<div class="mt-md pt-xs border-t border-outline-variant/10 flex justify-between">
+<span class="text-[10px] font-label-mono opacity-50">#4A90E2</span>
+<span class="material-symbols-outlined text-sm text-primary">play_arrow</span>
+</div>
+<!-- Left Connection Port -->
+<div class="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-white rounded-full border border-primary/30 shadow-[0_0_10px_rgba(74,144,226,0.3)] flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined text-primary text-sm font-bold">add</span>
+</div>
+<!-- Right Connection Port -->
+<div class="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-white rounded-full border border-primary/30 shadow-[0_0_10px_rgba(74,144,226,0.3)] flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined text-primary text-sm font-bold">add</span>
+</div></div>
+<!-- Node 2 -->
+<div class="absolute top-96 left-[400px] w-64 p-sm bg-white/60 backdrop-blur-lg rounded-xl border border-outline-variant/20 shadow-md cursor-move particle-border-glow">
+<div class="flex justify-between items-start mb-sm">
+<span class="text-xs font-label-mono text-on-surface-variant bg-surface-container-high px-xs py-0.5 rounded">处理</span>
+<span class="material-symbols-outlined text-sm text-outline">more_vert</span>
+</div>
+<h3 class="font-bold text-body-base mb-xs">数据验证</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">清理传入的流缓冲区并执行完整性检查。</p>
+<div class="mt-md pt-xs border-t border-outline-variant/10 flex justify-between">
+<span class="text-[10px] font-label-mono opacity-50">#8EEDFF</span>
+<span class="material-symbols-outlined text-sm opacity-30">pending</span>
+</div>
+<!-- Left Connection Port -->
+<div class="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-white rounded-full border border-primary/30 shadow-[0_0_10px_rgba(74,144,226,0.3)] flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined text-primary text-sm font-bold">add</span>
+</div>
+<!-- Right Connection Port -->
+<div class="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-white rounded-full border border-primary/30 shadow-[0_0_10px_rgba(74,144,226,0.3)] flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined text-primary text-sm font-bold">add</span>
+</div></div>
+<!-- SVG Connecting Lines -->
+<svg class="absolute inset-0 pointer-events-none w-full h-full">
+<path class="flow-line" d="M 304 240 Q 350 240, 350 430 T 400 430" fill="none" opacity="0.6" stroke="#005da7" stroke-width="2"></path>
+<circle cx="304" cy="240" fill="#005da7" r="4"></circle>
+<circle cx="400" cy="430" fill="#005da7" r="4"></circle>
+</svg>
+</div>
+<!-- Minimap & Zoom Controls -->
+<div class="fixed bottom-12 right-gutter flex flex-col items-end gap-sm">
+<!-- Minimap -->
+<div class="w-48 h-32 bg-surface/60 backdrop-blur-xl rounded-xl border border-outline-variant/20 shadow-xl overflow-hidden relative group">
+<div class="absolute inset-0 infinite-grid opacity-20"></div>
+<div class="absolute top-8 left-8 w-12 h-10 bg-primary/20 border border-primary/40 rounded"></div>
+<div class="absolute top-20 left-24 w-12 h-10 bg-on-surface/5 border border-on-surface/10 rounded"></div>
+<!-- Viewport Indicator -->
+<div class="absolute top-2 left-4 w-24 h-16 border-2 border-primary shadow-[0_0_10px_rgba(0,93,167,0.3)]"></div>
+</div>
+<div class="flex bg-surface/80 backdrop-blur-xl p-1 rounded-full border border-outline-variant/20 shadow-lg">
+<button class="p-2 hover:bg-primary-container/10 rounded-full transition-colors"><span class="material-symbols-outlined">remove</span></button>
+<div class="px-sm py-2 text-xs font-label-mono self-center">100%</div>
+<button class="p-2 hover:bg-primary-container/10 rounded-full transition-colors"><span class="material-symbols-outlined">add</span></button>
+</div>
+</div>
+</main>
+<!-- Property Panel (Right) -->
+<aside class="fixed right-0 top-16 bottom-8 w-80 z-40 flex flex-col bg-white/60 backdrop-blur-xl border-l border-outline-variant/10 shadow-xl" id="ai-agent-sidebar">
+<div class="p-gutter flex flex-col h-full">
+<!-- Header -->
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary animate-pulse">smart_toy</span>
+</div>
+<h2 class="text-body-base font-bold tracking-tight">AI 执行导演</h2>
+</div>
+<!-- Chat History -->
+<div class="flex-1 overflow-y-auto space-y-md pr-2">
+<!-- AI Message -->
+<div class="flex flex-col items-start gap-xs">
+<div class="bg-surface-container-high/80 backdrop-blur-md p-sm rounded-xl rounded-tl-none border border-outline-variant/10 max-w-[90%]">
+<p class="text-xs leading-relaxed">已检测到系统初始化节点。需要我自动连接数据验证模块吗？</p>
+</div>
+<span class="text-[10px] font-label-mono opacity-40 ml-1">14:20</span>
+</div>
+<!-- User Message -->
+<div class="flex flex-col items-end gap-xs">
+<div class="bg-primary text-on-primary p-sm rounded-xl rounded-tr-none shadow-md max-w-[90%]">
+<p class="text-xs leading-relaxed">好的，请建立连接。</p>
+</div>
+<span class="text-[10px] font-label-mono opacity-40 mr-1">14:21</span>
+</div>
+</div>
+<!-- Input Bar -->
+<div class="mt-lg relative">
+<div class="absolute -top-[1px] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+<div class="relative flex items-center bg-surface-container-low/80 backdrop-blur-md border border-outline-variant/20 rounded-lg p-1 focus-within:border-primary/40 transition-all">
+<input class="flex-1 bg-transparent border-0 focus:ring-0 text-xs px-sm py-2" placeholder="输入指令..." type="text">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-md transition-colors">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</aside><aside class="fixed right-0 top-16 bottom-8 w-80 z-40 bg-white/70 backdrop-blur-2xl border-l border-outline-variant/10 shadow-2xl transition-transform duration-500 transform translate-x-full" id="property-panel">
+<div class="p-gutter h-full flex flex-col">
+<div class="flex items-center justify-between mb-xl">
+<h2 class="text-headline-md font-bold">属性</h2>
+<span class="material-symbols-outlined cursor-pointer hover:rotate-90 transition-all duration-300" onclick="togglePropertyPanel()">close</span>
+</div>
+<div class="space-y-lg flex-1">
+<div class="space-y-xs">
+<label class="text-[10px] font-label-mono text-outline uppercase">节点名称</label>
+<input class="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 px-0 py-2 focus:ring-0 focus:border-primary transition-all font-medium" type="text" value="系统初始化">
+</div>
+<div class="space-y-xs">
+<label class="text-[10px] font-label-mono text-outline uppercase">逻辑配置</label>
+<select class="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 px-0 py-2 focus:ring-0 focus:border-primary transition-all">
+<option>顺序执行</option>
+<option>并行处理</option>
+<option>异步回调</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="text-[10px] font-label-mono text-outline uppercase">强度</label>
+<div class="flex items-center gap-md">
+<input class="flex-1 accent-primary" type="range">
+<span class="text-xs font-label-mono">85%</span>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="text-[10px] font-label-mono text-outline uppercase">流光渐变</label>
+<div class="grid grid-cols-4 gap-xs">
+<div class="aspect-square rounded-lg bg-primary ring-2 ring-primary ring-offset-2"></div>
+<div class="aspect-square rounded-lg bg-cyan-400"></div>
+<div class="aspect-square rounded-lg bg-indigo-500"></div>
+<div class="aspect-square rounded-lg bg-purple-500"></div>
+</div>
+</div>
+</div>
+<div class="space-y-sm">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-bold particle-ripple flex items-center justify-center gap-xs">
+                    更新节点 <span class="material-symbols-outlined text-sm">auto_fix_high</span>
+</button>
+<button class="w-full py-3 border border-outline-variant/20 text-on-surface-variant rounded-xl font-medium hover:bg-surface-container transition-colors">
+                    重置默认
+                </button>
+</div>
+</div>
+</aside>
+<!-- Footer -->
+
+<!-- Feedback UI (Toasts) -->
+<div class="fixed bottom-12 left-gutter z-[100] flex flex-col gap-sm">
+<div class="flex items-center gap-sm bg-inverse-surface text-inverse-on-surface px-md py-xs rounded-lg shadow-2xl animate-bounce-in transition-all duration-500 opacity-0 translate-y-4" id="toast">
+<span class="material-symbols-outlined text-primary-fixed-dim text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-xs font-medium">节点配置已保存。</span>
+</div>
+</div>
+<!-- Script for micro-interactions -->
+<script>
+        function togglePropertyPanel() {
+            const panel = document.getElementById('property-panel');
+            const canvas = document.getElementById('canvas');
+            if (panel.classList.contains('translate-x-full')) {
+                panel.classList.remove('translate-x-full');
+                canvas.classList.add('pr-80');
+            } else {
+                panel.classList.add('translate-x-full');
+                canvas.classList.remove('pr-80');
+            }
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            document.getElementById('mouse-x').innerText = e.clientX;
+            document.getElementById('mouse-y').innerText = e.clientY;
+        });
+
+        // Toggle grid granularity
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'g' || e.key === 'G') {
+                const canvas = document.getElementById('canvas');
+                canvas.classList.toggle('infinite-grid-fine');
+            }
+        });
+
+        // Trigger toast demo
+        setTimeout(() => {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+            }, 3000);
+        }, 2000);
+    </script>
+
+
+
+
+
+
+</body></html>

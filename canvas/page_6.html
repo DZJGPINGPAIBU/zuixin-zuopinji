@@ -1,0 +1,767 @@
+<!DOCTYPE html><html class="light" lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AetherWorkbench - 重新定义分镜创作</title>
+<script src="./tailwind.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e2e2e2",
+                      "outline": "#717783",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#fdfcff",
+                      "secondary": "#5d5e63",
+                      "secondary-container": "#dfdfe5",
+                      "on-primary-fixed": "#001c39",
+                      "primary-container": "#2976c7",
+                      "on-surface": "#1a1c1c",
+                      "primary-fixed-dim": "#a4c9ff",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#45474b",
+                      "surface-tint": "#0060ac",
+                      "surface-bright": "#f9f9f9",
+                      "inverse-primary": "#a4c9ff",
+                      "primary": "#005da7",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed-variant": "#004883",
+                      "primary-fixed": "#d4e3ff",
+                      "secondary-fixed": "#e2e2e8",
+                      "on-tertiary-fixed": "#151c25",
+                      "on-tertiary-container": "#fdfcff",
+                      "tertiary-container": "#6e7580",
+                      "tertiary": "#555c67",
+                      "surface-container-high": "#e8e8e8",
+                      "surface-container": "#eeeeee",
+                      "on-tertiary-fixed-variant": "#404751",
+                      "background": "#f9f9f9",
+                      "surface": "#f9f9f9",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-background": "#1a1c1c",
+                      "surface-dim": "#dadada",
+                      "on-secondary-container": "#616267",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#dce3f0",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#c0c7d3",
+                      "inverse-surface": "#2f3131",
+                      "inverse-on-surface": "#f0f1f1",
+                      "outline-variant": "#c1c7d3",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f3f3f4",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#c5c6cc",
+                      "on-secondary-fixed": "#191c20",
+                      "on-surface-variant": "#414751"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "margin-mobile": "24px",
+                      "margin-desktop": "64px",
+                      "gutter": "32px",
+                      "section-gap-sm": "80px",
+                      "unit": "8px",
+                      "section-gap-lg": "160px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "headline-xl-mobile": ["Geist"],
+                      "label-sm": ["JetBrains Mono"],
+                      "headline-xl": ["Geist"],
+                      "display-lg-mobile": ["Geist"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500"}],
+                      "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "headline-xl-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-sm": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+            border-right: 1px solid rgba(74, 144, 226, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+        }
+
+        .particle-glow {
+            position: relative;
+        }
+        .particle-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(0,93,167,0.08) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .btn-primary {
+            background-color: theme('colors.primary');
+            color: theme('colors.on-primary');
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 93, 167, 0.2);
+        }
+
+        .btn-ghost {
+            border: 1px solid rgba(0, 93, 167, 0.3);
+            color: theme('colors.primary');
+            transition: all 0.3s ease;
+        }
+        .btn-ghost:hover {
+            background-color: #EBF2FF;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(0, 93, 167, 0.2);
+        }
+
+        /* Abstract dynamic background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(0, 93, 167, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 93, 167, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            perspective: 1000px;
+        }
+        
+        .bg-gradient-sphere {
+            position: fixed;
+            top: -20%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,93,167,0.05) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        .chip {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #EBF2FF;
+            color: theme('colors.primary');
+        }
+
+        .nav-item {
+            position: relative;
+        }
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: theme('colors.primary');
+            box-shadow: 0 0 8px rgba(0, 93, 167, 0.4);
+        }
+
+        .floating-hero-img {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotateX(10deg) rotateY(-15deg); }
+            50% { transform: translateY(-20px) rotateX(12deg) rotateY(-12deg); }
+            100% { transform: translateY(0px) rotateX(10deg) rotateY(-15deg); }
+        }
+    </style>
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.157.0/build/three.module.js"}}
+</script>
+</head>
+<body class="antialiased font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Ambient Background -->
+<div class="bg-grid"></div>
+<div class="bg-gradient-sphere"></div>
+
+<main>
+<!-- Hero Section -->
+<section class="relative pt-section-gap-sm pb-section-gap-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<!-- Left: Content -->
+<div class="space-y-8 z-10 particle-glow">
+<div class="inline-flex items-center gap-2 chip px-3 py-1 rounded-full text-label-sm font-label-sm mb-4">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        Aether Engine v2.0
+                    </div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface tracking-tight text-glow">
+                        用 AI 重新定义<br>分镜创作
+                    </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl">极简、高效、智能的赛博无限画布工作台。将杂乱的想法转化为结构化的视觉叙事，释放无界创意。</p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="btn-primary font-label-sm text-label-sm px-8 py-4 rounded-lg flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,93,167,0.3)]">
+                            立即开始创作
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+<button class="btn-ghost font-label-sm text-label-sm px-8 py-4 rounded-lg flex items-center justify-center gap-2 bg-surface/50 backdrop-blur-md">
+                            观看演示
+                            <span class="material-symbols-outlined">play_circle</span>
+</button>
+</div>
+</div>
+<!-- Right: 3D Preview -->
+<div class="relative h-[500px] lg:h-[600px] hidden md:block perspective-[1200px]">
+<div class="absolute inset-0 flex items-center justify-center floating-hero-img">
+<div class="w-[120%] h-[120%] absolute top-[-10%] left-[-10%] bg-radial-gradient from-primary/10 to-transparent blur-2xl z-0"></div>
+<div class="glass-panel w-full h-full rounded-xl overflow-hidden shadow-2xl border border-white/40 transform-gpu z-10 relative">
+<!-- Mockup Header -->
+<div class="h-10 border-b border-surface-variant flex items-center px-4 gap-2 bg-surface-container-lowest/50">
+<div class="w-3 h-3 rounded-full bg-outline-variant"></div>
+<div class="w-3 h-3 rounded-full bg-outline-variant"></div>
+<div class="w-3 h-3 rounded-full bg-outline-variant"></div>
+</div>
+<!-- Mockup Body (Placeholder for Canvas) -->
+<div class="p-6 h-full flex flex-col gap-4 bg-surface-container-lowest/30"><div class="flex flex-col gap-6 h-full">
+<div class="relative group overflow-hidden rounded-lg shadow-lg border border-primary/10">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-300"></div>
+<img alt="AI Storyboard Interface" class="w-full h-48 object-cover rounded-lg shadow-[0_0_15px_rgba(0,93,167,0.1)]" src="./images/gphoto_000_f9eec2d6b628.jpg">
+</div>
+<div class="space-y-2">
+<h4 class="font-headline-md text-headline-md text-[#333333] tracking-tight">智能分镜解析</h4>
+<p class="font-body-md text-body-md text-[#666666] leading-relaxed">加入上万名先锋创作者的行列，利用 以太画布 将脑海中的画面转化为现实。</p>
+</div>
+<ul class="mt-4 space-y-3">
+<li class="flex items-center gap-3 p-2 rounded-lg bg-primary/5 backdrop-blur-md border border-white/40">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(0,93,167,0.4)]"></span>
+<span class="font-body-md text-sm text-[#333333]">剧本语义识别：多维理解复杂剧情逻辑</span>
+</li>
+<li class="flex items-center gap-3 p-2 rounded-lg bg-primary/5 backdrop-blur-md border border-white/40">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(0,93,167,0.4)]"></span>
+<span class="font-body-md text-sm text-[#333333]">镜头资产匹配：自动关联素材库最优资源</span>
+</li>
+<li class="flex items-center gap-3 p-2 rounded-lg bg-primary/5 backdrop-blur-md border border-white/40">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(0,93,167,0.4)]"></span>
+<span class="font-body-md text-sm text-[#333333]">实时动态预演：毫秒级生成流畅预览视频</span>
+</li>
+</ul>
+<div class="mt-auto flex gap-2">
+<div class="h-1 w-12 bg-primary rounded-full"></div>
+<div class="h-1 w-4 bg-outline-variant/30 rounded-full"></div>
+<div class="h-1 w-4 bg-outline-variant/30 rounded-full"></div>
+</div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-section-gap-sm px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16 particle-glow">
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface mb-4">核心功能</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">构建于下一代 AI 引擎之上，为专业创作者打造的沉浸式工作流。</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="glass-panel p-8 rounded-xl hover:shadow-[0_10px_30px_rgba(0,93,167,0.08)] transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-[#EBF2FF] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">AI 批量生成分镜</h3>
+<p class="font-body-md text-body-md text-secondary">输入剧本即可自动解析并生成连贯的画面草图，极大提升前期策划效率。</p>
+</div>
+<!-- Feature 2 -->
+<div class="glass-panel p-8 rounded-xl hover:shadow-[0_10px_30px_rgba(0,93,167,0.08)] transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-[#EBF2FF] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">pan_tool</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">无限画布编辑</h3>
+<p class="font-body-md text-body-md text-secondary">无拘无束的创作空间，支持自由拖拽、缩放，以最直观的方式组织叙事逻辑。</p>
+</div>
+<!-- Feature 3 -->
+<div class="glass-panel p-8 rounded-xl hover:shadow-[0_10px_30px_rgba(0,93,167,0.08)] transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-[#EBF2FF] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">group</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">实时多人协作</h3>
+<p class="font-body-md text-body-md text-secondary">导演、摄影、美术同频共振，毫秒级同步，告别繁琐的文件版本管理。</p>
+</div>
+<!-- Feature 4 -->
+<div class="glass-panel p-8 rounded-xl hover:shadow-[0_10px_30px_rgba(0,93,167,0.08)] transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-[#EBF2FF] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">一键导出 PDF</h3>
+<p class="font-body-md text-body-md text-secondary">自动生成符合工业标准的拍摄执行文档，含机位、焦段、动作指导等元数据。</p>
+</div>
+<!-- Feature 5 -->
+<div class="glass-panel p-8 rounded-xl hover:shadow-[0_10px_30px_rgba(0,93,167,0.08)] transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-[#EBF2FF] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">视频生成预览</h3>
+<p class="font-body-md text-body-md text-secondary">将静态分镜转化为动态视频预览，支持导入音频预演节奏，提前感知最终效果。</p>
+</div>
+<!-- Feature 6 -->
+<div class="glass-panel p-8 rounded-xl hover:shadow-[0_10px_30px_rgba(0,93,167,0.08)] transition-all duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-[#EBF2FF] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">document_scanner</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">剧本智能解析</h3>
+<p class="font-body-md text-body-md text-secondary">深度理解文本语义，自动提取场景、角色、道具，并推荐相应的视觉参考。</p>
+</div>
+</div>
+</section><section class="py-section-gap-sm px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12 particle-glow">
+<div>
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface mb-2">优秀分镜案例</h2>
+<p class="font-body-md text-body-md text-secondary">探索全球顶尖创作者使用 以太画布 打造的视觉杰作。</p>
+</div>
+<a class="text-primary font-label-sm text-label-sm flex items-center gap-1 hover:gap-2 transition-all" href="#">
+            探索更多 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Case 1 -->
+<div class="glass-panel rounded-lg overflow-hidden group hover:shadow-[0_0_30px_rgba(0,93,167,0.15)] transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<canvas id="c3d-case1" class="w-full h-full object-cover" style="width:100%;height:100%"></canvas>
+<div class="absolute top-3 right-3 flex gap-2">
+<span class="chip px-2 py-0.5 rounded text-[10px] uppercase">3D 渲染</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-lg text-on-surface mb-4">赛博都市 01 - 动态追踪</h4>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-primary">person</span>
+</div>
+<span class="text-xs text-secondary">Aether_Artist</span>
+</div>
+<div class="flex gap-1">
+<span class="text-[10px] text-primary font-medium">AI 辅助</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Case 2 -->
+<div class="glass-panel rounded-lg overflow-hidden group hover:shadow-[0_0_30px_rgba(0,93,167,0.15)] transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<canvas id="c3d-case2" class="w-full h-full object-cover" style="width:100%;height:100%"></canvas>
+<div class="absolute top-3 right-3 flex gap-2">
+<span class="chip px-2 py-0.5 rounded text-[10px] uppercase">4K</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-lg text-on-surface mb-4">核心引擎启动 - 节点逻辑</h4>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-primary">person</span>
+</div>
+<span class="text-xs text-secondary">Tech_Director</span>
+</div>
+<div class="flex gap-1">
+<span class="text-[10px] text-primary font-medium">节点流</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Case 3 -->
+<div class="glass-panel rounded-lg overflow-hidden group hover:shadow-[0_0_30px_rgba(0,93,167,0.15)] transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<canvas id="c3d-case3" class="w-full h-full object-cover" style="width:100%;height:100%"></canvas>
+<div class="absolute top-3 right-3 flex gap-2">
+<span class="chip px-2 py-0.5 rounded text-[10px] uppercase">概念设计</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-lg text-on-surface mb-4">神经元网络 - 视觉叙事</h4>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-primary">person</span>
+</div>
+<span class="text-xs text-secondary">Visual_Lab</span>
+</div>
+<div class="flex gap-1">
+<span class="text-[10px] text-primary font-medium">4K 导出</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="py-section-gap-sm px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface mb-4">选择适合您的方案</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">透明定价，随需扩展，助力每一个好故事的诞生。</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+<!-- Basic -->
+<div class="glass-panel p-8 rounded-xl flex flex-col h-[500px]">
+<div class="mb-8">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">基础版</h3>
+<p class="font-body-md text-body-md text-secondary">适合独立创作者和小微团队体验核心功能。</p>
+</div>
+<div class="mb-8">
+<span class="font-display-lg text-display-lg text-on-surface">¥0</span>
+<span class="text-secondary">/月</span>
+</div>
+<ul class="space-y-4 mb-auto text-secondary">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> 3 个激活项目</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> 基础 AI 绘画额度</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> 720p 视频预览导出</li>
+</ul>
+<button class="btn-ghost font-label-sm text-label-sm w-full py-3 rounded-lg mt-8">免费开始</button>
+</div>
+<!-- Pro -->
+<div class="glass-panel p-8 rounded-xl flex flex-col h-[540px] border border-primary/30 shadow-[0_0_30px_rgba(0,93,167,0.15)] relative">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 chip px-3 py-1 rounded-full text-xs shadow-md border border-primary/20">
+                        Recommended
+                    </div>
+<div class="mb-8">
+<h3 class="font-headline-md text-headline-md text-primary mb-2 flex items-center gap-2">
+                            专业版
+                            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">stars</span>
+</h3>
+<p class="font-body-md text-body-md text-secondary">为职业影像工作者提供全马力的高级工具集。</p>
+</div>
+<div class="mb-8">
+<span class="font-display-lg text-display-lg text-on-surface">¥98</span>
+<span class="text-secondary">/月</span>
+</div>
+<ul class="space-y-4 mb-auto text-secondary">
+<li class="flex items-center gap-2 text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-sm">check</span> 无限项目数量</li>
+<li class="flex items-center gap-2 text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-sm">check</span> 高级 AI 剧本解析与生成</li>
+<li class="flex items-center gap-2 text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-sm">check</span> 4K 视频预览 &amp; 自定义水印</li>
+<li class="flex items-center gap-2 text-on-surface font-medium"><span class="material-symbols-outlined text-primary text-sm">check</span> 优先客服支持</li>
+</ul>
+<button class="btn-primary font-label-sm text-label-sm w-full py-3 rounded-lg mt-8 shadow-[0_0_15px_rgba(0,93,167,0.3)]">升级到专业版</button>
+</div>
+<!-- Enterprise -->
+<div class="glass-panel p-8 rounded-xl flex flex-col h-[500px]">
+<div class="mb-8">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">企业版</h3>
+<p class="font-body-md text-body-md text-secondary">专为大型制作公司设计的安全与协作方案。</p>
+</div>
+<div class="mb-8">
+<span class="font-headline-xl text-headline-xl text-on-surface">定制报价</span>
+</div>
+<ul class="space-y-4 mb-auto text-secondary">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> 私有化部署选项</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> 企业级资产权限管理</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> 专属客户成功经理</li>
+</ul>
+<button class="btn-ghost font-label-sm text-label-sm w-full py-3 rounded-lg mt-8">联系销售</button>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-surface to-white rounded-3xl -z-10"></div>
+<!-- Minimal wave abstract shapes -->
+<div class="absolute top-0 right-0 w-[500px] h-[500px] border border-primary/10 rounded-full blur-[1px] translate-x-1/3 -translate-y-1/3 -z-10"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] border border-primary/10 rounded-full blur-[1px] -translate-x-1/3 translate-y-1/3 -z-10"></div>
+<div class="text-center glass-panel p-16 rounded-3xl relative z-10 mx-auto max-w-4xl border-white/60">
+<h2 class="font-display-lg-mobile text-display-lg-mobile md:font-headline-xl md:text-headline-xl text-on-surface mb-6 text-glow">开始你的第一个分镜项目</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-10 max-w-lg mx-auto">加入上万名先锋创作者的行列，利用 以太画布 将脑海中的画面转化为现实。</p>
+<button class="btn-primary font-label-sm text-label-sm px-10 py-5 rounded-lg text-lg shadow-[0_0_30px_rgba(0,93,167,0.4)] hover:scale-105 transition-transform duration-300">
+                    免费创建工程
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+
+
+
+
+
+
+<script type="module">
+import * as THREE from 'three';
+
+function initScene(canvasId, bgColor) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return null;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  const w = rect.width || 400, h = rect.height || 192;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(w, h, false);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const scene = new THREE.Scene();
+  if (bgColor) scene.background = new THREE.Color(bgColor);
+  const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+  camera.position.z = 8;
+  return { renderer, scene, camera, canvas };
+}
+
+// ── Case 1: Cyber City Grid ──
+(function() {
+  const ctx = initScene('c3d-case1', '#0a0a14');
+  if (!ctx) return;
+  const { renderer, scene, camera } = ctx;
+  camera.position.set(6, 4, 8);
+  camera.lookAt(0, 0, 0);
+
+  const gridGeo = new THREE.PlaneGeometry(10, 10, 20, 20);
+  const gridMat = new THREE.MeshBasicMaterial({ color: '#00ffff', wireframe: true, transparent: true, opacity: 0.25 });
+  const grid = new THREE.Mesh(gridGeo, gridMat);
+  grid.rotation.x = -Math.PI / 2;
+  scene.add(grid);
+
+  const buildings = [];
+  for (let i = 0; i < 50; i++) {
+    const h = 0.3 + Math.random() * 2.5;
+    const geo = new THREE.BoxGeometry(0.25, h, 0.25);
+    const mat = new THREE.MeshBasicMaterial({
+      color: Math.random() > 0.5 ? '#ff00ff' : '#00ffff',
+      wireframe: true, transparent: true, opacity: 0.5 + Math.random() * 0.5
+    });
+    const box = new THREE.Mesh(geo, mat);
+    box.position.set((Math.random() - 0.5) * 8, h / 2, (Math.random() - 0.5) * 8);
+    box.userData = { speed: 0.3 + Math.random() * 0.8, baseY: box.position.y, phase: Math.random() * Math.PI * 2 };
+    scene.add(box);
+    buildings.push(box);
+  }
+
+  const dotsGeo = new THREE.BufferGeometry();
+  const dotsCount = 100;
+  const dotsPos = new Float32Array(dotsCount * 3);
+  for (let i = 0; i < dotsCount; i++) {
+    dotsPos[i * 3] = (Math.random() - 0.5) * 10;
+    dotsPos[i * 3 + 1] = 0.2 + Math.random() * 4;
+    dotsPos[i * 3 + 2] = (Math.random() - 0.5) * 10;
+  }
+  dotsGeo.setAttribute('position', new THREE.BufferAttribute(dotsPos, 3));
+  const dotsMat = new THREE.PointsMaterial({ color: '#ff44ff', size: 0.05 });
+  const dots = new THREE.Points(dotsGeo, dotsMat);
+  scene.add(dots);
+
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.01;
+    camera.position.x = Math.sin(time * 0.3) * 6;
+    camera.position.z = Math.cos(time * 0.3) * 6 + 2;
+    camera.lookAt(0, 1, 0);
+    buildings.forEach(b => {
+      b.position.y = b.userData.baseY + Math.sin(time * b.userData.speed + b.userData.phase) * 0.3;
+    });
+    dots.rotation.y += 0.002;
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+// ── Case 2: Node Graph ──
+(function() {
+  const ctx = initScene('c3d-case2', '#050510');
+  if (!ctx) return;
+  const { renderer, scene, camera } = ctx;
+  camera.position.set(0, 0.5, 9);
+
+  const nodes = [];
+  const nodeGeo = new THREE.SphereGeometry(0.18, 16, 16);
+  const nodeCount = 10;
+  for (let i = 0; i < nodeCount; i++) {
+    const angle = (i / nodeCount) * Math.PI * 2;
+    const radius = 2 + Math.random() * 1.5;
+    const mat = new THREE.MeshBasicMaterial({ color: '#4A90E2' });
+    const sphere = new THREE.Mesh(nodeGeo, mat);
+    sphere.position.set(Math.cos(angle) * radius, (Math.random() - 0.5) * 2.5, Math.sin(angle) * radius);
+    sphere.userData = { orbitR: radius, orbitSpeed: 0.3 + Math.random() * 0.5, orbitY: sphere.position.y, phase: Math.random() * Math.PI * 2 };
+    scene.add(sphere);
+    nodes.push(sphere);
+  }
+
+  const lineMat = new THREE.LineBasicMaterial({ color: '#4A90E2', transparent: true, opacity: 0.3 });
+  const lineGroup = new THREE.Group();
+  scene.add(lineGroup);
+
+  const glowGeo = new THREE.RingGeometry(0.4, 0.5, 32);
+  const glowMat = new THREE.MeshBasicMaterial({ color: '#88bbff', side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+  const glow = new THREE.Mesh(glowGeo, glowMat);
+  scene.add(glow);
+
+  const flowGeo = new THREE.BufferGeometry();
+  const flowCount = 30;
+  const flowPos = new Float32Array(flowCount * 3);
+  for (let i = 0; i < flowCount; i++) {
+    flowPos[i * 3] = (Math.random() - 0.5) * 6;
+    flowPos[i * 3 + 1] = (Math.random() - 0.5) * 4;
+    flowPos[i * 3 + 2] = (Math.random() - 0.5) * 3;
+  }
+  flowGeo.setAttribute('position', new THREE.BufferAttribute(flowPos, 3));
+  const flowMat = new THREE.PointsMaterial({ color: '#aaddff', size: 0.06 });
+  const flow = new THREE.Points(flowGeo, flowMat);
+  scene.add(flow);
+
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.015;
+    nodes.forEach((n, i) => {
+      const a = time * n.userData.orbitSpeed + n.userData.phase;
+      n.position.x = Math.cos(a) * n.userData.orbitR;
+      n.position.z = Math.sin(a) * n.userData.orbitR;
+      n.position.y = n.userData.orbitY + Math.sin(time * 0.7 + i) * 0.3;
+    });
+    while (lineGroup.children.length) lineGroup.remove(lineGroup.children[0]);
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const d = nodes[i].position.distanceTo(nodes[j].position);
+        if (d < 3.5) {
+          const pts = [nodes[i].position.clone(), nodes[j].position.clone()];
+          const geo = new THREE.BufferGeometry().setFromPoints(pts);
+          lineGroup.add(new THREE.Line(geo, lineMat));
+        }
+      }
+    }
+    glow.rotation.z += 0.01;
+    flow.rotation.y += 0.005;
+    flow.rotation.x += 0.003;
+    scene.rotation.y += 0.002;
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+// ── Case 3: Neural Network ──
+(function() {
+  const ctx = initScene('c3d-case3', '#0a0015');
+  if (!ctx) return;
+  const { renderer, scene, camera } = ctx;
+  camera.position.set(0, 0, 8);
+
+  const particleCount = 60;
+  const particlesGeo = new THREE.BufferGeometry();
+  const pos = new Float32Array(particleCount * 3);
+  const vel = [];
+  for (let i = 0; i < particleCount; i++) {
+    pos[i * 3] = (Math.random() - 0.5) * 7;
+    pos[i * 3 + 1] = (Math.random() - 0.5) * 5;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 3;
+    vel.push({
+      x: (Math.random() - 0.5) * 0.01,
+      y: (Math.random() - 0.5) * 0.01,
+      z: (Math.random() - 0.5) * 0.005,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+  particlesGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const particlesMat = new THREE.PointsMaterial({
+    color: '#b366ff', size: 0.08,
+    blending: THREE.AdditiveBlending, depthWrite: false, transparent: true
+  });
+  const particles = new THREE.Points(particlesGeo, particlesMat);
+  scene.add(particles);
+
+  const lineGroup = new THREE.Group();
+  const synapseMat = new THREE.LineBasicMaterial({
+    color: '#9944ff', transparent: true, opacity: 0.35,
+    blending: THREE.AdditiveBlending, depthWrite: false
+  });
+  scene.add(lineGroup);
+
+  const centerGeo = new THREE.SphereGeometry(2.5, 32, 32);
+  const centerMat = new THREE.MeshBasicMaterial({
+    color: '#6611aa', wireframe: true, transparent: true, opacity: 0.12
+  });
+  const center = new THREE.Mesh(centerGeo, centerMat);
+  scene.add(center);
+
+  const ringGeo = new THREE.TorusGeometry(2.2, 0.03, 16, 48);
+  const ringMat = new THREE.MeshBasicMaterial({ color: '#cc88ff', transparent: true, opacity: 0.5 });
+  const ring = new THREE.Mesh(ringGeo, ringMat);
+  scene.add(ring);
+
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.01;
+    const arr = particlesGeo.attributes.position.array;
+    for (let i = 0; i < particleCount; i++) {
+      arr[i * 3] += vel[i].x + Math.sin(time * 2 + vel[i].phase) * 0.003;
+      arr[i * 3 + 1] += vel[i].y + Math.cos(time * 1.5 + vel[i].phase) * 0.003;
+      arr[i * 3 + 2] += vel[i].z;
+      if (Math.abs(arr[i * 3]) > 3.5) vel[i].x *= -1;
+      if (Math.abs(arr[i * 3 + 1]) > 2.5) vel[i].y *= -1;
+      if (Math.abs(arr[i * 3 + 2]) > 1.5) vel[i].z *= -1;
+    }
+    particlesGeo.attributes.position.needsUpdate = true;
+
+    while (lineGroup.children.length) lineGroup.remove(lineGroup.children[0]);
+    for (let i = 0; i < particleCount; i++) {
+      for (let j = i + 1; j < particleCount; j++) {
+        const dx = arr[i * 3] - arr[j * 3];
+        const dy = arr[i * 3 + 1] - arr[j * 3 + 1];
+        const dz = arr[i * 3 + 2] - arr[j * 3 + 2];
+        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (dist < 1.6) {
+          const pts = [
+            new THREE.Vector3(arr[i * 3], arr[i * 3 + 1], arr[i * 3 + 2]),
+            new THREE.Vector3(arr[j * 3], arr[j * 3 + 1], arr[j * 3 + 2])
+          ];
+          const geo = new THREE.BufferGeometry().setFromPoints(pts);
+          lineGroup.add(new THREE.Line(geo, synapseMat));
+        }
+      }
+    }
+
+    center.rotation.y += 0.002;
+    center.rotation.x += 0.001;
+    ring.rotation.x += 0.005;
+    ring.rotation.y += 0.008;
+    ring.scale.setScalar(1 + Math.sin(time * 1.5) * 0.1);
+    scene.rotation.y += 0.001;
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>个人中心 - AetherWorkbench</title>
+<script src="./tailwind.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#2f3131",
+                      "on-secondary-container": "#616267",
+                      "on-surface-variant": "#414751",
+                      "outline": "#717783",
+                      "on-secondary-fixed": "#191c20",
+                      "secondary-fixed": "#e2e2e8",
+                      "on-primary-fixed": "#001c39",
+                      "tertiary-container": "#6e7580",
+                      "surface-container-high": "#e8e8e8",
+                      "surface": "#f9f9f9",
+                      "on-error": "#ffffff",
+                      "on-background": "#1a1c1c",
+                      "secondary-fixed-dim": "#c5c6cc",
+                      "outline-variant": "#c1c7d3",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#dfdfe5",
+                      "inverse-on-surface": "#f0f1f1",
+                      "on-primary-fixed-variant": "#004883",
+                      "surface-tint": "#0060ac",
+                      "on-tertiary-container": "#fdfcff",
+                      "surface-container-low": "#f3f3f4",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-container": "#fdfcff",
+                      "on-secondary-fixed-variant": "#45474b",
+                      "on-error-container": "#93000a",
+                      "background": "#f9f9f9",
+                      "surface-bright": "#f9f9f9",
+                      "tertiary-fixed-dim": "#c0c7d3",
+                      "primary-fixed-dim": "#a4c9ff",
+                      "on-tertiary-fixed-variant": "#404751",
+                      "surface-variant": "#e2e2e2",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#151c25",
+                      "primary-container": "#2976c7",
+                      "on-surface": "#1a1c1c",
+                      "secondary": "#5d5e63",
+                      "primary": "#005da7",
+                      "tertiary": "#555c67",
+                      "inverse-primary": "#a4c9ff",
+                      "tertiary-fixed": "#dce3f0",
+                      "surface-dim": "#dadada",
+                      "primary-fixed": "#d4e3ff",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#eeeeee",
+                      "error": "#ba1a1a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "container-max": "1280px",
+                      "section-gap-sm": "80px",
+                      "margin-mobile": "24px",
+                      "margin-desktop": "64px",
+                      "gutter": "32px",
+                      "section-gap-lg": "160px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-xl-mobile": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "headline-md": ["Geist"],
+                      "display-lg-mobile": ["Geist"],
+                      "body-md": ["Inter"],
+                      "label-sm": ["JetBrains Mono"],
+                      "headline-xl": ["Geist"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-xl-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(0, 93, 167, 0.1);
+            border-right: 1px solid rgba(0, 93, 167, 0.1);
+        }
+
+        .halo-glow {
+            position: absolute;
+            background: radial-gradient(circle, rgba(0,93,167,0.05) 0%, rgba(249,249,249,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle-text {
+            text-shadow: 0 0 15px rgba(0, 93, 167, 0.3);
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 10px rgba(0, 93, 167, 0.2); }
+            100% { text-shadow: 0 0 20px rgba(0, 93, 167, 0.5); }
+        }
+
+        .progress-bar-glow {
+            box-shadow: 0 0 12px rgba(0, 93, 167, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Global Halo -->
+<div class="halo-glow w-[800px] h-[800px] top-[-200px] right-[-200px] rounded-full blur-3xl"></div>
+<div class="halo-glow w-[600px] h-[600px] bottom-[-100px] left-[-100px] rounded-full blur-3xl"></div>
+
+<!-- Main Content Grid -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap-sm md:py-section-gap-lg">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: User Profile Anchor -->
+<aside class="md:col-span-3 space-y-unit-8">
+<div class="glass-card rounded-xl p-8 flex flex-col items-center text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="relative mb-6">
+<div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-primary to-surface-variant">
+<div class="w-full h-full rounded-full border-4 border-surface bg-[#e8e8ed] flex items-center justify-center">
+<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#b0b0b8" stroke-width="1.5">
+<circle cx="12" cy="8" r="4"/>
+<path d="M4 20c0-4 4-7 8-7s8 3 8 7"/>
+</svg>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 w-4 h-4 bg-[#4A90E2] rounded-full border-2 border-surface shadow-[0_0_15px_rgba(74,144,226,0.6)]"></div>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-1">LIN_XIAO</h1>
+<p class="font-label-sm text-label-sm text-tertiary mb-4">高级架构师 / PRO</p>
+<div class="flex gap-2 mb-8">
+<span class="px-3 py-1 bg-[#EBF2FF] text-primary rounded-full font-label-sm text-label-sm">开发者</span>
+<span class="px-3 py-1 bg-[#EBF2FF] text-primary rounded-full font-label-sm text-label-sm">BETA</span>
+</div>
+<div class="w-full border-t border-outline-variant/20 pt-6 space-y-4 text-left">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">账户 ID</span>
+<span class="font-label-sm text-label-sm text-on-surface">AW-8924A</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">加入时间</span>
+<span class="font-label-sm text-label-sm text-on-surface">2023.11</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Middle Column: Metrics & Projects -->
+<div class="md:col-span-6 space-y-gutter">
+<!-- AI Quota Card -->
+<section class="glass-card rounded-xl p-8">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">memory</span>
+                                AI 算力消耗
+                            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">本月配额使用情况</p>
+</div>
+<div class="text-right">
+<span class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary particle-text">84%</span>
+</div>
+</div>
+<div class="relative h-2 bg-surface-variant rounded-full overflow-hidden mb-4">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-full progress-bar-glow w-[84%] transition-all duration-1000 ease-out" id="quota-bar" style="width: 84%;"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-tertiary">
+<span class="">已用 420.5K Tokens</span>
+<span class="">总量 500K Tokens</span>
+</div>
+</section>
+<!-- Recent Projects Bento Grid -->
+<section>
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface">最近工程</h2>
+</div>
+<div class="glass-card rounded-lg p-12 flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-variant/50 flex items-center justify-center mb-4">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5">
+<path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+</svg>
+</div>
+<p class="font-body-lg text-on-surface-variant text-sm mb-1">暂无工程</p>
+<p class="font-label-sm text-tertiary text-xs">新建项目后将在此显示</p>
+</div>
+</section>
+</div>
+<!-- Right Column: Settings & Quick Actions -->
+<aside class="md:col-span-3 space-y-unit-8">
+<div class="glass-card rounded-xl p-6">
+<h3 class="font-label-sm text-label-sm text-tertiary mb-4">系统设置</h3>
+<div class="space-y-2">
+<a class="flex items-center justify-between p-3 rounded-md hover:bg-surface-variant/50 transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">tune</span>
+<span class="font-body-md text-body-md text-on-surface">偏好设置</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors text-[18px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-md hover:bg-surface-variant/50 transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">security</span>
+<span class="font-body-md text-body-md text-on-surface">安全与密钥</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors text-[18px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-md hover:bg-surface-variant/50 transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">account_balance_wallet</span>
+<span class="font-body-md text-body-md text-on-surface">计费与订阅</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors text-[18px]">chevron_right</span>
+</a>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 bg-gradient-to-br from-surface to-surface-variant/30">
+<span class="material-symbols-outlined text-primary mb-2 text-3xl">api</span>
+<h4 class="font-body-lg text-body-lg font-medium text-on-surface mb-2">API 访问令牌</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4">生成新的鉴权凭证以供外部系统调用。</p>
+<button class="w-full font-label-sm text-label-sm border border-primary/30 text-primary py-2 rounded-md hover:bg-[#EBF2FF] transition-colors">管理密钥</button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+
+<script>
+        // Simple animation for the progress bar to make it feel alive
+        document.addEventListener('DOMContentLoaded', () => {
+            const bar = document.getElementById('quota-bar');
+            setTimeout(() => {
+                bar.style.width = '84%';
+            }, 500);
+        });
+    </script>
+
+
+
+
+
+
+</body></html>

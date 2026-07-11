@@ -1,0 +1,330 @@
+<!DOCTYPE html><html class="light" lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AetherWorkbench 定价与订阅管理</title>
+<script src="./tailwind.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "on-secondary-container": "#616267",
+                        "on-surface-variant": "#414751",
+                        "outline": "#717783",
+                        "on-secondary-fixed": "#191c20",
+                        "secondary-fixed": "#e2e2e8",
+                        "on-primary-fixed": "#001c39",
+                        "tertiary-container": "#6e7580",
+                        "surface-container-high": "#e8e8e8",
+                        "surface": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "secondary-fixed-dim": "#c5c6cc",
+                        "outline-variant": "#c1c7d3",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#dfdfe5",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-primary-fixed-variant": "#004883",
+                        "surface-tint": "#0060ac",
+                        "on-tertiary-container": "#fdfcff",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#fdfcff",
+                        "on-secondary-fixed-variant": "#45474b",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9f9",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary-fixed-dim": "#c0c7d3",
+                        "primary-fixed-dim": "#a4c9ff",
+                        "on-tertiary-fixed-variant": "#404751",
+                        "surface-variant": "#e2e2e2",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#151c25",
+                        "primary-container": "#2976c7",
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#5d5e63",
+                        "primary": "#005da7",
+                        "tertiary": "#555c67",
+                        "inverse-primary": "#a4c9ff",
+                        "tertiary-fixed": "#dce3f0",
+                        "surface-dim": "#dadada",
+                        "primary-fixed": "#d4e3ff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "section-gap-sm": "80px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "64px",
+                        "gutter": "32px",
+                        "section-gap-lg": "160px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-xl-mobile": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-xl": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(74, 144, 226, 0.1);
+            border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+        }
+        .particle-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.08) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .pro-glow {
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- Global Particle Glow Background -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/5 blur-[100px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[100px]"></div>
+</div>
+
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap-sm flex flex-col gap-16 relative">
+<!-- Header & Current Status -->
+<section class="flex flex-col items-center text-center max-w-3xl mx-auto">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">定价与订阅管理</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">选择最适合您团队的计划，释放 以太画布 的全部潜力。</p>
+<!-- Current Subscription Status Glass Card -->
+<div class="glass-panel w-full p-8 rounded-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 text-left shadow-[0_20px_40px_rgba(0,0,0,0.03)]">
+<div class="absolute top-0 left-0 w-2 h-full bg-[#4A90E2]"></div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">当前状态</p>
+<div class="flex items-center gap-3">
+<h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">专业版</h2>
+<span class="px-3 py-1 bg-[#EBF2FF] text-[#4A90E2] font-label-sm text-label-sm rounded-full border border-[#4A90E2]/30">生效中</span>
+</div>
+<p class="font-body-md text-body-md text-outline mt-2">您的下一次计费日期为 2025 年 6 月 15 日，金额为 ¥98.00。</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+<button class="px-6 py-3 font-medium text-primary border border-primary/30 rounded-md hover:bg-[#EBF2FF] transition-colors whitespace-nowrap">更改计划</button>
+<button class="px-6 py-3 font-medium text-white bg-[#4A90E2] rounded-md hover:bg-primary transition-colors shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] whitespace-nowrap">更新支付方式</button>
+</div>
+</div>
+</section>
+<!-- Pricing Cards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+<!-- Basic Plan -->
+<div class="glass-panel p-8 rounded-xl flex flex-col hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-shadow duration-300">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">基础版</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 min-h-[48px]">适合个人开发者和小型初创团队探索核心功能。</p>
+<div class="flex items-baseline gap-1 mb-8 border-b border-outline-variant/20 pb-8">
+<span class="font-headline-xl text-headline-xl text-on-surface">免费</span>
+</div>
+<ul class="flex flex-col gap-4 mb-8 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">最多 3 个项目</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">基础渲染引擎</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">社区论坛支持</span>
+</li>
+</ul>
+<button class="w-full py-3 font-medium text-primary border border-primary/30 rounded-md hover:bg-[#EBF2FF] transition-colors">降级至基础版</button>
+</div>
+<!-- Pro Plan (Active) -->
+<div class="glass-panel p-8 rounded-xl flex flex-col relative pro-glow border-primary/50 transform md:-translate-y-4 shadow-[0_20px_40px_rgba(74,144,226,0.1)]">
+<div class="particle-glow"></div>
+<div class="absolute top-0 right-0 bg-[#4A90E2] text-white font-label-sm text-label-sm px-4 py-1 rounded-bl-lg rounded-tr-xl">推荐</div>
+<h3 class="font-headline-md text-headline-md text-[#4A90E2] mb-2 flex items-center gap-2">专业版 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">stars</span></h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 min-h-[48px]">为专业创作者和中型团队提供的高级工具集。</p>
+<div class="flex items-baseline gap-1 mb-8 border-b border-outline-variant/20 pb-8">
+<span class="font-headline-xl text-headline-xl text-on-surface">¥98</span>
+<span class="font-body-md text-body-md text-outline">/月</span>
+</div>
+<ul class="flex flex-col gap-4 mb-8 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[#4A90E2] text-[20px] mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">无限项目数量</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[#4A90E2] text-[20px] mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Aether 高级物理引擎</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[#4A90E2] text-[20px] mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">高优先级邮件支持</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[#4A90E2] text-[20px] mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">自定义导出格式</span>
+</li>
+</ul>
+<button class="w-full py-3 font-medium text-white bg-[#4A90E2] rounded-md shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] cursor-default opacity-90">当前计划</button>
+</div>
+<!-- Enterprise Plan -->
+<div class="glass-panel p-8 rounded-xl flex flex-col hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-shadow duration-300">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">企业版</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 min-h-[48px]">定制化解决方案，满足大型组织对安全性与合规性的严苛要求。</p>
+<div class="flex items-baseline gap-1 mb-8 border-b border-outline-variant/20 pb-8">
+<span class="font-headline-xl text-headline-xl text-on-surface">联系销售</span>
+</div>
+<ul class="flex flex-col gap-4 mb-8 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">专属客户成功经理 (CSM)</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">单点登录 (SSO) 与高级权限</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">私有化部署选项</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">99.99% SLA 保证</span>
+</li>
+</ul>
+<button class="w-full py-3 font-medium text-primary border border-primary/30 rounded-md hover:bg-[#EBF2FF] transition-colors">联系我们</button>
+</div>
+</section>
+<!-- Billing History -->
+<section class="max-w-4xl mx-auto w-full mt-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">发票记录</h3>
+<button class="font-label-sm text-label-sm text-[#4A90E2] flex items-center gap-1 hover:underline">
+                    下载全部 <span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.02)]">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/20 bg-surface/50">
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant font-medium">日期</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant font-medium">金额</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant font-medium">状态</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant font-medium text-right">操作</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="border-b border-outline-variant/10 hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-6">2026年5月15日</td>
+<td class="py-4 px-6">¥98.00</td>
+<td class="py-4 px-6"><span class="px-2 py-1 bg-[#EBF2FF] text-[#4A90E2] text-xs rounded-full">已支付</span></td>
+<td class="py-4 px-6 text-right">
+<button class="text-outline hover:text-[#4A90E2] transition-colors"><span class="material-symbols-outlined text-[20px]">download</span></button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/10 hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-6">2026年5月15日</td>
+<td class="py-4 px-6">¥98.00</td>
+<td class="py-4 px-6"><span class="px-2 py-1 bg-[#EBF2FF] text-[#4A90E2] text-xs rounded-full">已支付</span></td>
+<td class="py-4 px-6 text-right">
+<button class="text-outline hover:text-[#4A90E2] transition-colors"><span class="material-symbols-outlined text-[20px]">download</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-6">2026年5月15日</td>
+<td class="py-4 px-6">¥98.00</td>
+<td class="py-4 px-6"><span class="px-2 py-1 bg-[#EBF2FF] text-[#4A90E2] text-xs rounded-full">已支付</span></td>
+<td class="py-4 px-6 text-right">
+<button class="text-outline hover:text-[#4A90E2] transition-colors"><span class="material-symbols-outlined text-[20px]">download</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Generated from JSON) -->
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-dim font-body-md text-body-md full-width rounded-t-xl mt-section-gap-sm">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap-sm max-w-container-max mx-auto w-full">
+<!-- Brand Column -->
+<div class="col-span-2 md:col-span-1 flex flex-col gap-4 mb-8 md:mb-0">
+<div class="text-headline-md font-headline-md font-bold text-primary">以太画布</div>
+<p class="text-on-surface-variant text-sm mt-2 opacity-80">© 2026 以太画布.<br class="">All rights reserved.</p>
+</div>
+<!-- Links Columns -->
+<div class="flex flex-col gap-3">
+<h4 class="font-label-sm text-label-sm text-primary font-medium mb-2 uppercase tracking-wider">Product</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Features</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Pricing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Templates</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-sm text-label-sm text-primary font-medium mb-2 uppercase tracking-wider">Resources</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Docs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Blog</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Support</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-sm text-label-sm text-primary font-medium mb-2 uppercase tracking-wider">Company</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Contact</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Legal</a>
+</div>
+</div>
+</footer>
+
+
+
+
+
+
+</body></html>

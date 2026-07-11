@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AetherWorkbench - 素材资产库</title>
+<script src="./tailwind.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "on-secondary-container": "#616267",
+                        "on-surface-variant": "#414751",
+                        "outline": "#717783",
+                        "on-secondary-fixed": "#191c20",
+                        "secondary-fixed": "#e2e2e8",
+                        "on-primary-fixed": "#001c39",
+                        "tertiary-container": "#6e7580",
+                        "surface-container-high": "#e8e8e8",
+                        "surface": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "secondary-fixed-dim": "#c5c6cc",
+                        "outline-variant": "#c1c7d3",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#dfdfe5",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-primary-fixed-variant": "#004883",
+                        "surface-tint": "#0060ac",
+                        "on-tertiary-container": "#fdfcff",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#fdfcff",
+                        "on-secondary-fixed-variant": "#45474b",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9f9",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary-fixed-dim": "#c0c7d3",
+                        "primary-fixed-dim": "#a4c9ff",
+                        "on-tertiary-fixed-variant": "#404751",
+                        "surface-variant": "#e2e2e2",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#151c25",
+                        "primary-container": "#2976c7",
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#5d5e63",
+                        "primary": "#005da7",
+                        "tertiary": "#555c67",
+                        "inverse-primary": "#a4c9ff",
+                        "tertiary-fixed": "#dce3f0",
+                        "surface-dim": "#dadada",
+                        "primary-fixed": "#d4e3ff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "section-gap-sm": "80px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "64px",
+                        "gutter": "32px",
+                        "section-gap-lg": "160px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-xl-mobile": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-xl": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Dynamic Particle Grid Background */
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-image: 
+                linear-gradient(to right, rgba(0, 93, 167, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 93, 167, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .halo-glow {
+            position: fixed;
+            top: 20%;
+            left: 30%;
+            width: 60vw;
+            height: 60vh;
+            background: radial-gradient(circle, rgba(0, 93, 167, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(60px);
+        }
+
+        /* Glassmorphism & Cyber Minimalist Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+        }
+
+        .input-minimal {
+            border: 1px solid #F9F9FF;
+            transition: all 0.3s ease;
+        }
+        .input-minimal:focus {
+            border-color: #005da7;
+            box-shadow: 0 0 0 4px rgba(0, 93, 167, 0.1);
+            outline: none;
+        }
+
+        .chip-active {
+            background: #EBF2FF;
+            color: #005da7;
+            border: 1px solid rgba(0, 93, 167, 0.2);
+            box-shadow: 0 0 15px rgba(0, 93, 167, 0.2);
+        }
+
+        .chip-inactive {
+            background: transparent;
+            color: #414751;
+            border: 1px solid #e2e2e2;
+        }
+        .chip-inactive:hover {
+            border-color: rgba(0, 93, 167, 0.3);
+            background: rgba(0, 93, 167, 0.02);
+        }
+
+        /* Asset Card Hover Effects (Blue Particle Glow) */
+        .asset-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+        
+        .asset-card::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, transparent 40%, rgba(0, 93, 167, 0.4) 50%, transparent 60%);
+            background-size: 200% 200%;
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .asset-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .asset-card:hover::before {
+            opacity: 1;
+            animation: flowGlow 2s linear infinite;
+        }
+
+        @keyframes flowGlow {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 100%; }
+        }
+
+        .image-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .asset-card:hover .image-overlay {
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar for Sidenav */
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(0, 93, 167, 0.2);
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 93, 167, 0.4);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- Background Elements -->
+<div class="particle-bg"></div>
+<div class="halo-glow"></div>
+
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4 ml-8">
+<button class="hidden lg:block font-label-sm text-label-sm text-primary border border-primary/30 px-4 py-2 rounded-lg hover:bg-[#EBF2FF] transition-colors">
+                    升级
+                </button>
+<button class="font-label-sm text-label-sm bg-primary text-white px-4 py-2 rounded-lg shadow-sm hover:shadow-[0_0_15px_rgba(0,93,167,0.4)] transition-all flex items-center gap-2 relative overflow-hidden group">
+<div class="absolute inset-x-0 top-0 h-px bg-white/40"></div>
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    创建新素材
+                </button>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30 ml-2">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A close up portrait photo of a young professional in a brightly lit, minimalist office setting, representing a modern tech user. The lighting is soft and high-key." src="./images/gphoto_012_c74d1b4c8b7c.jpg">
+</button>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex-1 max-w-container-max mx-auto w-full flex flex-col md:flex-row gap-gutter px-margin-desktop py-8">
+<!-- Sidebar Categorization -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="glass-panel rounded-xl p-4 sticky top-24 custom-scroll max-h-[calc(100vh-8rem)] overflow-y-auto">
+<h2 class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-4 px-2">分类目录</h2>
+<nav class="space-y-1">
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/5 text-primary font-body-md text-body-md font-medium">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">folder_special</span>
+                        所有项目
+                    </button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors font-body-md text-body-md">
+<span class="material-symbols-outlined">auto_awesome</span>
+                        AI 生成分镜
+                    </button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors font-body-md text-body-md">
+<span class="material-symbols-outlined">category</span>
+                        3D 模型资产
+                    </button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors font-body-md text-body-md">
+<span class="material-symbols-outlined">texture</span>
+                        材质与纹理
+                    </button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors font-body-md text-body-md">
+<span class="material-symbols-outlined">animation</span>
+                        骨骼动画
+                    </button>
+</nav>
+<hr class="border-outline-variant/20 my-6">
+<h2 class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-4 px-2">项目标签</h2>
+<div class="flex flex-wrap gap-2 px-2">
+<span class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant border border-outline-variant/30 hover:border-primary/50 cursor-pointer transition-colors">#赛博朋克</span>
+<span class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant border border-outline-variant/30 hover:border-primary/50 cursor-pointer transition-colors">#极简主义</span>
+<span class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant border border-outline-variant/30 hover:border-primary/50 cursor-pointer transition-colors">#环境设定</span>
+<span class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant border border-outline-variant/30 hover:border-primary/50 cursor-pointer transition-colors">#UI元素</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- Filters & Tools Header -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-2">资产图库</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">管理与检索您的 AI 生成素材节点。</p>
+</div>
+<!-- Filter Chips -->
+<div class="flex items-center gap-2 bg-surface-container-lowest p-1.5 rounded-lg border border-outline-variant/20 shadow-sm">
+<button class="font-label-sm text-label-sm px-4 py-1.5 rounded-md chip-active">全部</button>
+<button class="font-label-sm text-label-sm px-4 py-1.5 rounded-md chip-inactive">图片</button>
+<button class="font-label-sm text-label-sm px-4 py-1.5 rounded-md chip-inactive">视频</button>
+<button class="font-label-sm text-label-sm px-4 py-1.5 rounded-md chip-inactive flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">account_tree</span>节点
+                    </button>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">热门推荐</h2>
+<!-- Asset Grid (Bento style inspiration) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+<!-- Card 1: Image Asset -->
+<div class="asset-card glass-panel rounded-xl flex flex-col group cursor-pointer aspect-[4/3] sm:aspect-auto sm:h-64">
+<div class="relative w-full h-40 overflow-hidden rounded-t-xl bg-surface-container">
+<img alt="Abstract geometry" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A highly detailed AI generated scene showing sleek, minimalist geometric forms floating in a pure white void. Subtle refractive light and soft blue accents highlight the edges of the shapes, creating a serene, high-tech, cyber-minimalist aesthetic." src="./images/gphoto_013_97b507764111.jpg">
+<div class="absolute inset-0 image-overlay flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">visibility</span>
+</div>
+<div class="absolute top-2 right-2 bg-black/50 backdrop-blur-md px-2 py-1 rounded text-white font-label-sm text-[10px] uppercase tracking-widest border border-white/20">IMG</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[16px] leading-tight text-on-surface truncate">新东京建筑 01</h3>
+<p class="font-body-md text-[12px] text-outline mt-1 truncate">由 Model v4.2 生成</p>
+</div>
+<div class="flex items-center justify-between mt-3">
+<span class="font-label-sm text-[11px] text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">hd</span> 4K
+                            </span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">2.4 MB</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Video Asset -->
+<div class="asset-card glass-panel rounded-xl flex flex-col group cursor-pointer aspect-[4/3] sm:aspect-auto sm:h-64">
+<div class="relative w-full h-40 overflow-hidden rounded-t-xl bg-surface-container">
+<img alt="Cyberpunk server room" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A clean, minimalist server room bathed in cool white and soft tech-blue lighting. Rows of sleek, futuristic data cabinets stand symmetrically, conveying an atmosphere of organized, high-precision data processing in a modern tech environment." src="./images/gphoto_014_40e7260e2477.jpg">
+<div class="absolute inset-0 image-overlay flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">play_circle</span>
+</div>
+<div class="absolute top-2 right-2 bg-black/50 backdrop-blur-md px-2 py-1 rounded text-white font-label-sm text-[10px] uppercase tracking-widest border border-white/20">VID</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[16px] leading-tight text-on-surface truncate">数据流序列</h3>
+<p class="font-body-md text-[12px] text-outline mt-1 truncate">渲染循环 004</p>
+</div>
+<div class="flex items-center justify-between mt-3">
+<span class="font-label-sm text-[11px] text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> 00:15
+                            </span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">18 MB</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Node Graph Asset -->
+<div class="asset-card glass-panel rounded-xl flex flex-col group cursor-pointer aspect-[4/3] sm:aspect-auto sm:h-64 sm:col-span-2 lg:col-span-1">
+<div class="relative w-full h-40 overflow-hidden rounded-t-xl bg-surface-container-high flex items-center justify-center border-b border-outline-variant/10">
+<span class="material-symbols-outlined text-[64px] text-primary/40 group-hover:text-primary transition-colors duration-300">account_tree</span>
+<div class="absolute top-2 right-2 bg-primary/10 backdrop-blur-md px-2 py-1 rounded text-primary font-label-sm text-[10px] uppercase tracking-widest border border-primary/20">NODE</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[16px] leading-tight text-on-surface truncate">光照设置节点</h3>
+<p class="font-body-md text-[12px] text-outline mt-1 truncate">明亮场景基础配置</p>
+</div>
+<div class="flex items-center justify-between mt-3">
+<div class="flex -space-x-2">
+<div class="w-5 h-5 rounded-full bg-blue-100 border border-white"></div>
+<div class="w-5 h-5 rounded-full bg-indigo-100 border border-white"></div>
+<div class="w-5 h-5 rounded-full bg-sky-100 border border-white"></div>
+</div>
+<span class="font-label-sm text-[11px] text-on-surface-variant">12 Nodes</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Image Asset -->
+<div class="asset-card glass-panel rounded-xl flex flex-col group cursor-pointer aspect-[4/3] sm:aspect-auto sm:h-64">
+<div class="relative w-full h-40 overflow-hidden rounded-t-xl bg-surface-container">
+<img alt="Tech circuit abstract" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close up, macro shot of a sleek, modern circuit board bathed in soft, diffused lighting. The primary colors are crisp whites and silvers, with delicate glowing lines of tech-blue tracing the pathways, embodying a clean, minimalist cyber aesthetic." src="./images/gphoto_015_044ecc4bd597.jpg">
+<div class="absolute inset-0 image-overlay flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">visibility</span>
+</div>
+<div class="absolute top-2 right-2 bg-black/50 backdrop-blur-md px-2 py-1 rounded text-white font-label-sm text-[10px] uppercase tracking-widest border border-white/20">IMG</div>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-[16px] leading-tight text-on-surface truncate">电路蓝图 v2</h3>
+<p class="font-body-md text-[12px] text-outline mt-1 truncate">纹理叠加元素</p>
+</div>
+<div class="flex items-center justify-between mt-3">
+<span class="font-label-sm text-[11px] text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">hd</span> 2K
+                            </span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">1.1 MB</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+
+
+
+
+
+
+
+
+
+</body></html>
