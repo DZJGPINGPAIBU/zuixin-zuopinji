@@ -456,7 +456,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Subtitle */}
-          <motion.p {...f(0.7)} className="mt-4 text-sm md:text-base text-neutral-600 max-w-2xl font-body font-light leading-tight text-center">
+          <motion.p {...f(0.7)} className="mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight text-center">
             AI品牌视觉设计 · AIGC创意实践者 · 大族激光集团总部
           </motion.p>
 
