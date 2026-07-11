@@ -24,7 +24,7 @@ export const projects: ProjectMeta[] = [
     title: '无限画布',
     subtitle: 'AetherWorkbench · Infinite Canvas',
     shortDesc: '定价订阅 · 个人中心 · 团队协作 · 素材库 · 分镜创作',
-    cover: './images/canvas-cover.jpg',
+    cover: './images/无限画布.png',
     tags: ['SaaS', '工作台', '全屏观览', '交互设计'],
   },
   {

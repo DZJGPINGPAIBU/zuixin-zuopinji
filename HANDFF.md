@@ -1,6 +1,8 @@
 # HANDFF.md — 沉浸式品牌视觉设计师作品集
 
 > 最后更新: 2026-07-03 · 下次恢复时读此文件即可无缝继续
+>
+> ⚠️ **上线/部署请看 [`HANDOFF.md`](./HANDOFF.md)（v3，2026-07-10）** — 已加 Netlify 上线（https://mohe-portfolio.netlify.app）+ 原 ECS rsync 两种方式。本文件仅记项目结构。
 
 ---
 

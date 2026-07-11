@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const JIHUI_URL = 'http://118.31.14.19/';
 
-/* ========== Dynamic Preview Card — live iframe + external link ========== */
+/* ========== Jihui Card -- static cover image + external link (iframe replaced due to CDN issues) ========== */
 export function JihuiCard({ onClick: _onClick }: { onClick: () => void }) {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -21,12 +21,11 @@ export function JihuiCard({ onClick: _onClick }: { onClick: () => void }) {
         className="card-3d-inner overflow-hidden bg-white relative aspect-[21/9] md:aspect-[21/9]"
         style={{ borderRadius: '0.5rem' }}
       >
-        {/* Live iframe — renders the MH极绘 homepage */}
-        <iframe
-          src={JIHUI_URL}
-          className="absolute inset-0 w-full h-full border-0 pointer-events-none"
-          scrolling="no"
-          title="MH极绘预览"
+        {/* Static cover image — screenshot of MH极绘 homepage */}
+        <img
+          src="./images/mohe极绘.png"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="MH极绘预览"
         />
 
         {/* Bottom text overlay */}

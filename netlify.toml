@@ -1,0 +1,45 @@
+# Netlify 部署配置 —— 作品集
+# 复刻 vite.config.ts 的 dev proxy：把素材路径代理到阿里云 OSS
+# 素材主要在 OSS，本地 public/images、public/videos 为空，靠代理转发
+
+[build]
+  publish = "dist"
+
+# ---- OSS 素材代理（复刻 dev server 的 /images /videos /3c /bilibili/zhanglong）----
+[[redirects]]
+  from = "/images/*"
+  to = "https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com/images/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/videos/*"
+  to = "https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com/videos/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/3c/*"
+  to = "https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com/3c/:splat"
+  status = 200
+  force = true
+
+# 斩龙模块资源：仅 /bilibili/zhanglong 走 OSS，其余 /bilibili/* 用本地文件
+[[redirects]]
+  from = "/bilibili/zhanglong/*"
+  to = "https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com/bilibili/zhanglong/:splat"
+  status = 200
+  force = true
+
+# ---- MH极绘 代理（解决 HTTP iframe 在 HTTPS 站点被阻止的问题）----
+[[redirects]]
+  from = "/mhjihui/*"
+  to = "http://118.31.14.19/:splat"
+  status = 200
+  force = true
+
+# ---- SPA 回退（不加 force：已存在的静态文件优先本地提供）----
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
