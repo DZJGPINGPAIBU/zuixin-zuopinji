@@ -29,6 +29,39 @@
 
 ---
 
+## 🆕 Spline 机器人修复尝试（2026-07-11 晚）
+
+### 根因定位
+v4 用了 `<link rel="modulepreload" href="./spline-viewer.js">`，但 `modulepreload` **只下载不执行**。
+Hero.tsx 里 `customElements.whenDefined('spline-viewer')` 永远等不到 custom element 注册，代码卡住。
+
+### 修复内容
+1. `index.html` — 移除 `modulepreload`，注释改为 "Spline loaded via dynamic module injection"
+2. `Hero.tsx` — 去掉 `try { await whenDefined() } catch` 包装，始终动态注入 `<script type="module" src="./spline-viewer.js">`
+
+### 当前状态
+- 生产地址：https://mohe-portfolio.netlify.app
+- JS bundle：`index-FfvoMXMd.js`
+- spline-viewer.js（2.2MB）✅ 200
+- robot-scene.splinecode（1.3MB）✅ 200
+- **机器人仍不显示**，控制台无错误。准备咨询 Claude。
+
+### 其他已解决
+- ✅ MH极绘卡片封面 → `mohe极绘.png`（用户提供，OSS + public/images/）
+- ✅ 无限画布封面 → `无限画布.png`（用户提供，OSS + public/images/）
+- ✅ MH极绘跳转改回直连 `http://118.31.14.19/`
+- ✅ Canvas tailwind CDN 已本地化
+- ✅ 日历图片全部恢复（OSS 充值后 16 张 200）
+
+### 部署命令
+```bash
+cd /Users/mohe/Documents/zuixin-zuopinji/app
+npm run build
+netlify deploy --dir=dist
+# promote: netlify api restoreSiteDeploy --data '{"site_id":"f7deb450-13ed-4061-a0ad-4851d5d29479","deploy_id":"<new_id>"}'
+```
+---
+
 ## 🆕 v4：Codex 修复 & 重新部署（2026-07-10 晚，Codex 完成）
 
 ### 本次修复内容

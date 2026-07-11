@@ -7,7 +7,7 @@ function ScrollProgress() {
   return <motion.div className="scroll-progress" style={{ scaleX }} />;
 }
 
-/* ===== SplineViewer wrapper -- eager load (preloaded in index.html) ===== */
+/* ===== SplineViewer wrapper -- dynamic module injection ===== */
 function SplineViewer({ scene }: { scene: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<HTMLElement | null>(null);
