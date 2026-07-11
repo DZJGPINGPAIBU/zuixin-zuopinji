@@ -18,19 +18,21 @@ function SplineViewer({ scene }: { scene: string }) {
 
     const loadSpline = async () => {
       if (!customElements.get('spline-viewer')) {
-        try {
-          await customElements.whenDefined('spline-viewer');
-        } catch {
+        // 注意：customElements.whenDefined() 只会在元素被定义时 resolve，永远不会 reject。
+        // 之前的写法把「注入脚本」放在它的 catch 里，导致脚本永远注入不进去、元素永不注册、机器人永久黑屏。
+        // 正确做法：无条件先注入 loader 脚本（幂等），再等元素定义。
+        if (!document.querySelector('script[data-spline-loader]')) {
           await new Promise<void>((resolve, reject) => {
             const script = document.createElement('script');
             script.type = 'module';
             script.src = './spline-viewer.js';
+            script.setAttribute('data-spline-loader', '');
             script.onload = () => resolve();
             script.onerror = () => reject(new Error('Failed to load spline-viewer'));
             document.head.appendChild(script);
           });
-          await customElements.whenDefined('spline-viewer');
         }
+        await customElements.whenDefined('spline-viewer');
       }
 
       const viewer = document.createElement('spline-viewer') as HTMLElement;
@@ -399,7 +401,13 @@ export default function Hero() {
   });
 
   return (
-    <section id="hero" className="relative w-full min-h-screen bg-black overflow-hidden" ref={heroRef}>
+    <section id="hero" className="relative w-full min-h-screen overflow-hidden" ref={heroRef} style={{ backgroundColor: '#05060a' }}>
+      {/* Fallback designed backdrop —— Spline/WebGL 加载失败时的兜底，永不纯黑 */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ zIndex: 0, background: 'radial-gradient(130% 90% at 50% 8%, #10182e 0%, #0a0f1e 38%, #06080f 68%, #030409 100%)' }}>
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(58% 42% at 50% 0%, rgba(0,85,255,0.22) 0%, rgba(0,85,255,0.06) 42%, transparent 72%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(40% 30% at 82% 20%, rgba(90,130,255,0.10) 0%, transparent 70%)' }} />
+      </div>
+
       {/* Spline 3D Robot Background */}
       <div id="hero-robot-container" className="hero-robot-bg" style={{ zIndex: 0 }}>
         <SplineViewer scene="./robot-scene.splinecode" />
@@ -423,6 +431,13 @@ export default function Hero() {
         }}
       />
 
+
+      {/* Text legibility scrim —— 保证白色文案在任何背景（深色机器人/浅色场景/加载失败）上都可读 */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[6]"
+        aria-hidden="true"
+        style={{ background: 'radial-gradient(72% 56% at 50% 45%, rgba(4,6,14,0.55) 0%, rgba(4,6,14,0.34) 42%, rgba(4,6,14,0.12) 64%, transparent 82%)' }}
+      />
 
       {/* Scroll progress bar */}
       <ScrollProgress />
