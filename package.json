@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:pages": "tsc -b && vite build && node scripts/pages-rewrite-oss.mjs",
+    "build:pages": "tsc -b && vite build && node scripts/pages-rewrite-oss.mjs && node scripts/stamp-platform.mjs GH",
+    "build:netlify": "tsc -b && vite build && node scripts/stamp-platform.mjs NF",
     "lint": "eslint .",
     "preview": "vite preview"
   },
