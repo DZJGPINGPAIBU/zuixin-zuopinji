@@ -89,7 +89,7 @@ export default function About() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="shrink-0 mt-1 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }}></span>
-                <span>精通<strong style={{ color: 'var(--text-primary)' }}>Claude Code/Codex</strong>等前沿Agent工具，<strong style={{ color: 'var(--text-primary)' }}>自研集团内部AI设计平台</strong>，沉淀20+套可复用设计资产模板，削减70%重复工作量，部门设计产能提升50%以上</span>
+                <span>接入<strong style={{ color: 'var(--text-primary)' }}>Claude Code/Codex</strong>等前沿Agent工具，<strong style={{ color: 'var(--text-primary)' }}>自研集团内部AI设计平台</strong>，沉淀20+套可复用设计资产模板，削减70%重复工作量，部门设计产能提升50%以上</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="shrink-0 mt-1 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }}></span>

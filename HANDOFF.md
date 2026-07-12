@@ -4,7 +4,27 @@
 > ```bash
 > cd /Users/mohe/Documents/zuixin-zuopinji/app
 
-# Handoff — 2026-07-12 (v8 · Claude)
+# Handoff — 2026-07-12 (v8 · Claude · 结项)
+
+> **阶段结束**：Experience 图表化 + 视频修复 + 文案清理 全部完成并部署 ECS。后续有需求再聊。
+
+## 最终改动（追加）
+- About 页 "精通 Claude Code/Codex" → "接入 Claude Code/Codex"（务实表述）
+
+## 部署命令（不变）
+```bash
+cd /Users/mohe/Documents/zuixin-zuopinji/app
+npm run build          # ⚠️ 普通 build，不是 build:pages！
+rsync -az --delete -e ssh dist/ root@118.31.14.19:/var/www/zuopinji/
+```
+> 生产：http://118.31.14.19/zuopinji/ ｜ SSH 已配免密
+
+## Git（需火麒麟代理）
+```bash
+git push
+```
+
+---
 
 ## 本次改动
 
