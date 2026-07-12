@@ -14,6 +14,8 @@ export default defineConfig({
       '/bilibili/zhanglong': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
       '/3c': 'https://zuopingjiii.oss-cn-shenzhen.aliyuncs.com',
     },
+    // spline-viewer.js 硬编码了 ECS 子路径 /zuopinji/，dev 环境映射到根目录
+    fs: { allow: ['..'] },
   },
   resolve: {
     alias: { "@": path.resolve(__dirname, "./src") },

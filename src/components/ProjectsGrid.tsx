@@ -124,23 +124,17 @@ export default function ProjectsGrid() {
                   <h3 className="font-heading italic text-black text-3xl md:text-4xl lg:text-5xl tracking-[-2px] leading-[0.9]">
                     {p.title}
                   </h3>
-                  <p className="mt-3 text-xs lg:text-sm text-black/50 font-body font-light tracking-[0.1em] uppercase">
+                  <p className="mt-3 text-xs lg:text-sm text-black/50 font-body font-light tracking-[0.1em] uppercase whitespace-pre-line">
                     {p.subtitle}
                   </p>
                   {isCanvas ? (
                     <div className="mt-4 space-y-3">
                       <p className="text-sm lg:text-base text-black/60 font-body font-light leading-relaxed max-w-2xl mx-auto">
-                        目前该平台还在内测调试中，部分功能暂无法使用，敬请期待开放！点击卡片或下方链接可直接进入平台在线体验。
+                        目前该平台还在内测调试中，部分功能暂无法使用，敬请期待开放！
                       </p>
-                      <a
-                        href="http://118.31.14.19/yitai"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block text-lg lg:text-xl font-mono font-bold text-[#005da7] hover:text-[#004883] underline underline-offset-4 decoration-2 transition-colors cursor-pointer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        http://118.31.14.19/yitai
-                      </a>
+                      <p className="text-sm lg:text-base text-black/60 font-body font-light leading-relaxed max-w-2xl mx-auto">
+                        点击卡片可直接进入平台在线体验。
+                      </p>
                     </div>
                   ) : (
                     <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed whitespace-pre-line">
@@ -204,7 +198,7 @@ export default function ProjectsGrid() {
                 <h3 className="font-heading italic text-black text-3xl md:text-4xl lg:text-5xl tracking-[-2px] leading-[0.9]">
                   {p.title}
                 </h3>
-                <p className="mt-3 text-xs lg:text-sm text-black/50 font-body font-light tracking-[0.1em] uppercase">
+                <p className="mt-3 text-xs lg:text-sm text-black/50 font-body font-light tracking-[0.1em] uppercase whitespace-pre-line">
                   {p.subtitle}
                 </p>
                 <p className="mt-4 text-sm lg:text-base text-black/60 font-body font-light leading-relaxed whitespace-pre-line">

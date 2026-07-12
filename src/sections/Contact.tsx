@@ -67,13 +67,15 @@ export default function Contact() {
             {'// Contact'}
           </motion.p>
           <motion.h2 {...fadeUp(0.4)} className="font-heading italic text-black text-7xl md:text-8xl lg:text-[8rem] leading-[0.85] tracking-[-4px]">
-            Get in<br />touch
+            Get in touch
           </motion.h2>
         </motion.div>
 
         {/* Subtitle */}
         <motion.p {...fadeUp(0.6)} className="text-sm md:text-base max-w-3xl mx-auto text-center mb-14" style={{ color: 'var(--text-secondary)' }}>
           目前在职大族激光，对品牌视觉、IP设计、AIGC创意方向的机会保持开放。期待与有趣的项目相遇。
+          <br />
+          <span className="text-xs" style={{ color: 'var(--text-muted)' }}>Currently at Han's Laser, open to opportunities in brand visual, IP design &amp; AIGC creative. Looking forward to interesting projects.</span>
         </motion.p>
 
         {/* Contact cards */}

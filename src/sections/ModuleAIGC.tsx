@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChenmoSections } from '@/sections/ModuleChenmo';
 import { LuoqingyiSections } from '@/sections/ModuleLuoqingyi';
@@ -19,12 +19,31 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
+  const zhanglongRef = useRef<HTMLDivElement>(null);
+
+  // 切到斩龙页时滚回顶部
+  useEffect(() => {
+    if (page === 'zhanglong') {
+      requestAnimationFrame(() => {
+        zhanglongRef.current?.scrollTo(0, 0);
+      });
+    }
+  }, [page]);
 
   const handleFullscreen = () => {
     const video = videoRef.current;
     if (!video) return;
     video.muted = false;
     video.play().catch(() => {});
+    const onFsChange = () => {
+      if (!document.fullscreenElement && !(document as any).webkitFullscreenElement) {
+        video.muted = true;
+        document.removeEventListener('fullscreenchange', onFsChange);
+        document.removeEventListener('webkitfullscreenchange', onFsChange);
+      }
+    };
+    document.addEventListener('fullscreenchange', onFsChange);
+    document.addEventListener('webkitfullscreenchange', onFsChange);
     if (videoContainerRef.current?.requestFullscreen) {
       videoContainerRef.current.requestFullscreen().catch(() => {});
     } else if ((video as any).webkitEnterFullscreen) {
@@ -111,6 +130,7 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
             muted
             loop
             playsInline
+            controls
             preload="auto"
             className="w-full h-full object-cover"
           />
@@ -270,7 +290,7 @@ export function AIGCModal({ onClose }: { onClose: () => void }) {
       </footer>
         </div>
       ) : (
-        <div className="overflow-y-auto h-full" style={{ background: '#0a0a0a' }}>
+        <div ref={zhanglongRef} className="overflow-y-auto h-full" style={{ background: '#0a0a0a' }}>
           {/* 斩龙 top nav */}
           <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-16 py-5" style={{ background: 'rgba(14,14,14,0.9)', backdropFilter: 'blur(16px)' }}>
             <button onClick={() => setPage('main')} className="flex items-center gap-1.5 text-white/70 hover:text-[#e9c349] transition-colors cursor-pointer" style={{ fontFamily: B }}>

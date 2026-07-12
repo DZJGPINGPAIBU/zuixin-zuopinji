@@ -45,7 +45,7 @@ export function ZhanglongSections() {
         <video
           ref={heroVideoRef}
           src="./bilibili/zhanglong/hero.mov"
-          autoPlay muted loop playsInline
+          autoPlay muted loop playsInline controls
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: 'brightness(0.45)' }}
         />
@@ -268,7 +268,7 @@ export function ZhanglongSections() {
       <section id="zl-fosha-video" className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
         <video
           src="./bilibili/zhanglong/fosha.mp4"
-          autoPlay muted loop playsInline
+          autoPlay muted loop playsInline controls
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: 'brightness(0.55)' }}
         />

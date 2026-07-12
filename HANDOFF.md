@@ -3,6 +3,58 @@
 > **「上线」= 部署到阿里云 ECS（主力，2026-07-11 起 Mohe 定）**。其他平台上线局限性更大。
 > ```bash
 > cd /Users/mohe/Documents/zuixin-zuopinji/app
+
+# Handoff — 2026-07-12 (v8 · Claude)
+
+## 本次改动
+
+### 1. Experience 板块数据图表化
+- 新建 `src/components/ui/StatChart.tsx` — 轻量数据可视化组件（百分比进度条 / 大数计数器，IntersectionObserver 触发入场动画）
+- `src/sections/Experience.tsx` — 重写：密集 bullet points → 2 列图表网格，每张卡片 = 可视化数值 + 对应描述文案
+- `src/data/resume.ts` — 所有工作经历新增 `metrics` 数组，每条 metric 三字段（value / label / desc）
+- 侨邦教育：从 3 条扩展为 4 条指标（从0到1、10+媒介、40%效率、3000+人次）
+- 大族激光：两条 AI 效率合并为一条，现共 6 条
+- 奋达职校：新增"教师技能大赛获奖"卡片
+- 删除各公司 tags 中冗余标签
+
+### 2. 视频播放器修复
+- `ModuleAIGC.tsx` — `handleFullscreen` 补全 `fullscreenchange` 监听，退出全屏自动静音
+- 所有交互视频（`bilibili-preview.mp4` / `hero.mov` / `fosha.mp4`）加 `controls` 属性，支持暂停/静音/拖动
+- 斩龙页切页时 `scrollTo(0,0)` 防止滚动位置残留
+
+### 3. 机器人 WASM 黑屏修复（dev 环境）
+- **根因**：`spline-viewer.js` 硬编码 `/zuopinji/` 前缀（ECS 构建变体），dev 环境 Vite 根路径为 `/`，`/zuopinji/*.wasm` 请求命中 SPA fallback → 返回 HTML → WASM 编译失败
+- **修复**：`public/zuopinji/` 建硬链接指向 wasm + js chunk 文件，两套路径通吃
+
+### 4. 文案 & 标签清理
+- 无限画布：删除 URL 链接、分段优化、"SaaS/工作台/全屏观览/交互设计"标签清除
+- B站卡片：`shortDesc` 清空，`subtitle` 改为英文+中文一行，标签清除
+- MH极绘：标签清除
+- Contact：中文下方加英文翻译，"Get in touch" 改一行
+
+### 修改文件
+| 文件 | 改动 |
+|---|---|
+| `src/components/ui/StatChart.tsx` | **新建** — 数据可视化组件 |
+| `src/sections/Experience.tsx` | 重写为图表网格布局 |
+| `src/data/resume.ts` | metrics 数据结构 + 侨邦教育丰富化 |
+| `src/data/projects.ts` | 标签/文案清理 |
+| `src/components/ProjectsGrid.tsx` | yitai 文案修改 + subtitle 支持换行 |
+| `src/sections/ModuleAIGC.tsx` | 视频 controls + 全屏静音修复 + 斩龙切页滚动修复 |
+| `src/sections/ModuleZhanglong.tsx` | 视频加 controls |
+| `src/sections/Contact.tsx` | 英文翻译 + Get in touch 一行 |
+| `vite.config.ts` | fs.allow 配置 |
+| `public/zuopinji/` | **新建** — wasm/js 硬链接（dev 机器人修复） |
+
+### 部署命令
+```bash
+cd /Users/mohe/Documents/zuixin-zuopinji/app
+npm run build          # ⚠️ 普通 build，不是 build:pages！
+rsync -az --delete -e ssh dist/ root@118.31.14.19:/var/www/zuopinji/
+```
+> 生产：http://118.31.14.19/zuopinji/ ｜ SSH 已配免密
+
+---
 > npm run build          # ⚠️ 普通 build，不是 build:pages！
 > rsync -az --delete -e ssh dist/ root@118.31.14.19:/var/www/zuopinji/
 > ```
